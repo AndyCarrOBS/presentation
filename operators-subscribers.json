@@ -1,0 +1,548 @@
+{
+  "last_updated": "2024-12-05",
+  "data_source": "Various industry reports, company reports, and market research",
+  "note": "Subscriber numbers are approximate and may vary. Some operators may not publicly disclose subscriber data.",
+  "countries": {
+    "Austria": {
+      "operators": [
+        {
+          "name": "Magenta TV (UPC)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "ORS Austria",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "M7 (HD Austria)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "SimpliTV SAT",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "ORF (SAT+Terrestrial)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Public broadcaster - may not have traditional subscribers",
+          "source": null
+        },
+        {
+          "name": "SimpliTV Terrestrial",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Belgium": {
+      "operators": [
+        {
+          "name": "Telenet",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Voo",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "M7 (Telesat, TV Vlanderen)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Croatia": {
+      "operators": [
+        {
+          "name": "evoTV (merged with Telekom)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Hakom",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed - may be regulatory body",
+          "source": null
+        }
+      ]
+    },
+    "Czech Republic": {
+      "operators": [
+        {
+          "name": "M7 (Skylink CZ)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "T2 CZ",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "UPC",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Denmark": {
+      "operators": [
+        {
+          "name": "YouSee",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Norlys",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Allente",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Boxer HD",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Estonia": {
+      "operators": [
+        {
+          "name": "Levira",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Finland": {
+      "operators": [
+        {
+          "name": "CableHDReady",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed - may be a standard/specification",
+          "source": null
+        },
+        {
+          "name": "Allente",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "AntennaHDReady",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed - may be a standard/specification",
+          "source": null
+        }
+      ]
+    },
+    "France": {
+      "operators": [
+        {
+          "name": "Fransat",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Germany": {
+      "operators": [
+        {
+          "name": "Unitymedia",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Merged with Vodafone Germany",
+          "source": null
+        },
+        {
+          "name": "KDG/Vodafone",
+          "subscribers": "~8.9 million",
+          "tv_homes": null,
+          "notes": "Vodafone Germany (includes Unitymedia)",
+          "source": "Wikipedia, various industry reports"
+        },
+        {
+          "name": "Deutsche Telekom Magenta TV",
+          "subscribers": "~4.7 million",
+          "tv_homes": null,
+          "notes": "As of June 2025",
+          "source": "Industry reports"
+        },
+      ],
+      "market_total": {
+        "subscribers": "15.2 million",
+        "tv_homes": null,
+        "notes": "Total pay-TV subscriptions in Germany (2024)",
+        "source": "Industry reports"
+      }
+    },
+        {
+          "name": "Telecolumbus(PÜYR)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "HD+ (In OBS context - 2024 - assume OpApp; Below for non-OpApp)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "SKY",
+          "subscribers": "~2.3 million",
+          "tv_homes": "~11% of TV households",
+          "notes": "Sky Deutschland",
+          "source": "Ofcom report, industry reports"
+        },
+        {
+          "name": "DVB-T2 HD",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Terrestrial standard - not an operator",
+          "source": null
+        },
+        {
+          "name": "PYÜR",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Hungary": {
+      "operators": [
+        {
+          "name": "UPC (Vodafone)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "DigiTV (Cable)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Sold to 4iG - research needed",
+          "source": null
+        },
+        {
+          "name": "DigiTV (Satellite)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Sold to 4iG - research needed",
+          "source": null
+        },
+        {
+          "name": "M7 (UPC Direct)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "MinDigTV",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Ireland": {
+      "operators": [
+        {
+          "name": "VirginMedia",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Saorview",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Free-to-air service - research needed",
+          "source": null
+        }
+      ]
+    },
+    "Italy": {
+      "operators": [
+        {
+          "name": "Tivusat - LaTivu",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Luxembourg": {
+      "operators": [
+        {
+          "name": "M7 (Telesat)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Netherlands": {
+      "operators": [
+        {
+          "name": "Ziggo/UPC",
+          "subscribers": "~3.83 million",
+          "tv_homes": null,
+          "notes": "Ziggo merged with UPC (as of 2020)",
+          "source": "Wikipedia, industry reports"
+        },
+        {
+          "name": "M7 (Canal Digitaal)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Norway": {
+      "operators": [
+        {
+          "name": "Allente",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "RiksTV",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Poland": {
+      "operators": [
+        {
+          "name": "UPC",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "nc+/Canal+",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ],
+      "market_total": {
+        "subscribers": "11.1 million",
+        "tv_homes": "76.3% of households",
+        "notes": "Total pay-TV market in Poland (2024)",
+        "source": "Industry reports"
+      }
+    },
+    "Romania": {
+      "operators": [
+        {
+          "name": "UPC (Vodafone)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "DigiTV (Cable)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Sold to 4iG - research needed",
+          "source": null
+        },
+        {
+          "name": "DigiTV (Satellite)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Serbia": {
+      "operators": [
+        {
+          "name": "Digital TV",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed - generic name",
+          "source": null
+        }
+      ]
+    },
+    "Slovakia": {
+      "operators": [
+        {
+          "name": "M7 (Skylink SK)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "DVB-T/T2 Spec",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Terrestrial standard - not an operator",
+          "source": null
+        }
+      ]
+    },
+    "Spain": {
+      "operators": [
+        {
+          "name": "TDT Hibrida (LovesTV)",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Sweden": {
+      "operators": [
+        {
+          "name": "Tele2",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Telenor",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Allente",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Boxer HD",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "Switzerland": {
+      "operators": [
+        {
+          "name": "UPC",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Kabelio",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    },
+    "United Kingdom": {
+      "operators": [
+        {
+          "name": "Freely",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "New service - research needed",
+          "source": null
+        },
+        {
+          "name": "EE",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        },
+        {
+          "name": "Talk Talk",
+          "subscribers": null,
+          "tv_homes": null,
+          "notes": "Research needed",
+          "source": null
+        }
+      ]
+    }
+  }
+}
+

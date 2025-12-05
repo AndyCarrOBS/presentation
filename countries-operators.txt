@@ -1,0 +1,152 @@
+EUROPEAN COUNTRIES AND OPERATORS
+=================================
+
+AUSTRIA
+-------
+- Magenta TV (UPC)
+- ORS Austria
+- M7 (HD Austria)
+- SimpliTV SAT
+- ORF (SAT+Terrestrial)
+- SimpliTV Terrestrial
+
+BELGIUM
+-------
+- Telenet
+- Voo
+- M7 (Telesat, TV Vlanderen)
+
+CROATIA
+-------
+- evoTV (merged with Telekom)
+- Hakom
+
+CZECH REPUBLIC
+--------------
+- M7 (Skylink CZ)
+- T2 CZ
+- UPC
+
+DENMARK
+-------
+- YouSee
+- Norlys
+- Allente
+- Boxer HD
+
+ESTONIA
+-------
+- Levira
+
+FINLAND
+--------
+- CableHDReady
+- Allente
+- AntennaHDReady
+
+FRANCE
+------
+- Fransat
+
+GERMANY
+-------
+- Unitymedia
+- KDG/Vodafone
+- Telecolumbus(PÜYR)
+- HD+ (In OBS context - 2024 - assume OpApp; Below for non-OpApp)
+- SKY
+- DVB-T2 HD
+- PYÜR
+
+HUNGARY
+-------
+- UPC (Vodafone)
+- DigiTV (Cable) was sold to company 4iG, possible spec changes
+- DigiTV (Satellite) was sold to company 4iG, possible spec changes
+- M7 (UPC Direct)
+- MinDigTV
+
+IRELAND
+-------
+- VirginMedia
+- Saorview
+
+ITALY
+-----
+- Tivusat - LaTivu
+
+LUXEMBOURG
+----------
+- M7 (Telesat)
+
+NETHERLANDS
+-----------
+- Ziggo/UPC. (Assume for Argon context "connected" (below for non)
+- M7 (Canal Digitaal)
+
+NORWAY
+------
+- Allente
+- RiksTV
+
+POLAND
+------
+- UPC
+- nc+/Canal+
+
+ROMANIA
+-------
+- UPC (Vodafone)
+- DigiTV (Cable) was sold to company 4iG, possible spec changes
+- DigiTV (Satellite)
+
+SERBIA
+------
+- Digital TV
+
+SLOVAKIA
+--------
+- M7 (Skylink SK)
+- DVB-T/T2 Spec
+
+SPAIN
+-----
+- TDT Hibrida (LovesTV). <--- separate out; LovesTV? as superset
+
+SWEDEN
+------
+- Tele2
+- Telenor
+- Allente
+- Boxer HD
+
+SWITZERLAND
+-----------
+- UPC
+- Kabelio
+
+UNITED KINGDOM
+--------------
+- Freely
+- EE
+- Talk Talk
+
+ADDITIONAL OPERATORS (Multi-Country/Unspecified)
+-------------------------------------------------
+- Canal Plus ECP
+- DTVP (T2/HEVC)
+- Fransat Connect
+- Freenet
+- Freenet TV Connect
+- HD+ (non-OpApp)
+- M7 (but not specific where!)
+- M7 Deutschland (no specific brand mentioned)
+- Mediaset Play App
+- Nordig operators (Cable HD Ready, Stofa [Denmark], Riks TV)
+- Salto
+- Telenor (CanalDigital), Viassat -> Allenta
+- TNT
+- Vodafone (Unity Media)
+- Voo
+- Ziggo (Non connected)
+

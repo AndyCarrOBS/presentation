@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="1000" height="800">
+  <!-- 
+    NOTE: This is a placeholder SVG structure.
+    
+    To get a full interactive Europe map with all countries:
+    
+    1. Visit https://simplemaps.com/resources/svg-europe
+       - Download the free SVG map (59 KB, free for commercial use)
+       - Replace this file with the downloaded SVG
+    
+    2. OR use a JavaScript library:
+       - Leaflet.js with GeoJSON data
+       - D3.js with TopoJSON
+       - jsVectorMap library
+    
+    3. The downloaded SVG should have individual <path> elements for each country
+       with IDs or class names matching country names (e.g., id="Austria", id="Belgium")
+    
+    For now, this placeholder shows the structure needed for interactive functionality.
+  -->
+  
+  <!-- Example country paths - replace with actual map data -->
+  <g id="countries">
+    <!-- Countries will be individual <path> elements here -->
+    <!-- Example structure:
+    <path id="austria" d="M..." fill="#f0f0f0" stroke="#333" stroke-width="0.5"/>
+    <path id="belgium" d="M..." fill="#f0f0f0" stroke="#333" stroke-width="0.5"/>
+    -->
+  </g>
+  
+  <!-- Country labels (optional) -->
+  <g id="labels" style="font-family: Arial, sans-serif; font-size: 12px;">
+    <!-- Country name labels will go here -->
+  </g>
+</svg>
+
+
+

@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBS Presentation - Operator Markets Overview</title>
+    
+    <!-- Leaflet CSS and JS from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- TopoJSON library -->
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+        
+        .slide {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 40px;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+        
+        /* Header with OBS Logo */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .obs-logo {
+            height: 60px;
+            width: auto;
+        }
+        
+        /* Footer with Roku */
+        .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .footer-text {
+            color: white;
+            font-size: 14px;
+        }
+        
+        .roku-logo {
+            height: 30px;
+            width: auto;
+        }
+        
+        /* Slide 1: Title Screen */
+        .title-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .title-slide h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title-slide .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        /* Slide 2: Agenda */
+        .agenda-slide {
+            background: white;
+            color: #333;
+        }
+        
+        .agenda-slide .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .agenda-slide h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        .agenda-list {
+            list-style: none;
+            font-size: 1.8rem;
+            line-height: 2.5;
+        }
+        
+        .agenda-list li {
+            padding: 15px 0;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .agenda-list li:before {
+            content: "▸ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        /* Slide 3: Map */
+        .map-slide {
+            background: white;
+        }
+        
+        .map-slide .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .map-slide h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        #map {
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+            z-index: 1;
+        }
+        
+        /* Overlay/Modal for country details */
+        .overlay {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .overlay.active {
+            display: flex;
+        }
+        
+        .overlay-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            position: relative;
+            color: #333; /* Ensure text color is dark */
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+            line-height: 1;
+        }
+        
+        .close-btn:hover {
+            color: #000;
+        }
+        
+        .overlay-content h2 {
+            color: #667eea;
+            margin-bottom: 12px;
+            padding-right: 40px;
+            font-size: 1.5em;
+        }
+        
+        .overlay-content h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .overlay-content p {
+            color: #333;
+            line-height: 1.4;
+            margin: 8px 0;
+        }
+        
+        .overlay-content .operators {
+            margin-top: 12px;
+            color: #333;
+        }
+        
+        .overlay-content .operators ul {
+            list-style: none;
+            padding-left: 0;
+            color: #333;
+            margin: 0;
+        }
+        
+        .overlay-content .operators li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        
+        .overlay-content .operators li:last-child {
+            border-bottom: none;
+        }
+        
+        .overlay-content .operators li:before {
+            content: "• ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .operator-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        
+        .operator-name-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            vertical-align: top;
+        }
+        
+        .operator-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95em;
+        }
+        
+        .operator-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-left: 16px;
+            margin-top: 2px;
+        }
+        
+        .operator-stats .stat {
+            font-size: 0.85em;
+            color: #555;
+            line-height: 1.3;
+        }
+        
+        .operator-stats .stat strong {
+            color: #667eea;
+            margin-right: 4px;
+        }
+        
+        .operator-stats .stat.subscribers {
+            color: #2d8659;
+        }
+        
+        .operator-stats .stat.tv-homes {
+            color: #7c3aed;
+        }
+        
+        .operator-notes {
+            font-size: 0.8em;
+            color: #666;
+            font-style: italic;
+            margin-left: 16px;
+            margin-top: 1px;
+            line-height: 1.3;
+        }
+        
+        .ci-plus-indicator {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: 600;
+            margin-left: 6px;
+            vertical-align: middle;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .ci-plus-indicator.required {
+            background-color: #22c55e;
+            color: white;
+        }
+        
+        .ci-plus-indicator.not-required {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .ci-plus-indicator.unknown {
+            background-color: #9ca3af;
+            color: white;
+        }
+        
+        .operator-name-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            vertical-align: top;
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1500;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1500;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #667eea;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title Screen -->
+    <div class="slide title-slide active">
+        <div class="header">
+            <img src="img/OBS-Logo.png" alt="OBS Logo" class="obs-logo">
+        </div>
+        <div class="content">
+            <h1>Operator Markets Overview</h1>
+            <p class="subtitle">European Market Analysis</p>
+        </div>
+        <div class="footer">
+            <span class="footer-text">prepared for</span>
+            <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+        </div>
+    </div>
+    
+    <!-- Slide 2: Agenda -->
+    <div class="slide agenda-slide">
+        <div class="header">
+            <img src="img/OBS-Logo.png" alt="OBS Logo" class="obs-logo">
+        </div>
+        <div class="content">
+            <h2>Agenda</h2>
+            <ul class="agenda-list">
+                <li>Overview of Operator Markets</li>
+                <li>2 ways to approach the problem</li>
+                <li>What has worked</li>
+                <li>Key Steps for Success</li>
+            </ul>
+        </div>
+        <div class="footer">
+            <span class="footer-text">prepared for</span>
+            <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+        </div>
+    </div>
+    
+    <!-- Slide 3: Interactive Map -->
+    <div class="slide map-slide">
+        <div class="header">
+            <img src="img/OBS-Logo.png" alt="OBS Logo" class="obs-logo">
+        </div>
+        <div class="content">
+            <h2>Europe Operator Markets</h2>
+            <div id="map"></div>
+        </div>
+        <div class="footer">
+            <span class="footer-text">prepared for</span>
+            <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+        </div>
+    </div>
+    
+    <!-- Country Details Overlay -->
+    <div id="country-overlay" class="overlay">
+        <div class="overlay-content">
+            <span class="close-btn" onclick="closeOverlay()">&times;</span>
+            <h2 id="overlay-title">Country Details</h2>
+            <div id="overlay-data">
+                <!-- Dynamic data will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="slide-indicator">
+        <span id="slide-number">1</span> / 3
+    </div>
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prev-btn" onclick="previousSlide()" disabled>Previous</button>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">Next</button>
+    </div>
+    
+    <script>
+        // Country data with operators and subscriber/TV home information
+        const countryData = {
+            "Austria": [
+                {name: "Magenta TV (UPC)", subscribers: null, tv_homes: "~4.2M TV households (estimated)", notes: "Deutsche Telekom (IPTV/Cable)", ci_plus: true},
+                {name: "ORS Austria", subscribers: null, tv_homes: null, notes: "Broadcasting infrastructure provider", ci_plus: null},
+                {name: "M7 (HD Austria)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "SimpliTV SAT", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "ORF (SAT+Terrestrial)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false},
+                {name: "SimpliTV Terrestrial", subscribers: null, tv_homes: null, ci_plus: true}
+            ],
+            "Belgium": [
+                {name: "Telenet", subscribers: null, tv_homes: "~4.8M TV households, >95% cable penetration", notes: "Major Belgian cable operator - data not publicly disclosed", ci_plus: true},
+                {name: "Proximus Pickx", subscribers: "~1.41 million", tv_homes: null, notes: "As of 2013", ci_plus: true},
+                {name: "Voo", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "M7 (Telesat, TV Vlanderen)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "VRT", subscribers: null, tv_homes: "Near universal coverage in Flanders", notes: "Flemish public broadcaster", ci_plus: false},
+                {name: "RTBF", subscribers: null, tv_homes: "Near universal coverage in Wallonia", notes: "French-speaking public broadcaster", ci_plus: false}
+            ],
+            "Croatia": [
+                {name: "evoTV (merged with Telekom)", subscribers: null, tv_homes: null, ci_plus: false},
+                {name: "Hakom", subscribers: null, tv_homes: null, ci_plus: null}
+            ],
+            "Czech": [
+                {name: "M7 (Skylink CZ)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "T2 CZ", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "UPC", subscribers: null, tv_homes: null, ci_plus: true}
+            ],
+            "Czech Rep.": [
+                {name: "M7 (Skylink CZ)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "T2 CZ", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "UPC", subscribers: null, tv_homes: null, ci_plus: true}
+            ],
+            "Denmark": [
+                {name: "YouSee", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "Norlys", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "Stofa", subscribers: null, tv_homes: null, notes: "Nordig operator", ci_plus: true},
+                {name: "Allente", subscribers: null, tv_homes: null, notes: "Operates across Nordic countries", ci_plus: true},
+                {name: "Boxer HD", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "DR", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false}
+            ],
+            "Estonia": [
+                {name: "Levira", subscribers: null, tv_homes: null, ci_plus: null}
+            ],
+            "Finland": [
+                {name: "CableHDReady", subscribers: null, tv_homes: null, ci_plus: null},
+                {name: "Allente", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "AntennaHDReady", subscribers: null, tv_homes: null, ci_plus: null}
+            ],
+            "France": [
+                {name: "Fransat", subscribers: null, tv_homes: "~26.5M TV households, ~13.2M connected TV", ci_plus: true},
+                {name: "Orange France", subscribers: "~7.6-11.6 million", tv_homes: null, notes: "IPTV subscribers (varies by source/year)", ci_plus: false},
+                {name: "Free France (Iliad)", subscribers: "~6.7-8.6 million", tv_homes: null, notes: "IPTV subscribers (varies by source/year)", ci_plus: false},
+                {name: "Canal+ France", subscribers: "~4.7-9.1 million", tv_homes: null, notes: "Subscriber numbers vary by reporting method", ci_plus: true},
+                {name: "France Télévisions", subscribers: null, tv_homes: "~29.4% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false},
+                {name: "TF1", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false}
+            ],
+            "Germany": [
+                {name: "Unitymedia", subscribers: null, tv_homes: "~40M TV households (largest TV market in Europe)", notes: "Merged with Vodafone Germany", ci_plus: true},
+                {name: "KDG/Vodafone", subscribers: "~8.9 million", tv_homes: null, notes: "Vodafone Germany (includes Unitymedia)", ci_plus: true},
+                {name: "Deutsche Telekom Magenta TV", subscribers: "~4.7 million", tv_homes: null, notes: "As of June 2025", ci_plus: false},
+                {name: "Telecolumbus(PÜYR)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "HD+ (In OBS context - 2024 - assume OpApp; Below for non-OpApp)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "SKY", subscribers: "~2.3 million", tv_homes: "~11% of TV households", notes: "Sky Deutschland", ci_plus: true},
+                {name: "ARD", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster consortium", ci_plus: false},
+                {name: "ZDF", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false},
+                {name: "ProSiebenSat.1 Media", subscribers: null, tv_homes: "~30% market share", notes: "Commercial broadcaster", ci_plus: false},
+                {name: "DVB-T2 HD", subscribers: null, tv_homes: null, notes: "Terrestrial standard - not an operator", ci_plus: null},
+                {name: "PYÜR", subscribers: null, tv_homes: null, ci_plus: true}
+            ],
+            "Hungary": [
+                {name: "UPC (Vodafone)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "DigiTV (Cable) was sold to company 4iG, possible spec changes", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "DigiTV (Satellite) was sold to company 4iG, possible spec changes", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "M7 (UPC Direct)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "MinDigTV", subscribers: null, tv_homes: null, ci_plus: true}
+            ],
+            "Ireland": [
+                {name: "VirginMedia", subscribers: null, tv_homes: null, notes: "Data not publicly disclosed", ci_plus: true},
+                {name: "Sky Ireland", subscribers: null, tv_homes: null, notes: "Satellite pay-TV platform", ci_plus: true},
+                {name: "RTÉ", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false},
+                {name: "Saorview", subscribers: null, tv_homes: "~98% coverage", notes: "Free-to-air service - near universal coverage", ci_plus: false}
+            ],
+            "Italy": [
+                {name: "Tivusat - LaTivu", subscribers: null, tv_homes: "~23.9M TV households, ~17M connected TV", ci_plus: true},
+                {name: "Sky Italia", subscribers: "~4.6 million", tv_homes: null, ci_plus: true},
+                {name: "RAI", subscribers: null, tv_homes: "~48.3% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false},
+                {name: "Mediaset", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false}
+            ],
+            "Luxembourg": [
+                {name: "M7 (Telesat)", subscribers: null, tv_homes: null, ci_plus: true}
+            ],
+            "Luxemburg": [
+                {name: "M7 (Telesat)", subscribers: null, tv_homes: null, ci_plus: true}
+            ],
+            "Netherlands": [
+                {name: "Ziggo/UPC. (Assume for Argon context \"connected\" (below for non)", subscribers: "~3.83 million", tv_homes: "~8.3M TV households (2023)", notes: "Ziggo merged with UPC (2020)", ci_plus: true},
+                {name: "KPN", subscribers: "~2.17 million", tv_homes: null, notes: "As of 2021", ci_plus: false},
+                {name: "M7 (Canal Digitaal)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "NPO", subscribers: null, tv_homes: "~46.3% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false}
+            ],
+            "Norway": [
+                {name: "Allente", subscribers: null, tv_homes: null, notes: "Operates across Nordic countries", ci_plus: true},
+                {name: "RiksTV", subscribers: null, tv_homes: null, notes: "Nordig operator", ci_plus: true},
+                {name: "Telenor", subscribers: "~1.90 million", tv_homes: null, notes: "As of 2021 - Norway/Sweden combined", ci_plus: false},
+                {name: "NRK", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false}
+            ],
+            "Poland": [
+                {name: "UPC", subscribers: null, tv_homes: "Part of CEE region: 30M pay-TV households across 7 markets", ci_plus: true},
+                {name: "nc+/Canal+", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "Cyfrowy Polsat", subscribers: "~5.12 million", tv_homes: null, notes: "As of 2020", ci_plus: true},
+                {name: "TVP", subscribers: null, tv_homes: "~44.3% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false}
+            ],
+            "Romania": [
+                {name: "UPC (Vodafone)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "DigiTV (Cable) was sold to company 4iG, possible spec changes", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "DigiTV (Satellite)", subscribers: null, tv_homes: null, ci_plus: true}
+            ],
+            "Serbia": [
+                {name: "Digital TV", subscribers: null, tv_homes: null, ci_plus: null}
+            ],
+            "Slovakia": [
+                {name: "M7 (Skylink SK)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "DVB-T/T2 Spec", subscribers: null, tv_homes: null, notes: "Terrestrial standard - not an operator", ci_plus: null}
+            ],
+            "Spain": [
+                {name: "TDT Hibrida (LovesTV). <--- separate out; LovesTV? as superset", subscribers: null, tv_homes: "~15.9M TV households, ~11M connected TV", notes: "31M CTV users, 60% watch on Smart TVs", ci_plus: true},
+                {name: "RTVE", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false}
+            ],
+            "Sweden": [
+                {name: "Tele2", subscribers: "~2.17 million", tv_homes: null, notes: "As of Q3 2025 - mobile/TV combined", ci_plus: false},
+                {name: "Telenor", subscribers: "~1.90 million", tv_homes: null, notes: "As of 2021 - Norway/Sweden combined", ci_plus: false},
+                {name: "Allente", subscribers: null, tv_homes: null, notes: "Operates across Nordic countries", ci_plus: true},
+                {name: "Boxer HD", subscribers: "~500,000", tv_homes: null, notes: "Boxer TV Access", ci_plus: true},
+                {name: "SVT", subscribers: null, tv_homes: "~29.8% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false}
+            ],
+            "Switzerland": [
+                {name: "UPC", subscribers: null, tv_homes: null, notes: "Now part of Sunrise/UPC", ci_plus: true},
+                {name: "Swisscom TV", subscribers: null, tv_homes: null, notes: "Swisscom's TV service", ci_plus: false},
+                {name: "Kabelio", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "SRG SSR", subscribers: null, tv_homes: "~30.1% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false}
+            ],
+            "United Kingdom": [
+                {name: "Freely", subscribers: null, tv_homes: "27.52M TV households (Q4 2024), ~18M connected TV", notes: "New hybrid TV platform (2024)", ci_plus: null},
+                {name: "Sky UK", subscribers: "~7.73 million", tv_homes: "Satellite: 7.73M, Cable: 3.47M, Terrestrial: 3.06M", notes: "Satellite pay-TV platform", ci_plus: true},
+                {name: "Virgin Media", subscribers: "~3 million", tv_homes: null, notes: "Historical data", ci_plus: true},
+                {name: "EE", subscribers: null, tv_homes: null, ci_plus: false},
+                {name: "Talk Talk", subscribers: null, tv_homes: null, ci_plus: false},
+                {name: "BBC", subscribers: null, tv_homes: "Near universal coverage, largest broadcaster", notes: "Public broadcaster", ci_plus: false},
+                {name: "ITV", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false},
+                {name: "Channel 4", subscribers: null, tv_homes: "Major broadcaster", notes: "Publicly owned, commercially funded", ci_plus: false}
+            ],
+            "UK": [
+                {name: "Freely", subscribers: null, tv_homes: "27.52M TV households (Q4 2024), ~18M connected TV", notes: "New hybrid TV platform (2024)", ci_plus: null},
+                {name: "Sky UK", subscribers: "~7.73 million", tv_homes: "Satellite: 7.73M, Cable: 3.47M, Terrestrial: 3.06M", notes: "Satellite pay-TV platform", ci_plus: true},
+                {name: "Virgin Media", subscribers: "~3 million", tv_homes: null, notes: "Historical data", ci_plus: true},
+                {name: "EE", subscribers: null, tv_homes: null, ci_plus: false},
+                {name: "Talk Talk", subscribers: null, tv_homes: null, ci_plus: false},
+                {name: "BBC", subscribers: null, tv_homes: "Near universal coverage, largest broadcaster", notes: "Public broadcaster", ci_plus: false},
+                {name: "ITV", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false},
+                {name: "Channel 4", subscribers: null, tv_homes: "Major broadcaster", notes: "Publicly owned, commercially funded", ci_plus: false}
+            ],
+            "Ukraine": [
+                {name: "No operator data available", subscribers: null, tv_homes: null, notes: "Ukraine not in original country list", ci_plus: null}
+            ],
+            "Portugal": [
+                {name: "MEO (Altice Portugal)", subscribers: "~1.97 million", tv_homes: "~4.7M pay-TV subscribers, 97.1% penetration", notes: "41.9% market share, primarily FTTH/B (IPTV)", ci_plus: false},
+                {name: "NOS Group", subscribers: "~1.69 million", tv_homes: null, notes: "36.0% market share, Cable and FTTH/B", ci_plus: true},
+                {name: "Vodafone Portugal", subscribers: "~912,000", tv_homes: null, notes: "19.4% market share, primarily FTTH/B (IPTV)", ci_plus: false},
+                {name: "Digi/Nowo Group", subscribers: "~122,000", tv_homes: null, notes: "2.6% market share", ci_plus: false},
+                {name: "RTP", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false},
+                {name: "SIC", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false},
+                {name: "TVI", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false}
+            ]
+        };
+        
+        // Country name mapping (from TopoJSON codes to display names)
+        const countryNameMap = {
+            "AL": "Albania",
+            "AT": "Austria",
+            "BE": "Belgium",
+            "BG": "Bulgaria",
+            "BA": "Bosnia and Herz.",
+            "BY": "Belarus",
+            "CH": "Switzerland",
+            "CZ": "Czech Rep.",
+            "DE": "Germany",
+            "DK": "Denmark",
+            "EE": "Estonia",
+            "FI": "Finland",
+            "GB": "United Kingdom",
+            "GR": "Greece",
+            "HR": "Croatia",
+            "HU": "Hungary",
+            "IE": "Ireland",
+            "IS": "Iceland",
+            "IT": "Italy",
+            "LT": "Lithuania",
+            "LU": "Luxembourg",
+            "LV": "Latvia",
+            "MD": "Moldova",
+            "MK": "Macedonia",
+            "ME": "Montenegro",
+            "NL": "Netherlands",
+            "NO": "Norway",
+            "PL": "Poland",
+            "PT": "Portugal",
+            "RO": "Romania",
+            "RS": "Serbia",
+            "SK": "Slovakia",
+            "SI": "Slovenia",
+            "SE": "Sweden",
+            "UA": "Ukraine",
+            "FR": "France",
+            "ES": "Spain"
+        };
+        
+        // Country name aliases for better matching
+        const countryAliases = {
+            "Austria": ["Austria", "Österreich", "AT"],
+            "Belgium": ["Belgium", "België", "Belgique", "BE"],
+            "Croatia": ["Croatia", "Hrvatska", "HR"],
+            "Czech": ["Czech", "Czech Republic", "Czech Rep.", "Česká republika", "CZ"],
+            "Czech Rep.": ["Czech", "Czech Republic", "Czech Rep.", "Česká republika", "CZ"],
+            "Denmark": ["Denmark", "Danmark", "DK"],
+            "Estonia": ["Estonia", "Eesti", "EE"],
+            "Finland": ["Finland", "Suomi", "FI"],
+            "France": ["France", "FR"],
+            "Germany": ["Germany", "Deutschland", "DE"],
+            "Hungary": ["Hungary", "Magyarország", "HU"],
+            "Ireland": ["Ireland", "Éire", "IE"],
+            "Italy": ["Italy", "Italia", "IT"],
+            "Luxembourg": ["Luxembourg", "Luxemburg", "Luxemburg", "LU"],
+            "Luxemburg": ["Luxembourg", "Luxemburg", "Luxemburg", "LU"],
+            "Netherlands": ["Netherlands", "Nederland", "Holland", "NL"],
+            "Norway": ["Norway", "Norge", "NO"],
+            "Poland": ["Poland", "Polska", "PL"],
+            "Portugal": ["Portugal", "PT"],
+            "Romania": ["Romania", "România", "RO"],
+            "Serbia": ["Serbia", "Srbija", "RS"],
+            "Slovakia": ["Slovakia", "Slovensko", "SK"],
+            "Spain": ["Spain", "España", "ES"],
+            "Sweden": ["Sweden", "Sverige", "SE"],
+            "Switzerland": ["Switzerland", "Schweiz", "Suisse", "Svizzera", "CH"],
+            "United Kingdom": ["United Kingdom", "UK", "Great Britain", "Britain", "GB"],
+            "UK": ["United Kingdom", "UK", "Great Britain", "Britain", "GB"]
+        };
+        
+        // Function to normalize country names for matching
+        function normalizeCountryName(name) {
+            if (!name) return null;
+            // Remove extra whitespace and convert to lowercase for comparison
+            return name.trim().toLowerCase();
+        }
+        
+        // Function to find country data by matching various name formats
+        function findCountryData(countryName) {
+            if (!countryName) return null;
+            
+            const normalized = normalizeCountryName(countryName);
+            
+            // First, try direct match (case-sensitive)
+            if (countryData[countryName]) {
+                return countryData[countryName];
+            }
+            
+            // Try normalized direct match (case-insensitive)
+            for (const [key, value] of Object.entries(countryData)) {
+                if (normalizeCountryName(key) === normalized) {
+                    return value;
+                }
+            }
+            
+            // Try matching through aliases (exact match only)
+            for (const [key, aliases] of Object.entries(countryAliases)) {
+                if (aliases.some(alias => normalizeCountryName(alias) === normalized)) {
+                    return countryData[key];
+                }
+            }
+            
+            // Try partial matching (but be very strict to avoid false positives like "uk" matching "ukraine")
+            // Only match if the shorter string is at least 5 characters to avoid short substring matches
+            for (const [key, value] of Object.entries(countryData)) {
+                const keyNormalized = normalizeCountryName(key);
+                if (keyNormalized && normalized && keyNormalized !== normalized) {
+                    const shorter = keyNormalized.length < normalized.length ? keyNormalized : normalized;
+                    const longer = keyNormalized.length >= normalized.length ? keyNormalized : normalized;
+                    // Require at least 5 chars to avoid "uk" matching "ukraine" or "united kingdom"
+                    if (shorter.length >= 5 && longer.includes(shorter)) {
+                        return value;
+                    }
+                }
+            }
+            
+            // Try matching against aliases with partial match (very strict)
+            for (const [key, aliases] of Object.entries(countryAliases)) {
+                if (aliases.some(alias => {
+                    const aliasNorm = normalizeCountryName(alias);
+                    if (aliasNorm && normalized && aliasNorm !== normalized) {
+                        const shorter = aliasNorm.length < normalized.length ? aliasNorm : normalized;
+                        const longer = aliasNorm.length >= normalized.length ? aliasNorm : normalized;
+                        // Require at least 5 chars
+                        if (shorter.length >= 5 && longer.includes(shorter)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })) {
+                    return countryData[key];
+                }
+            }
+            
+            return null;
+        }
+        
+        // Slide navigation
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            slides[currentSlide].classList.add('active');
+            
+            // Update slide indicator
+            document.getElementById('slide-number').textContent = currentSlide + 1;
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+            
+            // Initialize map when slide 3 is shown
+            if (currentSlide === 2 && !mapInitialized) {
+                initializeMap();
+            }
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                previousSlide();
+            } else if (e.key === 'Escape') {
+                closeOverlay();
+            }
+        });
+        
+        // Map initialization
+        let map;
+        let geoJsonLayer;
+        let mapInitialized = false;
+        
+        function initializeMap() {
+            if (mapInitialized) return;
+            
+            // Initialize the map
+            map = L.map('map').setView([50.5, 10], 4);
+            
+            // Add tile layer (using a simple style for presentation)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 8
+            }).addTo(map);
+            
+            const overlay = document.getElementById('country-overlay');
+            const overlayTitle = document.getElementById('overlay-title');
+            const overlayData = document.getElementById('overlay-data');
+            
+            // Interactivity functions
+            function highlightFeature(e) {
+                const layer = e.target;
+                
+                layer.setStyle({
+                    weight: 3,
+                    color: '#667eea',
+                    dashArray: '',
+                    fillOpacity: 0.7
+                });
+                
+                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                    layer.bringToFront();
+                }
+                
+                // Display country name on hover - use same logic as click handler
+                const feature = layer.feature.properties;
+                const countryName = feature.name || 
+                                   feature.NAME || 
+                                   feature.NAME_EN || 
+                                   feature.NAME_ENG || 
+                                   feature.admin || 
+                                   feature.ADMIN ||
+                                   feature.NAME_LONG ||
+                                   feature.NAME_SORT ||
+                                   feature.formal_en ||
+                                   feature.name_en ||
+                                   'Unknown';
+                
+                // Try to get the display name from our data
+                const operators = findCountryData(countryName);
+                // Find display name by matching the operators array
+                let displayName = countryName;
+                if (operators) {
+                    for (const [key, value] of Object.entries(countryData)) {
+                        // Compare arrays - check if they have same length and operator names match
+                        if (Array.isArray(value) && Array.isArray(operators) && 
+                            value.length === operators.length) {
+                            // Check if operator names match (handle both string and object formats)
+                            const namesMatch = value.every((op, idx) => {
+                                const opName = typeof op === 'string' ? op : op.name;
+                                const operatorName = typeof operators[idx] === 'string' ? operators[idx] : operators[idx].name;
+                                return normalizeCountryName(opName) === normalizeCountryName(operatorName);
+                            });
+                            if (namesMatch) {
+                                displayName = key;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                if (displayName && displayName !== 'Unknown') {
+                    layer.bindTooltip(displayName, {
+                        permanent: false,
+                        direction: 'center',
+                        className: 'country-tooltip'
+                    }).openTooltip();
+                }
+            }
+            
+            function resetHighlight(e) {
+                geoJsonLayer.resetStyle(e.target);
+                e.target.closeTooltip();
+            }
+            
+            function zoomToFeature(e) {
+                map.fitBounds(e.target.getBounds(), { padding: [50, 50] });
+            }
+            
+            function openOverlay(e) {
+                const feature = e.target.feature.properties;
+                console.log('Feature properties:', feature); // Debug: see what properties are available
+                
+                // Try multiple property names that might contain the country name
+                const countryName = feature.name || 
+                                   feature.NAME || 
+                                   feature.NAME_EN || 
+                                   feature.NAME_ENG || 
+                                   feature.admin || 
+                                   feature.ADMIN ||
+                                   feature.NAME_LONG ||
+                                   feature.NAME_SORT ||
+                                   feature.formal_en ||
+                                   feature.name_en ||
+                                   'Unknown';
+                
+                console.log('Country name from GeoJSON:', countryName); // Debug
+                
+                // Find matching country data
+                const operators = findCountryData(countryName);
+                // Find display name by matching the operators array
+                let displayName = countryName;
+                if (operators) {
+                    for (const [key, value] of Object.entries(countryData)) {
+                        // Compare arrays - check if they have same length and operator names match
+                        if (Array.isArray(value) && Array.isArray(operators) && 
+                            value.length === operators.length) {
+                            // Check if operator names match (handle both string and object formats)
+                            const namesMatch = value.every((op, idx) => {
+                                const opName = typeof op === 'string' ? op : op.name;
+                                const operatorName = typeof operators[idx] === 'string' ? operators[idx] : operators[idx].name;
+                                return normalizeCountryName(opName) === normalizeCountryName(operatorName);
+                            });
+                            if (namesMatch) {
+                                displayName = key;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                console.log('Display name:', displayName, 'Operators found:', operators ? operators.length : 0); // Debug
+                
+                // Ensure overlay elements exist
+                if (!overlay || !overlayTitle || !overlayData) {
+                    console.error('Overlay elements not found!');
+                    return;
+                }
+                
+                overlayTitle.textContent = displayName;
+                
+                if (operators && operators.length > 0) {
+                    let html = '<div class="operators"><h3>Operators:</h3><ul>';
+                    operators.forEach(op => {
+                        // Handle both old format (string) and new format (object)
+                        let opName, opSubscribers, opTvHomes, opNotes, opCiPlus;
+                        
+                        if (typeof op === 'string') {
+                            // Old format - just a string
+                            opName = op.replace(/``+/g, '').replace(/`/g, '').trim();
+                            opSubscribers = null;
+                            opTvHomes = null;
+                            opNotes = null;
+                            opCiPlus = null;
+                        } else {
+                            // New format - object with name, subscribers, tv_homes, ci_plus
+                            opName = op.name ? op.name.replace(/``+/g, '').replace(/`/g, '').trim() : '';
+                            opSubscribers = op.subscribers;
+                            opTvHomes = op.tv_homes;
+                            opNotes = op.notes;
+                            opCiPlus = op.ci_plus;
+                        }
+                        
+                        if (opName) {
+                            html += '<li class="operator-item">';
+                            html += '<div class="operator-name-container">';
+                            html += `<span class="operator-name">${opName}</span>`;
+                            
+                            // Add CI+ indicator
+                            if (opCiPlus !== undefined && opCiPlus !== null) {
+                                if (opCiPlus === true) {
+                                    html += '<span class="ci-plus-indicator required" title="CI+ cam required">CI+</span>';
+                                } else if (opCiPlus === false) {
+                                    html += '<span class="ci-plus-indicator not-required" title="CI+ cam not required">CI+</span>';
+                                }
+                            } else {
+                                html += '<span class="ci-plus-indicator unknown" title="CI+ cam requirement unknown">CI+</span>';
+                            }
+                            html += '</div>';
+                            
+                            // Add subscriber/TV home data if available
+                            if (opSubscribers || opTvHomes) {
+                                html += '<div class="operator-stats">';
+                                if (opSubscribers) {
+                                    html += `<span class="stat subscribers"><strong>Subscribers:</strong> ${opSubscribers}</span>`;
+                                }
+                                if (opTvHomes) {
+                                    html += `<span class="stat tv-homes"><strong>TV Homes:</strong> ${opTvHomes}</span>`;
+                                }
+                                html += '</div>';
+                            }
+                            
+                            // Add notes if available
+                            if (opNotes) {
+                                html += `<div class="operator-notes">${opNotes}</div>`;
+                            }
+                            
+                            html += '</li>';
+                        }
+                    });
+                    html += '</ul></div>';
+                    overlayData.innerHTML = html;
+                } else {
+                    overlayData.innerHTML = `<p>No operator data available for ${displayName}.</p><p style="font-size: 0.9em; color: #666; margin-top: 10px;">If you have data for this country, please add it to country.md</p>`;
+                }
+                
+                // Show overlay
+                overlay.classList.add('active');
+                console.log('Overlay should be visible now. Active class added:', overlay.classList.contains('active'));
+            }
+            
+            function onEachFeature(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlight,
+                    click: openOverlay
+                });
+            }
+            
+            // Fetch GeoJSON data for Europe
+            // Using a working GeoJSON source
+            const europeGeoJsonUrl = 'https://raw.githubusercontent.com/leakyMirror/map-of-europe/master/GeoJSON/europe.geojson';
+            
+            fetch(europeGeoJsonUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch map data');
+                    }
+                    return response.json();
+                })
+                .then(geoJsonData => {
+                    // Data is already GeoJSON, no conversion needed
+                    
+                    // Filter to show only European countries if needed, or use all data
+                    geoJsonLayer = L.geoJSON(geoJsonData, {
+                        style: function(feature) {
+                            return {
+                                fillColor: '#FFEDA0',
+                                weight: 1,
+                                opacity: 1,
+                                color: 'white',
+                                fillOpacity: 0.5
+                            };
+                        },
+                        onEachFeature: onEachFeature
+                    }).addTo(map);
+                    
+                    mapInitialized = true;
+                })
+                .catch(error => {
+                    console.error('Error fetching or processing GeoJSON data:', error);
+                    // Fallback: show error message
+                    document.getElementById('map').innerHTML = 
+                        '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666;">' +
+                        '<p>Could not load map data. Please check your internet connection.</p>' +
+                        '</div>';
+                });
+        }
+        
+        // Close overlay function (global scope for onclick handler)
+        function closeOverlay() {
+            const overlay = document.getElementById('country-overlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+            }
+        }
+        
+        // Close overlay when clicking outside
+        document.getElementById('country-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOverlay();
+            }
+        });
+        
+        // Initialize first slide
+        showSlide(0);
+    </script>
+</body>
+</html>
+
