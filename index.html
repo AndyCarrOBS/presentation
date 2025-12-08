@@ -44,9 +44,24 @@
         /* Header with OBS Logo */
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             margin-bottom: 20px;
+            background-color: #0066CC; /* OBS blue */
+            padding: 15px 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            gap: 20px;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0;
         }
         
         .obs-logo {
@@ -54,25 +69,37 @@
             width: auto;
         }
         
+        .header-text {
+            color: white;
+        }
+        
         /* Footer with Roku */
         .footer {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            gap: 10px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            margin-top: 20px;
+            gap: 8px;
+            padding: 15px 20px;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
         }
         
         .footer-text {
-            color: white;
+            color: #0066CC; /* OBS blue */
             font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .roku-logo {
+            height: 30px;
+            width: auto;
+        }
+        
+        .footer .obs-logo {
             height: 30px;
             width: auto;
         }
@@ -83,12 +110,14 @@
             align-items: center;
             text-align: center;
             color: white;
+            padding-top: 100px; /* Add padding to account for header */
         }
         
         .title-slide h1 {
             font-size: 4rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #0066CC; /* OBS blue */
+            text-shadow: none;
         }
         
         .title-slide .subtitle {
@@ -151,6 +180,235 @@
             margin-bottom: 20px;
             color: #667eea;
             text-align: center;
+        }
+        
+        /* Slide 4: Flow Diagrams */
+        .flow-slide {
+            background: white;
+            color: #333;
+        }
+        
+        .flow-slide .content {
+            flex: 1;
+            display: flex;
+            gap: 40px;
+            padding: 40px;
+            justify-content: space-between;
+        }
+        
+        .flow-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .flow-column h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .flow-block {
+            background-color: #7502A1; /* Roku purple */
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .flow-arrow {
+            font-size: 2rem;
+            color: #7502A1;
+            font-weight: bold;
+        }
+        
+        /* Slide 5: Framework Diagram */
+        .framework-slide {
+            background: white;
+            color: #333;
+        }
+        
+        .framework-slide .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .ellipse-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .ellipse {
+            background-color: #7502A1; /* Roku purple */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 30px 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .ellipse-1 {
+            width: 100%;
+            height: 120px;
+        }
+        
+        .ellipse-2 {
+            width: 66.67%;
+            height: 100px;
+        }
+        
+        .ellipse-3 {
+            width: 50%;
+            height: 80px;
+        }
+        
+        .ellipse-arrow {
+            font-size: 2.5rem;
+            color: #7502A1;
+            font-weight: bold;
+        }
+        
+        .bottom-boxes {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .numbered-box {
+            background-color: #0066CC; /* OBS blue */
+            color: white;
+            width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .box-arrow {
+            font-size: 1.5rem;
+            color: #0066CC;
+            font-weight: bold;
+        }
+        
+        /* Truncated elliptical cone from box 6 to top ellipse */
+        .cone-svg {
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1200px;
+            height: calc(100% - 280px);
+            min-height: 400px;
+            pointer-events: none;
+            z-index: 5;
+            overflow: visible;
+        }
+        
+        .cone-svg path {
+            fill: #22c55e;
+            opacity: 0.5;
+            stroke: #16a34a;
+            stroke-width: 2;
+        }
+        
+        /* Slide 6: CI+ Operators */
+        .operators-slide {
+            background: white;
+            color: #333;
+        }
+        
+        .operators-slide .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 60px 40px 60px;
+            justify-content: flex-start;
+            margin-top: 100px;
+        }
+        
+        .operators-slide h2 {
+            display: none; /* Title moved to header */
+        }
+        
+        .operators-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            align-items: center;
+            justify-items: center;
+            padding: 30px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .operators-slide .operators-grid {
+            padding-top: 0;
+            padding-bottom: 20px;
+        }
+        
+        .operator-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 150px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .operator-logo-container span {
+            text-align: center;
+        }
+        
+        .operator-logo-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .operator-logo {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            object-position: center;
         }
         
         #map {
@@ -243,37 +501,39 @@
             color: #333;
             font-size: 0.95em;
             line-height: 1.4;
+            list-style: none;
         }
         
         .overlay-content .operators li:last-child {
             border-bottom: none;
         }
         
-        .overlay-content .operators li:before {
+        .overlay-content .operators li::before {
             content: "• ";
             color: #667eea;
             font-weight: bold;
             margin-right: 8px;
+            display: inline;
         }
         
         .operator-item {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
+            display: block;
         }
         
         .operator-name-container {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-            vertical-align: top;
+            display: inline;
+        }
+        
+        .operator-name-container > * {
+            display: inline;
+            vertical-align: middle;
         }
         
         .operator-name {
             font-weight: 600;
             color: #333;
             font-size: 0.95em;
+            display: inline;
         }
         
         .operator-stats {
@@ -324,27 +584,101 @@
             letter-spacing: 0.3px;
         }
         
-        .ci-plus-indicator.required {
+        .ci-plus-indicator.pay-lite {
             background-color: #22c55e;
             color: white;
         }
         
-        .ci-plus-indicator.not-required {
+        .ci-plus-indicator.premium {
             background-color: #ef4444;
             color: white;
         }
         
-        .ci-plus-indicator.unknown {
-            background-color: #9ca3af;
-            color: white;
+        /* CI+ Filter Button */
+        .map-controls {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
         }
         
-        .operator-name-container {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-            vertical-align: top;
+        .ci-plus-filter-btn {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .ci-plus-filter-btn:hover {
+            background-color: #5568d3;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .ci-plus-filter-btn.active {
+            background-color: #dc2626;
+        }
+        
+        .ci-plus-filter-btn.active:hover {
+            background-color: #b91c1c;
+        }
+        
+        .nordic-dvb-filter-btn {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-left: 10px;
+        }
+        
+        .nordic-dvb-filter-btn:hover {
+            background-color: #5568d3;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .nordic-dvb-filter-btn.active {
+            background-color: #059669;
+        }
+        
+        .nordic-dvb-filter-btn.active:hover {
+            background-color: #047857;
+        }
+        
+        .hbbtv-filter-btn {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-left: 10px;
+        }
+        
+        .hbbtv-filter-btn:hover {
+            background-color: #5568d3;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .hbbtv-filter-btn.active {
+            background-color: #7c3aed;
+        }
+        
+        .hbbtv-filter-btn.active:hover {
+            background-color: #6d28d9;
         }
         
         /* Navigation */
@@ -406,8 +740,12 @@
             <p class="subtitle">European Market Analysis</p>
         </div>
         <div class="footer">
-            <span class="footer-text">prepared for</span>
-            <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+            <span class="footer-text">
+                Prepared for
+                <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+                by
+                <img src="img/OBS-Logo.png" alt="OBS Logo" class="obs-logo">
+            </span>
         </div>
     </div>
     
@@ -438,7 +776,177 @@
         </div>
         <div class="content">
             <h2>Europe Operator Markets</h2>
+            <div class="map-controls">
+                <button id="ci-plus-filter-btn" class="ci-plus-filter-btn" onclick="toggleCiPlusFilter()">
+                    <span class="filter-label">Show CI+ Countries</span>
+                </button>
+                <button id="nordic-dvb-filter-btn" class="nordic-dvb-filter-btn" onclick="toggleNordicDvbFilter()">
+                    <span class="filter-label">Show Nordic DVB Countries</span>
+                </button>
+                <button id="hbbtv-filter-btn" class="hbbtv-filter-btn" onclick="toggleHbbtvFilter()">
+                    <span class="filter-label">Show HbbTV Countries</span>
+                </button>
+            </div>
             <div id="map"></div>
+        </div>
+        <div class="footer">
+            <span class="footer-text">prepared for</span>
+            <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+        </div>
+    </div>
+    
+    <!-- Slide 4: Flow Diagrams -->
+    <div class="slide flow-slide">
+        <div class="header">
+            <img src="img/OBS-Logo.png" alt="OBS Logo" class="obs-logo">
+        </div>
+        <div class="content">
+            <div class="flow-column">
+                <h2>Spec Based</h2>
+                <div class="flow-diagram">
+                    <div class="flow-block">Sign NDA</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">Access Specs</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">Analyse Specs</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">Implement Designs</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">Access Test Material</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">Run Tests</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">Analyse Results</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">ESR</div>
+                </div>
+            </div>
+            <div class="flow-column">
+                <h2>Test Strategy</h2>
+                <div class="flow-diagram">
+                    <div class="flow-block">Sign NDA</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">Access Test Material + Specs</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">Test and Iterate</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-block">Automate</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span class="footer-text">prepared for</span>
+            <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+        </div>
+    </div>
+    
+    <!-- Slide 5: Framework Diagram -->
+    <div class="slide framework-slide">
+        <div class="header">
+            <img src="img/OBS-Logo.png" alt="OBS Logo" class="obs-logo">
+        </div>
+        <div class="content">
+            <div class="ellipse-container">
+                <div class="ellipse ellipse-1">Roku QA Test Framework</div>
+                <div class="ellipse-arrow">↓</div>
+                <div class="ellipse ellipse-2">Roku Chassis QA Framework</div>
+                <div class="ellipse-arrow">↓</div>
+                <div class="ellipse ellipse-3">Operator Surface</div>
+            </div>
+            <div class="bottom-boxes">
+                <div class="numbered-box">1</div>
+                <div class="box-arrow">→</div>
+                <div class="numbered-box">2</div>
+                <div class="box-arrow">→</div>
+                <div class="numbered-box">3</div>
+                <div class="box-arrow">→</div>
+                <div class="numbered-box">4</div>
+                <div class="box-arrow">→</div>
+                <div class="numbered-box">5</div>
+                <div class="box-arrow">→</div>
+                <div class="numbered-box" id="box-6">6</div>
+                <div class="box-arrow">→</div>
+                <div class="numbered-box">7</div>
+                <div class="box-arrow">→</div>
+                <div class="numbered-box">8</div>
+            </div>
+            <!-- Truncated elliptical cone from box 6 to top ellipse -->
+            <svg class="cone-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="coneGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.5" />
+                    </linearGradient>
+                </defs>
+                <!-- Truncated cone shape: narrow at bottom (box 6), expanding to 20% of top ellipse width -->
+                <!-- Bottom: ~8% width (centered), Top: 20% width (centered at 40-60) -->
+                <path d="M 46 100 L 54 100 L 60 0 L 40 0 Z" fill="url(#coneGradient)" stroke="#16a34a" stroke-width="0.5"/>
+            </svg>
+        </div>
+        <div class="footer">
+            <span class="footer-text">prepared for</span>
+            <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+        </div>
+    </div>
+    
+    <!-- Slide 6: CI+ Operators -->
+    <div class="slide operators-slide">
+        <div class="header">
+            <img src="img/OBS-Logo.png" alt="OBS Logo" class="obs-logo">
+            <h1 class="header-title">Recent Operator Experience</h1>
+        </div>
+        <div class="content">
+            <h2>Recent Operator Experience</h2>
+            <div class="operators-grid">
+                <div class="operator-logo-container">
+                    <img src="img/ziggo-logo.png" alt="Ziggo" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">Ziggo</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/pyur-logo.png" alt="PYUR" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">PYUR</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/vodafone-logo.png" alt="Vodafone/Unitymedia" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">Vodafone</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/TivuSat-UHD.jpg" alt="TIVUSAT" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">TIVUSAT</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/hdplus-logo.png" alt="HD+" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">HD+</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/fransat-logo.png" alt="Fransat" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">Fransat</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/orf-logo.png" alt="ORF" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">ORF</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/yousee-logo.png" alt="YouSee" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">YouSee</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/voo-logo.jpg" alt="Voo" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">Voo</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/nordig-logo.svg" alt="NorDig" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">NorDig</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/mindigtv-logo.jpg" alt="MinDigTV" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">MinDigTV</span>
+                </div>
+                <div class="operator-logo-container">
+                    <img src="img/canal-digital.png" alt="M7 (Canal Digital)" class="operator-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none; font-weight:bold; color:#333; font-size:1.2rem;">Canal Digital</span>
+                </div>
+            </div>
         </div>
         <div class="footer">
             <span class="footer-text">prepared for</span>
@@ -459,7 +967,7 @@
     
     <!-- Navigation -->
     <div class="slide-indicator">
-        <span id="slide-number">1</span> / 3
+        <span id="slide-number">1</span> / <span id="total-slides">6</span>
     </div>
     <div class="nav-buttons">
         <button class="nav-btn" id="prev-btn" onclick="previousSlide()" disabled>Previous</button>
@@ -469,173 +977,353 @@
     <script>
         // Country data with operators and subscriber/TV home information
         const countryData = {
+            "Armenia": [
+                {name: "Telecom Armenia", subscribers: "~282,879 fixed-line (2024)", tv_homes: null, notes: "Telco - fixed-line and broadband services", ci_plus: null},
+                {name: "Viva-MTS", subscribers: "~2.1 million (2017)", tv_homes: null, notes: "Telco - major mobile operator", ci_plus: null},
+                {name: "Public Television of Armenia (PTA)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - First Channel, First News Channel, First International Channel", ci_plus: false},
+                {name: "Shoghakat TV", subscribers: null, tv_homes: "~90% territory coverage", notes: "Public broadcaster - spiritual and cultural programming, founded by Armenian Apostolic Church", ci_plus: false},
+                {name: "Armenia TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - leading private channel (1997), first Full HD broadcaster, ~50% private market share", ci_plus: false},
+                {name: "Shant TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - founded 1994, news and entertainment", ci_plus: false},
+                {name: "ATV (Armenia)", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - thematic channels (Hay TV, Kinoman, Xaxaliq TV)", ci_plus: false},
+                {name: "Kentron TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - generalist programming", ci_plus: false},
+                {name: "Fifth Channel", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - news and socio-political content", ci_plus: false}
+            ],
+            "Azerbaijan": [
+                {name: "Azercell", subscribers: "~5 million", tv_homes: null, notes: "Telco - largest mobile operator (~48-51% market share), 4G coverage 94-98%", ci_plus: null},
+                {name: "Bakcell", subscribers: "~3 million", tv_homes: null, notes: "Telco - first private telecom company (1994), covers 99.9% population", ci_plus: null},
+                {name: "Nar Mobile", subscribers: null, tv_homes: null, notes: "Telco - mobile operator", ci_plus: null},
+                {name: "Cable TV Operators", subscribers: "~204,448 (2024)", tv_homes: null, notes: "Cable TV - 17 cable network operators, 13% increase in 2024", ci_plus: null},
+                {name: "IPTV Operators", subscribers: "~19,668 (2024)", tv_homes: null, notes: "IPTV - 32 IPTV operators, 26% decrease in 2024", ci_plus: null},
+                {name: "AzTV (Azerbaijan Television)", subscribers: null, tv_homes: "99% penetration (2014)", notes: "Public broadcaster - state-owned, established 1956, AzTV, Mədəniyyət TV, İdman TV channels", ci_plus: false},
+                {name: "İTV (İctimai Television)", subscribers: null, tv_homes: null, notes: "Public broadcaster - launched 2005", ci_plus: false},
+                {name: "İdman Azerbaijan TV", subscribers: null, tv_homes: null, notes: "Public broadcaster - state-owned sports channel, launched 2009", ci_plus: false},
+                {name: "Medeniyyet TV", subscribers: null, tv_homes: null, notes: "Public broadcaster - state-owned culture channel, launched 2011", ci_plus: false},
+                {name: "ATV (Azad Azerbaijan TV)", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - popular private channel", ci_plus: false},
+                {name: "CBC (Caspian Broadcasting Company)", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - news and entertainment", ci_plus: false},
+                {name: "Space TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster", ci_plus: false},
+                {name: "Xazar TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster", ci_plus: false},
+                {name: "ARB", subscribers: null, tv_homes: null, notes: "Commercial broadcaster", ci_plus: false}
+            ],
             "Austria": [
-                {name: "Magenta TV (UPC)", subscribers: null, tv_homes: "~4.2M TV households (estimated)", notes: "Deutsche Telekom (IPTV/Cable)", ci_plus: true},
+                {name: "Magenta TV (UPC)", subscribers: null, tv_homes: "~4.2M TV households (estimated)", notes: "Deutsche Telekom (IPTV/Cable) - typically uses operator STBs", ci_plus: null},
                 {name: "ORS Austria", subscribers: null, tv_homes: null, notes: "Broadcasting infrastructure provider", ci_plus: null},
-                {name: "M7 (HD Austria)", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "SimpliTV SAT", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "ORF (SAT+Terrestrial)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false},
-                {name: "SimpliTV Terrestrial", subscribers: null, tv_homes: null, ci_plus: true}
+                {name: "M7 (HD Austria)", subscribers: null, tv_homes: null, notes: "Satellite platform - uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "SimpliTV SAT", subscribers: null, tv_homes: null, notes: "May require CI+ cam for encrypted channels", ci_plus: true, pay_type: "pay-lite"},
+                {name: "ORF (SAT+Terrestrial)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - CI+ modules used for encrypted satellite channels", ci_plus: true, pay_type: "pay-lite"},
+                {name: "SimpliTV Terrestrial", subscribers: null, tv_homes: null, notes: "May require CI+ cam for encrypted channels", ci_plus: true, pay_type: "pay-lite"}
+            ],
+            "Belarus": [
+                {name: "MTS Belarus", subscribers: "~5.7 million (mid-2024)", tv_homes: null, notes: "Telco - largest mobile operator, joint venture Beltelecom (51%) and MTS Russia (49%)", ci_plus: null},
+                {name: "A1 Belarus", subscribers: "~4.959 million (Q3 2024)", tv_homes: null, notes: "Telco - Telekom Austria Group, mobile and fixed internet services", ci_plus: null},
+                {name: "life:)", subscribers: "~1.5 million (Q2 2024)", tv_homes: null, notes: "Telco - operated by Turkcell", ci_plus: null},
+                {name: "Beltelecom", subscribers: "~2.5 million fixed-broadband (2023)", tv_homes: null, notes: "Telco - state-owned, dominates fixed-line market (78% share), Zala IPTV service", ci_plus: null},
+                {name: "Cable Operators", subscribers: null, tv_homes: null, notes: "Cable TV - ~130 cable operators, major providers MTIS and Cosmos TV in Minsk", ci_plus: null},
+                {name: "BTRC (Belteleradiocompany)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - Belarus 1, Belarus 2, Belarus 3, Belarus 4, Belarus 5, Belarus 24, NTV-Belarus channels", ci_plus: false},
+                {name: "ONT (All-National Television)", subscribers: null, tv_homes: null, notes: "Public broadcaster - majority state-owned, rebroadcasts Russia's Channel One", ci_plus: false},
+                {name: "Capital Television (CTV)", subscribers: null, tv_homes: null, notes: "Public broadcaster - state-owned, national coverage since 2005", ci_plus: false},
+                {name: "VoyenTV", subscribers: null, tv_homes: null, notes: "Public broadcaster - Ministry of Defence channel, military-related content", ci_plus: false}
             ],
             "Belgium": [
-                {name: "Telenet", subscribers: null, tv_homes: "~4.8M TV households, >95% cable penetration", notes: "Major Belgian cable operator - data not publicly disclosed", ci_plus: true},
-                {name: "Proximus Pickx", subscribers: "~1.41 million", tv_homes: null, notes: "As of 2013", ci_plus: true},
-                {name: "Voo", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "M7 (Telesat, TV Vlanderen)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "Telenet", subscribers: null, tv_homes: "~4.8M TV households, >95% cable penetration", notes: "Major Belgian cable operator - CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "Proximus Pickx", subscribers: "~1.41 million", tv_homes: null, notes: "IPTV service - typically uses operator STBs", ci_plus: null},
+                {name: "Voo", subscribers: null, tv_homes: null, notes: "Cable operator - CI+ cam typically required", ci_plus: true, pay_type: "premium"},
+                {name: "M7 (Telesat, TV Vlanderen)", subscribers: null, tv_homes: null, notes: "Satellite platform - uses smart cards, CI+ compatibility varies", ci_plus: null},
                 {name: "VRT", subscribers: null, tv_homes: "Near universal coverage in Flanders", notes: "Flemish public broadcaster", ci_plus: false},
                 {name: "RTBF", subscribers: null, tv_homes: "Near universal coverage in Wallonia", notes: "French-speaking public broadcaster", ci_plus: false}
             ],
+            "Bulgaria": [
+                {name: "Vivacom", subscribers: null, tv_homes: null, notes: "Telco - largest telecom company, EON TV IPTV service, over 220 channels, satellite and cable", ci_plus: null},
+                {name: "Bulsatcom", subscribers: null, tv_homes: null, notes: "Satellite/Telco - largest pay-TV subscriber base, acquired by United Group (2024), satellite TV and IPTV", ci_plus: null},
+                {name: "A1 Bulgaria", subscribers: null, tv_homes: null, notes: "Telco - A1 Xplore TV GO service, over 80 live TV channels including 5 in 4K UHD", ci_plus: null},
+                {name: "BNT (Bulgarian National Television)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false},
+                {name: "bTV Media Group", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - bTV, bTV Action, bTV Cinema, bTV Comedy, bTV Story, RING channels", ci_plus: false},
+                {name: "Nova Broadcasting Group", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Nova TV, Kino Nova, Nova News, Nova Sport, DIEMA channels, acquired by United Group (2021)", ci_plus: false}
+            ],
             "Croatia": [
-                {name: "evoTV (merged with Telekom)", subscribers: null, tv_homes: null, ci_plus: false},
-                {name: "Hakom", subscribers: null, tv_homes: null, ci_plus: null}
+                {name: "evoTV (merged with Telekom)", subscribers: null, tv_homes: null, notes: "IPTV service - CI+ v1.3 supported for encrypted channels", ci_plus: true, pay_type: "pay-lite"},
+                {name: "Hakom", subscribers: null, tv_homes: null, notes: "Regulatory body - not an operator", ci_plus: null}
             ],
             "Czech": [
-                {name: "M7 (Skylink CZ)", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "T2 CZ", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "UPC", subscribers: null, tv_homes: null, ci_plus: true}
+                {name: "O2 Czech Republic", subscribers: null, tv_homes: null, notes: "Telco - O2 TV IPTV service, merged with Voyo to create Oneplay (2025)", ci_plus: null},
+                {name: "Vodafone Czech Republic", subscribers: null, tv_homes: null, notes: "Telco - Vodafone TV IPTV service, acquired UPC (2019), over 100 channels", ci_plus: null},
+                {name: "T-Mobile Czech Republic (Magenta TV)", subscribers: null, tv_homes: null, notes: "Telco - Magenta TV IPTV service, over 170 channels in 4K, rebranded from T-Mobile TV (2023)", ci_plus: null},
+                {name: "M7 (Skylink CZ)", subscribers: "~1 million (2010)", tv_homes: null, notes: "Satellite platform - Czech and Slovak TV stations, uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "UPC (now Vodafone)", subscribers: null, tv_homes: null, notes: "Cable operator - acquired by Vodafone (2019), CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "T2 CZ", subscribers: null, tv_homes: null, notes: "Terrestrial platform - CI+ cam may be required for encrypted channels", ci_plus: true, pay_type: "pay-lite"},
+                {name: "Oneplay", subscribers: null, tv_homes: null, notes: "Streaming/VOD service - merged Voyo (TV Nova) and O2 TV (2025)", ci_plus: null},
+                {name: "Česká televize (ČT)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - ČT1, ČT2, ČT24, ČT sport, ČT :D channels", ci_plus: false},
+                {name: "TV Nova", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - leading commercial channel, operates Voyo VOD", ci_plus: false},
+                {name: "Prima", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Prima, Prima COOL, Prima LOVE, Prima ZOOM, Prima MAX, Prima KRIMI, Prima STAR channels", ci_plus: false},
+                {name: "Warner TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - free-to-air channel launched 2024", ci_plus: false}
             ],
             "Czech Rep.": [
-                {name: "M7 (Skylink CZ)", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "T2 CZ", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "UPC", subscribers: null, tv_homes: null, ci_plus: true}
+                {name: "O2 Czech Republic", subscribers: null, tv_homes: null, notes: "Telco - O2 TV IPTV service, merged with Voyo to create Oneplay (2025)", ci_plus: null},
+                {name: "Vodafone Czech Republic", subscribers: null, tv_homes: null, notes: "Telco - Vodafone TV IPTV service, acquired UPC (2019), over 100 channels", ci_plus: null},
+                {name: "T-Mobile Czech Republic (Magenta TV)", subscribers: null, tv_homes: null, notes: "Telco - Magenta TV IPTV service, over 170 channels in 4K, rebranded from T-Mobile TV (2023)", ci_plus: null},
+                {name: "M7 (Skylink CZ)", subscribers: "~1 million (2010)", tv_homes: null, notes: "Satellite platform - Czech and Slovak TV stations, uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "UPC (now Vodafone)", subscribers: null, tv_homes: null, notes: "Cable operator - acquired by Vodafone (2019), CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "T2 CZ", subscribers: null, tv_homes: null, notes: "Terrestrial platform - CI+ cam may be required for encrypted channels", ci_plus: true, pay_type: "pay-lite"},
+                {name: "Oneplay", subscribers: null, tv_homes: null, notes: "Streaming/VOD service - merged Voyo (TV Nova) and O2 TV (2025)", ci_plus: null},
+                {name: "Česká televize (ČT)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - ČT1, ČT2, ČT24, ČT sport, ČT :D channels", ci_plus: false},
+                {name: "TV Nova", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - leading commercial channel, operates Voyo VOD", ci_plus: false},
+                {name: "Prima", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Prima, Prima COOL, Prima LOVE, Prima ZOOM, Prima MAX, Prima KRIMI, Prima STAR channels", ci_plus: false},
+                {name: "Warner TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - free-to-air channel launched 2024", ci_plus: false}
             ],
             "Denmark": [
-                {name: "YouSee", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "Norlys", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "Stofa", subscribers: null, tv_homes: null, notes: "Nordig operator", ci_plus: true},
-                {name: "Allente", subscribers: null, tv_homes: null, notes: "Operates across Nordic countries", ci_plus: true},
-                {name: "Boxer HD", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "YouSee", subscribers: null, tv_homes: null, notes: "Cable/Telco - CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "Norlys", subscribers: null, tv_homes: null, notes: "Cable/Telco - CI+ cam typically required", ci_plus: true, pay_type: "premium"},
+                {name: "Stofa", subscribers: null, tv_homes: null, notes: "Nordig operator - CI+ cam typically required", ci_plus: true, pay_type: "pay-lite"},
+                {name: "Allente", subscribers: null, tv_homes: null, notes: "Satellite platform - uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "Boxer HD", subscribers: null, tv_homes: null, notes: "Terrestrial pay-TV - CI+ cam typically required", ci_plus: true, pay_type: "pay-lite"},
                 {name: "DR", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false}
             ],
             "Estonia": [
-                {name: "Levira", subscribers: null, tv_homes: null, ci_plus: null}
+                {name: "Elisa Estonia", subscribers: null, tv_homes: null, notes: "Telco - IPTV/Cable TV services, Elisa Elamus platform with 150+ channels", ci_plus: null},
+                {name: "Telia Estonia", subscribers: null, tv_homes: null, notes: "Telco - IPTV services, broadband and mobile services", ci_plus: null},
+                {name: "Tele2 Estonia", subscribers: null, tv_homes: null, notes: "Telco - mobile and fixed-line services", ci_plus: null},
+                {name: "Levira", subscribers: null, tv_homes: null, notes: "Broadcasting infrastructure - operates Freeview TasutaTV terrestrial TV platform, hybrid TV services", ci_plus: null},
+                {name: "ERR (Eesti Rahvusringhääling)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - ETV, ETV2, ETV+ channels", ci_plus: false},
+                {name: "TV3 Group", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - TV3, TV6 channels, Go3 streaming service", ci_plus: false},
+                {name: "Alo TV", subscribers: null, tv_homes: null, notes: "Local broadcaster - Tartu region, music videos and local information", ci_plus: false}
             ],
             "Finland": [
-                {name: "CableHDReady", subscribers: null, tv_homes: null, ci_plus: null},
-                {name: "Allente", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "AntennaHDReady", subscribers: null, tv_homes: null, ci_plus: null}
+                {name: "Elisa", subscribers: null, tv_homes: null, notes: "Telco - largest market share (37% revenue 2023), IPTV and cable TV services", ci_plus: null},
+                {name: "Telia Finland", subscribers: null, tv_homes: null, notes: "Telco - broadband and TV services, collaborated with Teleste for cable network services", ci_plus: null},
+                {name: "DNA", subscribers: null, tv_homes: null, notes: "Telco - 23% market share, broadband and TV services, deployed 4K content delivery", ci_plus: null},
+                {name: "Allente", subscribers: null, tv_homes: null, notes: "Satellite/IPTV platform - formed from Canal Digital and Viasat Consumer merger (2020), uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "Digita", subscribers: null, tv_homes: "~1.2 million households, 600,000 summer cottages", notes: "Pay-TV operator - largest pay-TV operator (2020), hybrid TV services, program libraries, on-demand channels", ci_plus: null},
+                {name: "Yle (Yleisradio Oy)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - YLE TV1, YLE TV2 channels, funded by public broadcasting tax", ci_plus: false},
+                {name: "MTV Oy", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - MTV3, Sub, Ava channels, acquired by Schibsted Media (2025)", ci_plus: false},
+                {name: "Nelonen Media", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Nelonen, Jim, Liv, Hero channels", ci_plus: false},
+                {name: "Star Channel", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - formerly Fox, owned by Disney Company Nordic AB", ci_plus: false}
             ],
             "France": [
-                {name: "Fransat", subscribers: null, tv_homes: "~26.5M TV households, ~13.2M connected TV", ci_plus: true},
+                {name: "Fransat", subscribers: null, tv_homes: "~26.5M TV households, ~13.2M connected TV", ci_plus: true, pay_type: "pay-lite"},
                 {name: "Orange France", subscribers: "~7.6-11.6 million", tv_homes: null, notes: "IPTV subscribers (varies by source/year)", ci_plus: false},
                 {name: "Free France (Iliad)", subscribers: "~6.7-8.6 million", tv_homes: null, notes: "IPTV subscribers (varies by source/year)", ci_plus: false},
-                {name: "Canal+ France", subscribers: "~4.7-9.1 million", tv_homes: null, notes: "Subscriber numbers vary by reporting method", ci_plus: true},
+                {name: "Canal+ France", subscribers: "~4.7-9.1 million", tv_homes: null, notes: "Subscriber numbers vary by reporting method", ci_plus: true, pay_type: "premium"},
                 {name: "France Télévisions", subscribers: null, tv_homes: "~29.4% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false},
                 {name: "TF1", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false}
             ],
             "Germany": [
-                {name: "Unitymedia", subscribers: null, tv_homes: "~40M TV households (largest TV market in Europe)", notes: "Merged with Vodafone Germany", ci_plus: true},
-                {name: "KDG/Vodafone", subscribers: "~8.9 million", tv_homes: null, notes: "Vodafone Germany (includes Unitymedia)", ci_plus: true},
+                {name: "Unitymedia", subscribers: null, tv_homes: "~40M TV households (largest TV market in Europe)", notes: "Merged with Vodafone Germany", ci_plus: true, pay_type: "premium"},
+                {name: "KDG/Vodafone", subscribers: "~8.9 million", tv_homes: null, notes: "Vodafone Germany (includes Unitymedia)", ci_plus: true, pay_type: "premium"},
                 {name: "Deutsche Telekom Magenta TV", subscribers: "~4.7 million", tv_homes: null, notes: "As of June 2025", ci_plus: false},
-                {name: "Telecolumbus(PÜYR)", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "HD+ (In OBS context - 2024 - assume OpApp; Below for non-OpApp)", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "SKY", subscribers: "~2.3 million", tv_homes: "~11% of TV households", notes: "Sky Deutschland", ci_plus: true},
+                {name: "Telecolumbus(PÜYR)", subscribers: null, tv_homes: null, ci_plus: true, pay_type: "premium"},
+                {name: "HD+ (In OBS context - 2024 - assume OpApp; Below for non-OpApp)", subscribers: null, tv_homes: null, ci_plus: true, pay_type: "pay-lite"},
+                {name: "SKY", subscribers: "~2.3 million", tv_homes: "~11% of TV households", notes: "Sky Deutschland", ci_plus: true, pay_type: "premium"},
                 {name: "ARD", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster consortium", ci_plus: false},
                 {name: "ZDF", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false},
                 {name: "ProSiebenSat.1 Media", subscribers: null, tv_homes: "~30% market share", notes: "Commercial broadcaster", ci_plus: false},
                 {name: "DVB-T2 HD", subscribers: null, tv_homes: null, notes: "Terrestrial standard - not an operator", ci_plus: null},
-                {name: "PYÜR", subscribers: null, tv_homes: null, ci_plus: true}
+                {name: "PYÜR", subscribers: null, tv_homes: null, ci_plus: true, pay_type: "premium"}
+            ],
+            "Georgia": [
+                {name: "MagtiCom", subscribers: "~2.35 million mobile, ~363,507 IPTV (June 2025)", tv_homes: null, notes: "Telco - largest mobile operator (41.2% market share), IPTV services, 99% population coverage", ci_plus: null},
+                {name: "Silknet", subscribers: null, tv_homes: null, notes: "Telco - telecommunications services", ci_plus: null},
+                {name: "MagtiSat", subscribers: null, tv_homes: null, notes: "Satellite pay-TV platform - first digital satellite pay-TV service (2012), standard and HD channels", ci_plus: null},
+                {name: "Cable Operators", subscribers: null, tv_homes: null, notes: "Cable TV - Electronic Communications Association of Georgia unifies cable operators", ci_plus: null},
+                {name: "GPB (Georgian Public Broadcasting)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - First Channel (1TV), Second Channel (Teleskola), established 2004", ci_plus: false},
+                {name: "Rustavi 2", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - established 1998, one of most-watched channels", ci_plus: false},
+                {name: "Imedi TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - launched 2009, one of most-watched channels", ci_plus: false},
+                {name: "TV Pirveli", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - launched 2019, opposition-leaning channel", ci_plus: false},
+                {name: "Maestro TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - launched 1995, diverse programming", ci_plus: false},
+                {name: "Adjarasport", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - sports platform (Adjarasport1, Adjarasport2), Premier League rights", ci_plus: false},
+                {name: "Formula TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - opposition outlet", ci_plus: false}
+            ],
+            "Greece": [
+                {name: "Cosmote TV (OTE)", subscribers: null, tv_homes: null, notes: "Telco/Pay-TV - OTE (partially owned by Deutsche Telekom), Cosmote Sport and Cosmote Cinema channels, IPTV and satellite", ci_plus: null},
+                {name: "Nova", subscribers: null, tv_homes: null, notes: "Pay-TV platform - Nova Sports and Nova Cinema channels, acquired by United Group (2020), satellite and OTT", ci_plus: null},
+                {name: "Digea", subscribers: null, tv_homes: null, notes: "Digital terrestrial TV provider - consortium owned by private broadcasters, nationwide coverage", ci_plus: null},
+                {name: "ERT (Hellenic Broadcasting Corporation)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - ERT1, ERT2, ERT3 channels", ci_plus: false},
+                {name: "ANT1", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - owned by Antenna Group, general entertainment and news", ci_plus: false},
+                {name: "Alpha TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - news, series, and entertainment", ci_plus: false},
+                {name: "Mega Channel", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Greece's first private TV network (1989), family-oriented programming", ci_plus: false},
+                {name: "Skai TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - news coverage, talk shows, documentaries, part of Skai Group", ci_plus: false},
+                {name: "Star Channel", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - targets younger audience with drama and reality shows", ci_plus: false}
             ],
             "Hungary": [
-                {name: "UPC (Vodafone)", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "DigiTV (Cable) was sold to company 4iG, possible spec changes", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "DigiTV (Satellite) was sold to company 4iG, possible spec changes", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "M7 (UPC Direct)", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "MinDigTV", subscribers: null, tv_homes: null, ci_plus: true}
+                {name: "Magyar Telekom", subscribers: null, tv_homes: null, notes: "Telco - largest telecom operator, Telekom TV IPTV platform, partnered with SkyShowtime", ci_plus: null},
+                {name: "UPC (Vodafone)", subscribers: null, tv_homes: "~26.8% market share (2016)", notes: "Cable/Telco - CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "DigiTV (Cable) - now 4iG/One Hungary", subscribers: null, tv_homes: "~24.9% market share (2016)", notes: "Pay-TV platform - sold to 4iG, merged into One Hungary (2025), CI+ cam typically required", ci_plus: true, pay_type: "premium"},
+                {name: "DigiTV (Satellite) - now 4iG/One Hungary", subscribers: null, tv_homes: null, notes: "Pay-TV platform - sold to 4iG, merged into One Hungary (2025), CI+ cam typically required", ci_plus: true, pay_type: "premium"},
+                {name: "One Hungary (4iG)", subscribers: null, tv_homes: null, notes: "Telco - launched 2025, combines Digi Hungary and Vodafone Hungary, fixed/mobile/pay-TV services", ci_plus: null},
+                {name: "M7 (UPC Direct)", subscribers: null, tv_homes: null, notes: "Satellite platform - uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "MinDigTV", subscribers: null, tv_homes: null, notes: "Terrestrial pay-TV - CI+ cam typically required", ci_plus: true, pay_type: "pay-lite"},
+                {name: "Duna Média", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - M1, M2/Petőfi, M3, M4 Sport, M5, Duna, Duna World channels", ci_plus: false},
+                {name: "RTL Klub", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - leading commercial channel", ci_plus: false},
+                {name: "TV2", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - largest television portfolio in Hungary", ci_plus: false}
+            ],
+            "Iceland": [
+                {name: "Síminn", subscribers: null, tv_homes: null, notes: "Telco - major telecommunications provider, mobile (2G/3G/4G/5G), fixed-line, DSL, fiber internet, Sjónvarp Símans TV service", ci_plus: null},
+                {name: "Sýn", subscribers: null, tv_homes: null, notes: "Telco/TV Platform - formerly Vodafone Iceland (rebranded June 2025), mobile, internet, TV services, free-to-air channel Sýn (formerly Stöð 2)", ci_plus: null},
+                {name: "Nova", subscribers: null, tv_homes: null, notes: "Telco - primary cellular service provider, mobile and internet services", ci_plus: null},
+                {name: "IMC Iceland (Alterna)", subscribers: null, tv_homes: null, notes: "Telco - licensed GSM mobile operator, operates under brand Alterna", ci_plus: null},
+                {name: "Míla", subscribers: null, tv_homes: null, notes: "Infrastructure - owns and operates Iceland's largest trunk telecommunication network, copper and fiber access networks, 10 Gbit/s service to households (2023)", ci_plus: null},
+                {name: "RÚV (Ríkisútvarpið)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - Icelandic National Broadcasting Service, RÚV and RÚV 2 channels, news, sports, entertainment, cultural programs", ci_plus: false},
+                {name: "Sýn (Stöð 2)", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - free-to-air channel, entertainment, movies, daily evening news, rebranded from Stöð 2 (2025)", ci_plus: false},
+                {name: "Sjónvarp Símans", subscribers: null, tv_homes: null, notes: "TV Platform - operated by Síminn, various channels and on-demand content", ci_plus: null},
+                {name: "Sýn Sport", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - sports channel operated by Sýn", ci_plus: false},
+                {name: "Síminn Sport", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - sports channel operated by Síminn", ci_plus: false},
+                {name: "Gospel Channel", subscribers: null, tv_homes: ">80% population reach", notes: "Commercial broadcaster - Christian television channel (founded 1992), terrestrial, cable, IPTV", ci_plus: false},
+                {name: "N4", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - regional television channel based in Akureyri, North Iceland content", ci_plus: false},
+                {name: "Alþingi", subscribers: null, tv_homes: null, notes: "Public broadcaster - government channel broadcasting parliamentary sessions", ci_plus: false},
+                {name: "Omega Christian Television", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Christian television channel, religious programming", ci_plus: false}
             ],
             "Ireland": [
-                {name: "VirginMedia", subscribers: null, tv_homes: null, notes: "Data not publicly disclosed", ci_plus: true},
-                {name: "Sky Ireland", subscribers: null, tv_homes: null, notes: "Satellite pay-TV platform", ci_plus: true},
+                {name: "VirginMedia", subscribers: null, tv_homes: null, notes: "Cable/Telco - CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "Sky Ireland", subscribers: null, tv_homes: null, notes: "Satellite pay-TV platform - uses proprietary systems", ci_plus: null},
                 {name: "RTÉ", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false},
                 {name: "Saorview", subscribers: null, tv_homes: "~98% coverage", notes: "Free-to-air service - near universal coverage", ci_plus: false}
             ],
             "Italy": [
-                {name: "Tivusat - LaTivu", subscribers: null, tv_homes: "~23.9M TV households, ~17M connected TV", ci_plus: true},
-                {name: "Sky Italia", subscribers: "~4.6 million", tv_homes: null, ci_plus: true},
+                {name: "Tivusat - LaTivu", subscribers: null, tv_homes: "~23.9M TV households, ~17M connected TV", notes: "Satellite platform - CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "pay-lite"},
+                {name: "Sky Italia", subscribers: "~4.6 million", tv_homes: null, notes: "Satellite pay-TV platform - uses proprietary systems", ci_plus: null},
                 {name: "RAI", subscribers: null, tv_homes: "~48.3% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false},
                 {name: "Mediaset", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false}
             ],
             "Luxembourg": [
-                {name: "M7 (Telesat)", subscribers: null, tv_homes: null, ci_plus: true}
+                {name: "M7 (Telesat)", subscribers: null, tv_homes: null, notes: "Satellite platform - uses smart cards, CI+ compatibility varies", ci_plus: null}
             ],
             "Luxemburg": [
-                {name: "M7 (Telesat)", subscribers: null, tv_homes: null, ci_plus: true}
+                {name: "M7 (Telesat)", subscribers: null, tv_homes: null, notes: "Satellite platform - uses smart cards, CI+ compatibility varies", ci_plus: null}
+            ],
+            "Lithuania": [
+                {name: "Telia Lietuva", subscribers: null, tv_homes: null, notes: "Telco - IPTV/Cable TV services, largest telecom operator in Baltic States", ci_plus: null},
+                {name: "Tele2 Lithuania", subscribers: "~1.8 million", tv_homes: null, notes: "Telco - largest mobile operator, offers TV services", ci_plus: null},
+                {name: "Cgates", subscribers: null, tv_homes: null, notes: "Cable TV provider - Vilnius and Kaunas, multi-language channels", ci_plus: null},
+                {name: "Init", subscribers: null, tv_homes: null, notes: "Cable TV provider - Kaunas region", ci_plus: null},
+                {name: "Balticum TV", subscribers: null, tv_homes: null, notes: "Cable TV provider - Klaipėda region", ci_plus: null},
+                {name: "LRT (Lietuvos nacionalinis radijas ir televizija)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - LRT televizija, LRT Lituanica", ci_plus: false},
+                {name: "LNK", subscribers: null, tv_homes: "~1 million daily viewers (2017)", notes: "Commercial broadcaster", ci_plus: false},
+                {name: "TV3 Group", subscribers: null, tv_homes: "99% market penetration", notes: "Commercial broadcaster - TV3, TV6, TV8 channels", ci_plus: false},
+                {name: "BTV", subscribers: null, tv_homes: "~80% territory coverage", notes: "Commercial broadcaster", ci_plus: false}
+            ],
+            "Latvia": [
+                {name: "Tet", subscribers: null, tv_homes: null, notes: "Telco - IT and telecommunications provider, offers TV services", ci_plus: null},
+                {name: "LMT (Latvijas Mobilais Telefons)", subscribers: null, tv_homes: null, notes: "Telco - leading mobile operator, offers TV services", ci_plus: null},
+                {name: "Baltcom", subscribers: null, tv_homes: null, notes: "Cable/Telco - second-largest TV and internet provider, fiber optic services", ci_plus: null},
+                {name: "TeleGroup", subscribers: null, tv_homes: null, notes: "Telco - GSM, internet, IP telephony services", ci_plus: null},
+                {name: "LTV (Latvijas Televīzija)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - LTV1, LTV7 channels", ci_plus: false},
+                {name: "TV3 Group", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - TV3 Latvia, TV6 Latvia, TV3 Plus channels", ci_plus: false},
+                {name: "LVRTC (Latvijas Valsts Radio un Televīzijas Centrs)", subscribers: null, tv_homes: null, notes: "Broadcasting infrastructure provider - state-owned", ci_plus: null}
             ],
             "Netherlands": [
-                {name: "Ziggo/UPC. (Assume for Argon context \"connected\" (below for non)", subscribers: "~3.83 million", tv_homes: "~8.3M TV households (2023)", notes: "Ziggo merged with UPC (2020)", ci_plus: true},
-                {name: "KPN", subscribers: "~2.17 million", tv_homes: null, notes: "As of 2021", ci_plus: false},
-                {name: "M7 (Canal Digitaal)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "Ziggo/UPC. (Assume for Argon context \"connected\" (below for non)", subscribers: "~3.83 million", tv_homes: "~8.3M TV households (2023)", notes: "Cable/Telco - CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "KPN", subscribers: "~2.17 million", tv_homes: null, notes: "IPTV service - typically uses operator STBs", ci_plus: null},
+                {name: "M7 (Canal Digitaal)", subscribers: null, tv_homes: null, notes: "Satellite platform - uses smart cards, CI+ compatibility varies", ci_plus: null},
                 {name: "NPO", subscribers: null, tv_homes: "~46.3% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false}
             ],
             "Norway": [
-                {name: "Allente", subscribers: null, tv_homes: null, notes: "Operates across Nordic countries", ci_plus: true},
-                {name: "RiksTV", subscribers: null, tv_homes: null, notes: "Nordig operator", ci_plus: true},
-                {name: "Telenor", subscribers: "~1.90 million", tv_homes: null, notes: "As of 2021 - Norway/Sweden combined", ci_plus: false},
+                {name: "Allente", subscribers: null, tv_homes: null, notes: "Satellite platform - uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "RiksTV", subscribers: null, tv_homes: null, notes: "Terrestrial pay-TV - CI+ cam typically required (Nordig operator)", ci_plus: true, pay_type: "pay-lite"},
+                {name: "Telenor", subscribers: "~1.90 million", tv_homes: null, notes: "IPTV service - typically uses operator STBs", ci_plus: null},
                 {name: "NRK", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false}
             ],
             "Poland": [
-                {name: "UPC", subscribers: null, tv_homes: "Part of CEE region: 30M pay-TV households across 7 markets", ci_plus: true},
-                {name: "nc+/Canal+", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "Cyfrowy Polsat", subscribers: "~5.12 million", tv_homes: null, notes: "As of 2020", ci_plus: true},
+                {name: "UPC", subscribers: null, tv_homes: "Part of CEE region: 30M pay-TV households across 7 markets", notes: "Cable/Telco - CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "nc+/Canal+", subscribers: null, tv_homes: null, notes: "Platforma Canal+ - CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "Cyfrowy Polsat", subscribers: "~5.12 million", tv_homes: null, notes: "Satellite platform - CI+ cam typically required (Nagravision CAM)", ci_plus: true, pay_type: "premium"},
                 {name: "TVP", subscribers: null, tv_homes: "~44.3% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false}
             ],
             "Romania": [
-                {name: "UPC (Vodafone)", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "DigiTV (Cable) was sold to company 4iG, possible spec changes", subscribers: null, tv_homes: null, ci_plus: true},
-                {name: "DigiTV (Satellite)", subscribers: null, tv_homes: null, ci_plus: true}
+                {name: "Digi Communications (RCS&RDS)", subscribers: "~6.6 million cable (2022)", tv_homes: "69% cable TV market share", notes: "Cable/Telco/TV Platform - leading provider, cable TV/broadband/mobile, DigiTV cable and satellite platforms, CI+ cam launched November 2013", ci_plus: true, pay_type: "premium"},
+                {name: "Vodafone Romania (UPC)", subscribers: null, tv_homes: null, notes: "Cable/Telco - acquired UPC Romania (2019), mobile/fixed/broadband/TV, CI+ cam launched April 2012", ci_plus: true, pay_type: "premium"},
+                {name: "Orange Romania", subscribers: null, tv_homes: null, notes: "Telco - mobile/fixed/broadband, Orange Home TV IPTV service, bundled with ultrafast broadband, catch-up TV, multi-device streaming", ci_plus: null},
+                {name: "Telekom România", subscribers: ">4 million subscriptions (2022)", tv_homes: null, notes: "Telco - owned by OTE (Deutsche Telekom), mobile/fixed/broadband, Telekom TV satellite platform, IPTV services", ci_plus: null},
+                {name: "Focus Sat (M7 Group)", subscribers: null, tv_homes: "~1.2 million satellite subscribers (2022)", notes: "Satellite platform - primary DTH provider, uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "iNES", subscribers: null, tv_homes: null, notes: "IPTV service - first IPTV provider in Romania (2005), >160 channels, first HD TV in Romania (Nov 2008), FUNBOX 4K/UHD channel (Nov 2016)", ci_plus: null},
+                {name: "TVR (Televiziunea Română)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - TVR 1, TVR 2, TVR 3, TVR Info, TVR Cultural, TVR Folclor, TVR Sport channels", ci_plus: false},
+                {name: "Pro TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - leading free-to-air network (launched Dec 1995), international series, movies, local productions, news", ci_plus: false},
+                {name: "Antena 3 CNN", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Antena 3 S.A. (Intact Media Group), CNN's exclusive news partner in Romania (Sep 2022)", ci_plus: false},
+                {name: "Antena 1", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Antena Group, entertainment and news", ci_plus: false},
+                {name: "Kanal D", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - entertainment channel", ci_plus: false},
+                {name: "Alfa Omega TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Christian media organization, 24/7 channel (launched June 2006), free-to-air satellite across Europe, North Africa, Middle East", ci_plus: false}
             ],
             "Serbia": [
-                {name: "Digital TV", subscribers: null, tv_homes: null, ci_plus: null}
+                {name: "Telekom Srbija", subscribers: null, tv_homes: "~25% pay-TV market share (pre-2025)", notes: "Telco - leading telecommunications provider, mobile/fixed/internet/TV, m:Sat TV DTH platform, Total TV satellite (co-owned), DVB-T2 pay-TV service with Conax Contego", ci_plus: null},
+                {name: "SBB (Serbia Broadband)", subscribers: null, tv_homes: "~48% pay-TV market share (pre-2025), ~54% cable market share", notes: "Cable/Telco - major cable operator, pay TV/broadband/fixed telephony, acquired by e&PPF Telecom Group (Feb 2025)", ci_plus: null},
+                {name: "Yettel (formerly Telenor Serbia)", subscribers: null, tv_homes: null, notes: "Telco - mobile and fixed telephony, internet services, operating under e&PPF Telecom Group", ci_plus: null},
+                {name: "PoštaNet", subscribers: null, tv_homes: "~5% pay-TV market share", notes: "Cable/Telco - cable TV and internet services", ci_plus: null},
+                {name: "Ikom", subscribers: null, tv_homes: "~4% pay-TV market share", notes: "Cable/Telco - cable TV services", ci_plus: null},
+                {name: "Kopernikus", subscribers: null, tv_homes: "~3% pay-TV market share", notes: "Cable/Telco - cable TV services", ci_plus: null},
+                {name: "m:Sat TV", subscribers: null, tv_homes: null, notes: "Satellite platform - Telekom Srbija DTH platform, SD and HD channels, expanded to Bosnia, Montenegro, North Macedonia", ci_plus: null},
+                {name: "Total TV", subscribers: ">1 million (Southeast Europe)", tv_homes: null, notes: "Satellite platform - co-owned by Telekom Srbija, Eutelsat 16A satellite, serves Serbia, Bosnia, Croatia, Montenegro, North Macedonia, Slovenia", ci_plus: null},
+                {name: "RTS (Radio Television of Serbia)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - RTS 1, RTS 2, RTS 3, RTS Digital channels, news, entertainment, educational content", ci_plus: false},
+                {name: "Prva Srpska Televizija (Prva TV)", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - national coverage, launched 2006 (initially Fox Televizija), entertainment, news, sports", ci_plus: false},
+                {name: "Pink", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - popular commercial channel, entertainment and reality shows", ci_plus: false},
+                {name: "Happy TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - entertainment channel", ci_plus: false},
+                {name: "N1", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - United Group regional news channel, 24-hour news coverage, critical reporting", ci_plus: false},
+                {name: "Nova S", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - United Group channel, mix of entertainment and news programming", ci_plus: false},
+                {name: "Toxic TV", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - cable channel launched Dec 2019, regional music and entertainment, Toxic Folk and Toxic Rap sister channels", ci_plus: false},
+                {name: "Arena Sport", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Telekom Srbija sports channels, exclusive Premier League, UEFA competitions, national football leagues", ci_plus: false}
             ],
             "Slovakia": [
-                {name: "M7 (Skylink SK)", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "Slovak Telekom", subscribers: null, tv_homes: null, notes: "Telco - Magio TV IPTV service, Digi TV satellite platform", ci_plus: null},
+                {name: "Orange Slovensko", subscribers: null, tv_homes: null, notes: "Telco - IPTV and OTT services, largest telecom company in Slovakia", ci_plus: null},
+                {name: "O2 Slovakia", subscribers: null, tv_homes: null, notes: "Telco - mobile and fixed broadband services", ci_plus: null},
+                {name: "UPC Slovakia", subscribers: null, tv_homes: null, notes: "Cable/Telco - cable TV services", ci_plus: null},
+                {name: "M7 (Skylink SK)", subscribers: null, tv_homes: null, notes: "Satellite platform - Czech and Slovak TV stations, uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "ANTIK Sat", subscribers: null, tv_homes: null, notes: "Satellite platform - ~100 channels, one-third HD, online archive and second-screen capabilities", ci_plus: null},
+                {name: "RTVS (Rozhlas a televízia Slovenska)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - Jednotka, Dvojka, Trojka, RTVS Šport channels", ci_plus: false},
+                {name: "Markíza", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - Markíza, Doma, Dajto, KRIMI channels", ci_plus: false},
+                {name: "Prima SK", subscribers: null, tv_homes: null, notes: "Commercial broadcaster - rebranded from Prima Plus in 2024", ci_plus: false},
                 {name: "DVB-T/T2 Spec", subscribers: null, tv_homes: null, notes: "Terrestrial standard - not an operator", ci_plus: null}
             ],
             "Spain": [
-                {name: "TDT Hibrida (LovesTV). <--- separate out; LovesTV? as superset", subscribers: null, tv_homes: "~15.9M TV households, ~11M connected TV", notes: "31M CTV users, 60% watch on Smart TVs", ci_plus: true},
+                {name: "TDT Hibrida (LovesTV). <--- separate out; LovesTV? as superset", subscribers: null, tv_homes: "~15.9M TV households, ~11M connected TV", notes: "Hybrid platform - CI+ cam requirements depend on specific service tier", ci_plus: null},
                 {name: "RTVE", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false}
             ],
             "Sweden": [
-                {name: "Tele2", subscribers: "~2.17 million", tv_homes: null, notes: "As of Q3 2025 - mobile/TV combined", ci_plus: false},
-                {name: "Telenor", subscribers: "~1.90 million", tv_homes: null, notes: "As of 2021 - Norway/Sweden combined", ci_plus: false},
-                {name: "Allente", subscribers: null, tv_homes: null, notes: "Operates across Nordic countries", ci_plus: true},
-                {name: "Boxer HD", subscribers: "~500,000", tv_homes: null, notes: "Boxer TV Access", ci_plus: true},
+                {name: "Tele2", subscribers: "~2.17 million", tv_homes: null, notes: "IPTV service - typically uses operator STBs", ci_plus: null},
+                {name: "Telenor", subscribers: "~1.90 million", tv_homes: null, notes: "IPTV service - typically uses operator STBs", ci_plus: null},
+                {name: "Allente", subscribers: null, tv_homes: null, notes: "Satellite platform - uses smart cards, CI+ compatibility varies", ci_plus: null},
+                {name: "Boxer HD", subscribers: "~500,000", tv_homes: null, notes: "Terrestrial pay-TV - CI+ cam typically required", ci_plus: true, pay_type: "pay-lite"},
                 {name: "SVT", subscribers: null, tv_homes: "~29.8% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false}
             ],
             "Switzerland": [
-                {name: "UPC", subscribers: null, tv_homes: null, notes: "Now part of Sunrise/UPC", ci_plus: true},
-                {name: "Swisscom TV", subscribers: null, tv_homes: null, notes: "Swisscom's TV service", ci_plus: false},
-                {name: "Kabelio", subscribers: null, tv_homes: null, ci_plus: true},
+                {name: "UPC", subscribers: null, tv_homes: null, notes: "Cable/Telco - CI+ cam typically required for encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "Swisscom TV", subscribers: null, tv_homes: null, notes: "IPTV service - typically uses operator STBs", ci_plus: null},
+                {name: "Kabelio", subscribers: null, tv_homes: null, notes: "Cable TV platform - CI+ cam typically required", ci_plus: true, pay_type: "premium"},
                 {name: "SRG SSR", subscribers: null, tv_homes: "~30.1% market share, near universal coverage", notes: "Public broadcaster", ci_plus: false}
+            ],
+            "Turkey": [
+                {name: "Türk Telekom", subscribers: null, tv_homes: "~14.6 million broadband subscribers", notes: "Telco - largest fixed-line operator, Tivibu IPTV service", ci_plus: null},
+                {name: "Turkcell", subscribers: "~39.3 million", tv_homes: null, notes: "Telco - leading mobile operator, TV+ IPTV service", ci_plus: null},
+                {name: "Digiturk", subscribers: null, tv_homes: null, notes: "Satellite pay-TV platform - leading digital TV platform, holds Süper Lig rights", ci_plus: null},
+                {name: "D-Smart", subscribers: null, tv_homes: null, notes: "Satellite pay-TV platform", ci_plus: null},
+                {name: "Türksat", subscribers: null, tv_homes: null, notes: "Satellite operator - sole communications satellite operator, operates Teledünya cable TV", ci_plus: null},
+                {name: "TRT (Turkish Radio and Television Corporation)", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster - multiple TV and radio channels", ci_plus: false},
+                {name: "TRT EBA TV", subscribers: null, tv_homes: null, notes: "Educational broadcaster - launched 2020 for distance learning", ci_plus: false}
             ],
             "United Kingdom": [
                 {name: "Freely", subscribers: null, tv_homes: "27.52M TV households (Q4 2024), ~18M connected TV", notes: "New hybrid TV platform (2024)", ci_plus: null},
-                {name: "Sky UK", subscribers: "~7.73 million", tv_homes: "Satellite: 7.73M, Cable: 3.47M, Terrestrial: 3.06M", notes: "Satellite pay-TV platform", ci_plus: true},
-                {name: "Virgin Media", subscribers: "~3 million", tv_homes: null, notes: "Historical data", ci_plus: true},
-                {name: "EE", subscribers: null, tv_homes: null, ci_plus: false},
-                {name: "Talk Talk", subscribers: null, tv_homes: null, ci_plus: false},
-                {name: "BBC", subscribers: null, tv_homes: "Near universal coverage, largest broadcaster", notes: "Public broadcaster", ci_plus: false},
-                {name: "ITV", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false},
-                {name: "Channel 4", subscribers: null, tv_homes: "Major broadcaster", notes: "Publicly owned, commercially funded", ci_plus: false}
+                {name: "Sky UK", subscribers: "~7.73 million", tv_homes: "Satellite: 7.73M, Cable: 3.47M, Terrestrial: 3.06M", notes: "Satellite pay-TV platform", ci_plus: null},
+                {name: "Virgin Media", subscribers: "~3 million", tv_homes: null, notes: "Cable operator", ci_plus: null},
+                {name: "EE", subscribers: null, tv_homes: null, notes: "Telco IPTV", ci_plus: null},
+                {name: "Talk Talk", subscribers: null, tv_homes: null, notes: "Telco IPTV", ci_plus: null},
+                {name: "BBC", subscribers: null, tv_homes: "Near universal coverage, largest broadcaster", notes: "Public broadcaster", ci_plus: null},
+                {name: "ITV", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: null},
+                {name: "Channel 4", subscribers: null, tv_homes: "Major broadcaster", notes: "Publicly owned, commercially funded", ci_plus: null}
             ],
             "UK": [
                 {name: "Freely", subscribers: null, tv_homes: "27.52M TV households (Q4 2024), ~18M connected TV", notes: "New hybrid TV platform (2024)", ci_plus: null},
-                {name: "Sky UK", subscribers: "~7.73 million", tv_homes: "Satellite: 7.73M, Cable: 3.47M, Terrestrial: 3.06M", notes: "Satellite pay-TV platform", ci_plus: true},
-                {name: "Virgin Media", subscribers: "~3 million", tv_homes: null, notes: "Historical data", ci_plus: true},
-                {name: "EE", subscribers: null, tv_homes: null, ci_plus: false},
-                {name: "Talk Talk", subscribers: null, tv_homes: null, ci_plus: false},
-                {name: "BBC", subscribers: null, tv_homes: "Near universal coverage, largest broadcaster", notes: "Public broadcaster", ci_plus: false},
-                {name: "ITV", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false},
-                {name: "Channel 4", subscribers: null, tv_homes: "Major broadcaster", notes: "Publicly owned, commercially funded", ci_plus: false}
+                {name: "Sky UK", subscribers: "~7.73 million", tv_homes: "Satellite: 7.73M, Cable: 3.47M, Terrestrial: 3.06M", notes: "Satellite pay-TV platform", ci_plus: null},
+                {name: "Virgin Media", subscribers: "~3 million", tv_homes: null, notes: "Cable operator", ci_plus: null},
+                {name: "EE", subscribers: null, tv_homes: null, notes: "Telco IPTV", ci_plus: null},
+                {name: "Talk Talk", subscribers: null, tv_homes: null, notes: "Telco IPTV", ci_plus: null},
+                {name: "BBC", subscribers: null, tv_homes: "Near universal coverage, largest broadcaster", notes: "Public broadcaster", ci_plus: null},
+                {name: "ITV", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: null},
+                {name: "Channel 4", subscribers: null, tv_homes: "Major broadcaster", notes: "Publicly owned, commercially funded", ci_plus: null}
             ],
             "Ukraine": [
                 {name: "No operator data available", subscribers: null, tv_homes: null, notes: "Ukraine not in original country list", ci_plus: null}
             ],
             "Portugal": [
-                {name: "MEO (Altice Portugal)", subscribers: "~1.97 million", tv_homes: "~4.7M pay-TV subscribers, 97.1% penetration", notes: "41.9% market share, primarily FTTH/B (IPTV)", ci_plus: false},
-                {name: "NOS Group", subscribers: "~1.69 million", tv_homes: null, notes: "36.0% market share, Cable and FTTH/B", ci_plus: true},
-                {name: "Vodafone Portugal", subscribers: "~912,000", tv_homes: null, notes: "19.4% market share, primarily FTTH/B (IPTV)", ci_plus: false},
-                {name: "Digi/Nowo Group", subscribers: "~122,000", tv_homes: null, notes: "2.6% market share", ci_plus: false},
+                {name: "MEO (Altice Portugal)", subscribers: "~1.97 million", tv_homes: "~4.7M pay-TV subscribers, 97.1% penetration", notes: "IPTV service - typically uses operator STBs", ci_plus: null},
+                {name: "NOS Group", subscribers: "~1.69 million", tv_homes: null, notes: "Cable and FTTH/B - CI+ cam typically required for cable encrypted channels", ci_plus: true, pay_type: "premium"},
+                {name: "Vodafone Portugal", subscribers: "~912,000", tv_homes: null, notes: "IPTV service - typically uses operator STBs", ci_plus: null},
+                {name: "Digi/Nowo Group", subscribers: "~122,000", tv_homes: null, notes: "Smaller player", ci_plus: null},
                 {name: "RTP", subscribers: null, tv_homes: "Near universal coverage", notes: "Public broadcaster", ci_plus: false},
                 {name: "SIC", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false},
                 {name: "TVI", subscribers: null, tv_homes: "Major commercial broadcaster", notes: "Commercial broadcaster", ci_plus: false}
@@ -645,6 +1333,8 @@
         // Country name mapping (from TopoJSON codes to display names)
         const countryNameMap = {
             "AL": "Albania",
+            "AM": "Armenia",
+            "AZ": "Azerbaijan",
             "AT": "Austria",
             "BE": "Belgium",
             "BG": "Bulgaria",
@@ -678,15 +1368,22 @@
             "SK": "Slovakia",
             "SI": "Slovenia",
             "SE": "Sweden",
+            "TR": "Turkey",
             "UA": "Ukraine",
             "FR": "France",
+            "GE": "Georgia",
             "ES": "Spain"
         };
         
         // Country name aliases for better matching
         const countryAliases = {
+            "Armenia": ["Armenia", "Հայաստան", "AM"],
+            "Azerbaijan": ["Azerbaijan", "Azərbaycan", "AZ"],
             "Austria": ["Austria", "Österreich", "AT"],
+            "Georgia": ["Georgia", "საქართველო", "GE"],
+            "Belarus": ["Belarus", "Беларусь", "BY"],
             "Belgium": ["Belgium", "België", "Belgique", "BE"],
+            "Bulgaria": ["Bulgaria", "България", "BG"],
             "Croatia": ["Croatia", "Hrvatska", "HR"],
             "Czech": ["Czech", "Czech Republic", "Czech Rep.", "Česká republika", "CZ"],
             "Czech Rep.": ["Czech", "Czech Republic", "Czech Rep.", "Česká republika", "CZ"],
@@ -695,9 +1392,13 @@
             "Finland": ["Finland", "Suomi", "FI"],
             "France": ["France", "FR"],
             "Germany": ["Germany", "Deutschland", "DE"],
+            "Greece": ["Greece", "Ελλάδα", "GR"],
             "Hungary": ["Hungary", "Magyarország", "HU"],
+            "Iceland": ["Iceland", "Ísland", "IS"],
             "Ireland": ["Ireland", "Éire", "IE"],
             "Italy": ["Italy", "Italia", "IT"],
+            "Latvia": ["Latvia", "Latvija", "LV"],
+            "Lithuania": ["Lithuania", "Lietuva", "LT"],
             "Luxembourg": ["Luxembourg", "Luxemburg", "Luxemburg", "LU"],
             "Luxemburg": ["Luxembourg", "Luxemburg", "Luxemburg", "LU"],
             "Netherlands": ["Netherlands", "Nederland", "Holland", "NL"],
@@ -710,6 +1411,7 @@
             "Spain": ["Spain", "España", "ES"],
             "Sweden": ["Sweden", "Sverige", "SE"],
             "Switzerland": ["Switzerland", "Schweiz", "Suisse", "Svizzera", "CH"],
+            "Turkey": ["Turkey", "Türkiye", "Türkiye Cumhuriyeti", "TR"],
             "United Kingdom": ["United Kingdom", "UK", "Great Britain", "Britain", "GB"],
             "UK": ["United Kingdom", "UK", "Great Britain", "Britain", "GB"]
         };
@@ -786,6 +1488,9 @@
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
         
+        // Update total slides indicator
+        document.getElementById('total-slides').textContent = totalSlides;
+        
         function showSlide(n) {
             slides[currentSlide].classList.remove('active');
             currentSlide = n;
@@ -831,6 +1536,38 @@
         let map;
         let geoJsonLayer;
         let mapInitialized = false;
+        let ciPlusFilterActive = false;
+        let nordicDvbFilterActive = false;
+        let hbbtvFilterActive = false;
+        let originalStyles = new Map(); // Store original styles for each layer
+        
+        // Nordic DVB countries list
+        const nordicDvbCountries = [
+            'Denmark', 'Finland', 'Iceland', 'Norway', 'Sweden',
+            'Faroe Islands', 'Greenland', 'Åland',
+            // Alternative names that might appear in GeoJSON
+            'Danmark', 'Suomi', 'Island', 'Norge', 'Sverige',
+            'Færøerne', 'Grønland'
+        ];
+        
+        // HbbTV countries list
+        const hbbtvCountries = [
+            'Albania', 'Algeria', 'Australia', 'Austria', 'Belarus', 'Belgium',
+            'Bosnia', 'Bosnia and Herzegovina', 'Bulgaria', 'Croatia',
+            'Czech Republic', 'Czech Rep.', 'Czech', 'Denmark', 'Egypt',
+            'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary',
+            'Indonesia', 'Iran', 'Ireland', 'Italy', 'Jordan', 'Latvia',
+            'Lebanon', 'Lithuania', 'Luxembourg', 'Moldova', 'Montenegro',
+            'Morocco', 'New Zealand', 'North Macedonia', 'Macedonia', 'Norway',
+            'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Saudi Arabia',
+            'Serbia', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland',
+            'Netherlands', 'Tunisia', 'Turkey', 'Ukraine', 'United Arab Emirates',
+            'United Kingdom', 'UK',
+            // Alternative names that might appear in GeoJSON
+            'Danmark', 'Suomi', 'Norge', 'Sverige', 'Nederland', 'Holland',
+            'Deutschland', 'España', 'Espagne', 'Italia', 'Polska', 'România',
+            'Россия', 'Российская Федерация', 'Türkiye', 'Türkiye Cumhuriyeti'
+        ];
         
         function initializeMap() {
             if (mapInitialized) return;
@@ -994,20 +1731,18 @@
                         
                         if (opName) {
                             html += '<li class="operator-item">';
-                            html += '<div class="operator-name-container">';
+                            html += '<span class="operator-name-container">';
                             html += `<span class="operator-name">${opName}</span>`;
                             
-                            // Add CI+ indicator
-                            if (opCiPlus !== undefined && opCiPlus !== null) {
-                                if (opCiPlus === true) {
-                                    html += '<span class="ci-plus-indicator required" title="CI+ cam required">CI+</span>';
-                                } else if (opCiPlus === false) {
-                                    html += '<span class="ci-plus-indicator not-required" title="CI+ cam not required">CI+</span>';
-                                }
-                            } else {
-                                html += '<span class="ci-plus-indicator unknown" title="CI+ cam requirement unknown">CI+</span>';
+                            // Add CI+ indicator (only show if CI+ is used)
+                            if (opCiPlus === true) {
+                                const opPayType = op.pay_type || 'premium'; // Default to premium if not specified
+                                const payTypeClass = opPayType === 'pay-lite' ? 'pay-lite' : 'premium';
+                                const payTypeTitle = opPayType === 'pay-lite' ? 'CI+ cam required - Pay-lite service' : 'CI+ cam required - Premium pay-TV';
+                                html += `<span class="ci-plus-indicator ${payTypeClass}" title="${payTypeTitle}">CI+</span>`;
                             }
-                            html += '</div>';
+                            // Don't show CI+ pill if ci_plus is false or null
+                            html += '</span>';
                             
                             // Add subscriber/TV home data if available
                             if (opSubscribers || opTvHomes) {
@@ -1041,6 +1776,16 @@
             }
             
             function onEachFeature(feature, layer) {
+                // Store original style
+                const originalStyle = {
+                    fillColor: '#FFEDA0',
+                    weight: 1,
+                    opacity: 1,
+                    color: 'white',
+                    fillOpacity: 0.5
+                };
+                originalStyles.set(layer, originalStyle);
+                
                 layer.on({
                     mouseover: highlightFeature,
                     mouseout: resetHighlight,
@@ -1102,6 +1847,171 @@
                 closeOverlay();
             }
         });
+        
+        // Helper function to get country name from feature
+        function getCountryNameFromFeature(feature) {
+            return feature.name || 
+                   feature.NAME || 
+                   feature.NAME_EN || 
+                   feature.NAME_ENG || 
+                   feature.admin || 
+                   feature.ADMIN ||
+                   feature.NAME_LONG ||
+                   feature.NAME_SORT ||
+                   feature.formal_en ||
+                   feature.name_en ||
+                   'Unknown';
+        }
+        
+        // Helper function to check if a country name matches Nordic DVB countries
+        function isNordicDvbCountry(countryName) {
+            const normalized = normalizeCountryName(countryName);
+            return nordicDvbCountries.some(nordicCountry => {
+                const normalizedNordic = normalizeCountryName(nordicCountry);
+                return normalized === normalizedNordic || 
+                       (normalized && normalizedNordic && normalized.includes(normalizedNordic)) ||
+                       (normalized && normalizedNordic && normalizedNordic.includes(normalized));
+            });
+        }
+        
+        // Helper function to check if a country name matches HbbTV countries
+        function isHbbtvCountry(countryName) {
+            const normalized = normalizeCountryName(countryName);
+            return hbbtvCountries.some(hbbtvCountry => {
+                const normalizedHbbtv = normalizeCountryName(hbbtvCountry);
+                return normalized === normalizedHbbtv || 
+                       (normalized && normalizedHbbtv && normalized.includes(normalizedHbbtv)) ||
+                       (normalized && normalizedHbbtv && normalizedHbbtv.includes(normalized));
+            });
+        }
+        
+        // Helper function to check if a country has CI+ operators
+        function hasCiPlusOperators(countryName) {
+            const operators = findCountryData(countryName);
+            if (!operators || !Array.isArray(operators)) {
+                return false;
+            }
+            
+            const hasCiPlus = operators.some(op => {
+                if (typeof op === 'string') return false;
+                return op.ci_plus === true;
+            });
+            
+            return hasCiPlus;
+        }
+        
+        // Function to apply filters to map
+        function applyMapFilters() {
+            if (!geoJsonLayer) return;
+            
+            geoJsonLayer.eachLayer(function(layer) {
+                const feature = layer.feature.properties;
+                const countryName = getCountryNameFromFeature(feature);
+                const originalStyle = originalStyles.get(layer) || {
+                    fillColor: '#FFEDA0',
+                    weight: 1,
+                    opacity: 1,
+                    color: 'white',
+                    fillOpacity: 0.5
+                };
+                
+                // Priority: HbbTV > Nordic DVB > CI+
+                if (hbbtvFilterActive && isHbbtvCountry(countryName)) {
+                    // Color purple for HbbTV countries
+                    layer.setStyle({
+                        fillColor: '#7c3aed',
+                        weight: 2,
+                        opacity: 1,
+                        color: '#6d28d9',
+                        fillOpacity: 0.7
+                    });
+                } else if (nordicDvbFilterActive && isNordicDvbCountry(countryName)) {
+                    // Color green for Nordic DVB countries
+                    layer.setStyle({
+                        fillColor: '#059669',
+                        weight: 2,
+                        opacity: 1,
+                        color: '#047857',
+                        fillOpacity: 0.7
+                    });
+                } else if (ciPlusFilterActive && hasCiPlusOperators(countryName)) {
+                    // Color red for CI+ countries
+                    layer.setStyle({
+                        fillColor: '#dc2626',
+                        weight: 2,
+                        opacity: 1,
+                        color: '#991b1b',
+                        fillOpacity: 0.7
+                    });
+                } else if (ciPlusFilterActive || nordicDvbFilterActive || hbbtvFilterActive) {
+                    // Gray out countries that don't match active filters
+                    layer.setStyle({
+                        fillColor: '#d1d5db',
+                        weight: 1,
+                        opacity: 0.5,
+                        color: '#9ca3af',
+                        fillOpacity: 0.3
+                    });
+                } else {
+                    // Reset to original style when no filters are active
+                    layer.setStyle(originalStyle);
+                }
+            });
+        }
+        
+        // CI+ Filter Toggle Function
+        function toggleCiPlusFilter() {
+            ciPlusFilterActive = !ciPlusFilterActive;
+            const btn = document.getElementById('ci-plus-filter-btn');
+            
+            if (btn) {
+                if (ciPlusFilterActive) {
+                    btn.classList.add('active');
+                    btn.querySelector('.filter-label').textContent = 'Hide CI+ Countries';
+                } else {
+                    btn.classList.remove('active');
+                    btn.querySelector('.filter-label').textContent = 'Show CI+ Countries';
+                }
+            }
+            
+            applyMapFilters();
+        }
+        
+        // Nordic DVB Filter Toggle Function
+        function toggleNordicDvbFilter() {
+            nordicDvbFilterActive = !nordicDvbFilterActive;
+            const btn = document.getElementById('nordic-dvb-filter-btn');
+            
+            if (btn) {
+                if (nordicDvbFilterActive) {
+                    btn.classList.add('active');
+                    btn.querySelector('.filter-label').textContent = 'Hide Nordic DVB Countries';
+                } else {
+                    btn.classList.remove('active');
+                    btn.querySelector('.filter-label').textContent = 'Show Nordic DVB Countries';
+                }
+            }
+            
+            applyMapFilters();
+        }
+        
+        // HbbTV Filter Toggle Function
+        function toggleHbbtvFilter() {
+            hbbtvFilterActive = !hbbtvFilterActive;
+            const btn = document.getElementById('hbbtv-filter-btn');
+            
+            if (btn) {
+                if (hbbtvFilterActive) {
+                    btn.classList.add('active');
+                    btn.querySelector('.filter-label').textContent = 'Hide HbbTV Countries';
+                } else {
+                    btn.classList.remove('active');
+                    btn.querySelector('.filter-label').textContent = 'Show HbbTV Countries';
+                }
+            }
+            
+            applyMapFilters();
+        }
         
         // Initialize first slide
         showSlide(0);
