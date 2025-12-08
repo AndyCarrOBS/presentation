@@ -599,86 +599,138 @@
             margin-bottom: 15px;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
         }
         
-        .ci-plus-filter-btn {
-            background-color: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 0.95em;
-            font-weight: 600;
+        /* Toggle Switch Container */
+        .toggle-switch-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-label {
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #333;
+            white-space: nowrap;
+        }
+        
+        /* Toggle Switch Styles */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.3s;
+            border-radius: 26px;
         }
         
-        .ci-plus-filter-btn:hover {
-            background-color: #5568d3;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
         }
         
-        .ci-plus-filter-btn.active {
+        /* CI+ Toggle - Red when active */
+        .ci-plus-toggle input:checked + .toggle-slider {
             background-color: #dc2626;
         }
         
-        .ci-plus-filter-btn.active:hover {
-            background-color: #b91c1c;
+        .ci-plus-toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
         }
         
-        .nordic-dvb-filter-btn {
-            background-color: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 0.95em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-left: 10px;
-        }
-        
-        .nordic-dvb-filter-btn:hover {
-            background-color: #5568d3;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .nordic-dvb-filter-btn.active {
+        /* Nordic DVB Toggle - Green when active */
+        .nordic-dvb-toggle input:checked + .toggle-slider {
             background-color: #059669;
         }
         
-        .nordic-dvb-filter-btn.active:hover {
-            background-color: #047857;
+        .nordic-dvb-toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
         }
         
-        .hbbtv-filter-btn {
-            background-color: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 0.95em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-left: 10px;
-        }
-        
-        .hbbtv-filter-btn:hover {
-            background-color: #5568d3;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .hbbtv-filter-btn.active {
+        /* HbbTV Toggle - Purple when active */
+        .hbbtv-toggle input:checked + .toggle-slider {
             background-color: #7c3aed;
         }
         
-        .hbbtv-filter-btn.active:hover {
-            background-color: #6d28d9;
+        .hbbtv-toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* OBS CI+ Toggle - Orange when active */
+        .obs-ci-plus-toggle input:checked + .toggle-slider {
+            background-color: #f59e0b;
+        }
+        
+        .obs-ci-plus-toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* T-Mobile/Magenta Toggle - Teal/Cyan when active */
+        .tmobile-toggle input:checked + .toggle-slider {
+            background-color: #06b6d4;
+        }
+        
+        .tmobile-toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* EU5 Toggle - Blue when active */
+        .eu5-toggle input:checked + .toggle-slider {
+            background-color: #3b82f6;
+        }
+        
+        .eu5-toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* Canal+ Toggle - Pink/Magenta when active */
+        .canal-plus-toggle input:checked + .toggle-slider {
+            background-color: #ec4899;
+        }
+        
+        .canal-plus-toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* UPC Toggle - Indigo when active */
+        .upc-toggle input:checked + .toggle-slider {
+            background-color: #6366f1;
+        }
+        
+        .upc-toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* Hover effects */
+        .toggle-switch:hover .toggle-slider {
+            box-shadow: 0 0 4px rgba(0,0,0,0.3);
         }
         
         /* Navigation */
@@ -777,15 +829,62 @@
         <div class="content">
             <h2>Europe Operator Markets</h2>
             <div class="map-controls">
-                <button id="ci-plus-filter-btn" class="ci-plus-filter-btn" onclick="toggleCiPlusFilter()">
-                    <span class="filter-label">Show CI+ Countries</span>
-                </button>
-                <button id="nordic-dvb-filter-btn" class="nordic-dvb-filter-btn" onclick="toggleNordicDvbFilter()">
-                    <span class="filter-label">Show Nordic DVB Countries</span>
-                </button>
-                <button id="hbbtv-filter-btn" class="hbbtv-filter-btn" onclick="toggleHbbtvFilter()">
-                    <span class="filter-label">Show HbbTV Countries</span>
-                </button>
+                <div class="toggle-switch-container">
+                    <span class="filter-label">CI+ Countries</span>
+                    <label class="toggle-switch ci-plus-toggle">
+                        <input type="checkbox" id="ci-plus-filter-input" onchange="toggleCiPlusFilter()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch-container">
+                    <span class="filter-label">Nordic DVB</span>
+                    <label class="toggle-switch nordic-dvb-toggle">
+                        <input type="checkbox" id="nordic-dvb-filter-input" onchange="toggleNordicDvbFilter()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch-container">
+                    <span class="filter-label">HbbTV</span>
+                    <label class="toggle-switch hbbtv-toggle">
+                        <input type="checkbox" id="hbbtv-filter-input" onchange="toggleHbbtvFilter()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch-container">
+                    <span class="filter-label">Recent OBS CI+</span>
+                    <label class="toggle-switch obs-ci-plus-toggle">
+                        <input type="checkbox" id="obs-ci-plus-filter-input" onchange="toggleObsCiPlusFilter()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch-container">
+                    <span class="filter-label">T-Mobile/Magenta</span>
+                    <label class="toggle-switch tmobile-toggle">
+                        <input type="checkbox" id="tmobile-filter-input" onchange="toggleTmobileFilter()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch-container">
+                    <span class="filter-label">EU5</span>
+                    <label class="toggle-switch eu5-toggle">
+                        <input type="checkbox" id="eu5-filter-input" onchange="toggleEu5Filter()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch-container">
+                    <span class="filter-label">Canal+</span>
+                    <label class="toggle-switch canal-plus-toggle">
+                        <input type="checkbox" id="canal-plus-filter-input" onchange="toggleCanalPlusFilter()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch-container">
+                    <span class="filter-label">UPC</span>
+                    <label class="toggle-switch upc-toggle">
+                        <input type="checkbox" id="upc-filter-input" onchange="toggleUpcFilter()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
             </div>
             <div id="map"></div>
         </div>
@@ -1539,6 +1638,11 @@
         let ciPlusFilterActive = false;
         let nordicDvbFilterActive = false;
         let hbbtvFilterActive = false;
+        let obsCiPlusFilterActive = false;
+        let tmobileFilterActive = false;
+        let eu5FilterActive = false;
+        let canalPlusFilterActive = false;
+        let upcFilterActive = false;
         let originalStyles = new Map(); // Store original styles for each layer
         
         // Nordic DVB countries list
@@ -1874,6 +1978,272 @@
             });
         }
         
+        // Mapping of Recent OBS CI+ Operators to countries (by ISO country codes)
+        const obsCiPlusOperators = {
+            "NL": ["Ziggo", "Canal Digital"], // Netherlands
+            "DE": ["PYUR", "Vodafone", "Unitymedia", "HD+", "MinDigTV"], // Germany
+            "IT": ["TIVUSAT"], // Italy
+            "FR": ["Fransat"], // France
+            "AT": ["ORF"], // Austria
+            "DK": ["YouSee", "NorDig"], // Denmark
+            "BE": ["Voo", "Canal Digital"], // Belgium
+            "NO": ["NorDig"], // Norway
+            "SE": ["NorDig"], // Sweden
+            "FI": ["NorDig"] // Finland
+        };
+        
+        // Mapping of T-Mobile/Magenta platform countries (by ISO country codes)
+        const tmobileMagentaCountries = {
+            "AT": ["Magenta TV"], // Austria
+            "CZ": ["T-Mobile Czech Republic (Magenta TV)"], // Czech Republic
+            "DE": ["Deutsche Telekom Magenta TV"] // Germany
+        };
+        
+        // Mapping of EU5 countries (by ISO country codes)
+        const eu5Countries = {
+            "GB": "United Kingdom", // UK
+            "DE": "Germany",
+            "FR": "France",
+            "ES": "Spain",
+            "IT": "Italy"
+        };
+        
+        // Mapping of Canal+ platform countries (by ISO country codes)
+        const canalPlusCountries = {
+            "FR": ["Canal+ France"], // France
+            "PL": ["nc+/Canal+"], // Poland
+            "NL": ["Canal Digital"], // Netherlands (M7)
+            "BE": ["Canal Digital"] // Belgium (M7)
+        };
+        
+        // Mapping of UPC platform countries (by ISO country codes)
+        const upcCountries = {
+            "AT": ["Magenta TV (UPC)"], // Austria
+            "CZ": ["UPC (now Vodafone)"], // Czech Republic
+            "HU": ["UPC (Vodafone)", "M7 (UPC Direct)"], // Hungary
+            "IE": ["UPC"], // Ireland
+            "NL": ["Ziggo/UPC"], // Netherlands
+            "PL": ["UPC"], // Poland
+            "RO": ["Vodafone Romania (UPC)", "UPC"], // Romania
+            "SK": ["UPC Slovakia"], // Slovakia
+            "CH": ["UPC"] // Switzerland
+        };
+        
+        // Helper function to check if a country has Recent OBS CI+ Operators
+        function hasObsCiPlusOperators(countryName, feature) {
+            // First, try to get ISO code directly from feature properties
+            if (feature) {
+                const isoCode = feature.ISO_A2 || feature.iso_a2 || feature.ISO_A2_EH || 
+                               feature.ISO_A3 || feature.iso_a3 || feature.ISO || feature.iso;
+                if (isoCode && obsCiPlusOperators.hasOwnProperty(isoCode)) {
+                    return true;
+                }
+            }
+            
+            // Get country code from country name
+            const normalized = normalizeCountryName(countryName);
+            
+            // Find matching country code
+            for (const [code, displayName] of Object.entries(countryNameMap)) {
+                const normalizedDisplay = normalizeCountryName(displayName);
+                if (normalized === normalizedDisplay || 
+                    (normalized && normalizedDisplay && normalized.includes(normalizedDisplay)) ||
+                    (normalized && normalizedDisplay && normalizedDisplay.includes(normalized))) {
+                    // Check if this country code has OBS CI+ operators
+                    return obsCiPlusOperators.hasOwnProperty(code);
+                }
+            }
+            
+            // Also check aliases
+            for (const [aliasName, aliases] of Object.entries(countryAliases)) {
+                const normalizedAlias = normalizeCountryName(aliasName);
+                if (normalized === normalizedAlias || 
+                    (normalized && normalizedAlias && normalized.includes(normalizedAlias)) ||
+                    (normalized && normalizedAlias && normalizedAlias.includes(normalized))) {
+                    // Find country code from aliases
+                    for (const [code, displayName] of Object.entries(countryNameMap)) {
+                        if (aliases.includes(code) || aliases.includes(displayName)) {
+                            return obsCiPlusOperators.hasOwnProperty(code);
+                        }
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
+        // Helper function to check if a country has T-Mobile/Magenta platform
+        function hasTmobileMagenta(countryName, feature) {
+            // First, try to get ISO code directly from feature properties
+            if (feature) {
+                const isoCode = feature.ISO_A2 || feature.iso_a2 || feature.ISO_A2_EH || 
+                               feature.ISO_A3 || feature.iso_a3 || feature.ISO || feature.iso;
+                if (isoCode && tmobileMagentaCountries.hasOwnProperty(isoCode)) {
+                    return true;
+                }
+            }
+            
+            // Get country code from country name
+            const normalized = normalizeCountryName(countryName);
+            
+            // Find matching country code
+            for (const [code, displayName] of Object.entries(countryNameMap)) {
+                const normalizedDisplay = normalizeCountryName(displayName);
+                if (normalized === normalizedDisplay || 
+                    (normalized && normalizedDisplay && normalized.includes(normalizedDisplay)) ||
+                    (normalized && normalizedDisplay && normalizedDisplay.includes(normalized))) {
+                    // Check if this country code has T-Mobile/Magenta
+                    return tmobileMagentaCountries.hasOwnProperty(code);
+                }
+            }
+            
+            // Also check aliases
+            for (const [aliasName, aliases] of Object.entries(countryAliases)) {
+                const normalizedAlias = normalizeCountryName(aliasName);
+                if (normalized === normalizedAlias || 
+                    (normalized && normalizedAlias && normalized.includes(normalizedAlias)) ||
+                    (normalized && normalizedAlias && normalizedAlias.includes(normalized))) {
+                    // Find country code from aliases
+                    for (const [code, displayName] of Object.entries(countryNameMap)) {
+                        if (aliases.includes(code) || aliases.includes(displayName)) {
+                            return tmobileMagentaCountries.hasOwnProperty(code);
+                        }
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
+        // Helper function to check if a country is in EU5
+        function isEu5Country(countryName, feature) {
+            // First, try to get ISO code directly from feature properties
+            if (feature) {
+                const isoCode = feature.ISO_A2 || feature.iso_a2 || feature.ISO_A2_EH || 
+                               feature.ISO_A3 || feature.iso_a3 || feature.ISO || feature.iso;
+                if (isoCode && eu5Countries.hasOwnProperty(isoCode)) {
+                    return true;
+                }
+            }
+            
+            // Get country code from country name
+            const normalized = normalizeCountryName(countryName);
+            
+            // Find matching country code
+            for (const [code, displayName] of Object.entries(countryNameMap)) {
+                const normalizedDisplay = normalizeCountryName(displayName);
+                if (normalized === normalizedDisplay || 
+                    (normalized && normalizedDisplay && normalized.includes(normalizedDisplay)) ||
+                    (normalized && normalizedDisplay && normalizedDisplay.includes(normalized))) {
+                    // Check if this country code is in EU5
+                    return eu5Countries.hasOwnProperty(code);
+                }
+            }
+            
+            // Also check aliases
+            for (const [aliasName, aliases] of Object.entries(countryAliases)) {
+                const normalizedAlias = normalizeCountryName(aliasName);
+                if (normalized === normalizedAlias || 
+                    (normalized && normalizedAlias && normalized.includes(normalizedAlias)) ||
+                    (normalized && normalizedAlias && normalizedAlias.includes(normalized))) {
+                    // Find country code from aliases
+                    for (const [code, displayName] of Object.entries(countryNameMap)) {
+                        if (aliases.includes(code) || aliases.includes(displayName)) {
+                            return eu5Countries.hasOwnProperty(code);
+                        }
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
+        // Helper function to check if a country has Canal+ platform
+        function hasCanalPlus(countryName, feature) {
+            // First, try to get ISO code directly from feature properties
+            if (feature) {
+                const isoCode = feature.ISO_A2 || feature.iso_a2 || feature.ISO_A2_EH || 
+                               feature.ISO_A3 || feature.iso_a3 || feature.ISO || feature.iso;
+                if (isoCode && canalPlusCountries.hasOwnProperty(isoCode)) {
+                    return true;
+                }
+            }
+            
+            // Get country code from country name
+            const normalized = normalizeCountryName(countryName);
+            
+            // Find matching country code
+            for (const [code, displayName] of Object.entries(countryNameMap)) {
+                const normalizedDisplay = normalizeCountryName(displayName);
+                if (normalized === normalizedDisplay || 
+                    (normalized && normalizedDisplay && normalized.includes(normalizedDisplay)) ||
+                    (normalized && normalizedDisplay && normalizedDisplay.includes(normalized))) {
+                    // Check if this country code has Canal+
+                    return canalPlusCountries.hasOwnProperty(code);
+                }
+            }
+            
+            // Also check aliases
+            for (const [aliasName, aliases] of Object.entries(countryAliases)) {
+                const normalizedAlias = normalizeCountryName(aliasName);
+                if (normalized === normalizedAlias || 
+                    (normalized && normalizedAlias && normalized.includes(normalizedAlias)) ||
+                    (normalized && normalizedAlias && normalizedAlias.includes(normalized))) {
+                    // Find country code from aliases
+                    for (const [code, displayName] of Object.entries(countryNameMap)) {
+                        if (aliases.includes(code) || aliases.includes(displayName)) {
+                            return canalPlusCountries.hasOwnProperty(code);
+                        }
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
+        // Helper function to check if a country has UPC platform
+        function hasUpc(countryName, feature) {
+            // First, try to get ISO code directly from feature properties
+            if (feature) {
+                const isoCode = feature.ISO_A2 || feature.iso_a2 || feature.ISO_A2_EH || 
+                               feature.ISO_A3 || feature.iso_a3 || feature.ISO || feature.iso;
+                if (isoCode && upcCountries.hasOwnProperty(isoCode)) {
+                    return true;
+                }
+            }
+            
+            // Get country code from country name
+            const normalized = normalizeCountryName(countryName);
+            
+            // Find matching country code
+            for (const [code, displayName] of Object.entries(countryNameMap)) {
+                const normalizedDisplay = normalizeCountryName(displayName);
+                if (normalized === normalizedDisplay || 
+                    (normalized && normalizedDisplay && normalized.includes(normalizedDisplay)) ||
+                    (normalized && normalizedDisplay && normalizedDisplay.includes(normalized))) {
+                    // Check if this country code has UPC
+                    return upcCountries.hasOwnProperty(code);
+                }
+            }
+            
+            // Also check aliases
+            for (const [aliasName, aliases] of Object.entries(countryAliases)) {
+                const normalizedAlias = normalizeCountryName(aliasName);
+                if (normalized === normalizedAlias || 
+                    (normalized && normalizedAlias && normalized.includes(normalizedAlias)) ||
+                    (normalized && normalizedAlias && normalizedAlias.includes(normalized))) {
+                    // Find country code from aliases
+                    for (const [code, displayName] of Object.entries(countryNameMap)) {
+                        if (aliases.includes(code) || aliases.includes(displayName)) {
+                            return upcCountries.hasOwnProperty(code);
+                        }
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
         // Helper function to check if a country name matches HbbTV countries
         function isHbbtvCountry(countryName) {
             const normalized = normalizeCountryName(countryName);
@@ -1915,7 +2285,7 @@
                     fillOpacity: 0.5
                 };
                 
-                // Priority: HbbTV > Nordic DVB > CI+
+                // Priority: HbbTV > Nordic DVB > OBS CI+ > T-Mobile/Magenta > EU5 > Canal+ > UPC > CI+
                 if (hbbtvFilterActive && isHbbtvCountry(countryName)) {
                     // Color purple for HbbTV countries
                     layer.setStyle({
@@ -1934,6 +2304,51 @@
                         color: '#047857',
                         fillOpacity: 0.7
                     });
+                } else if (obsCiPlusFilterActive && hasObsCiPlusOperators(countryName, feature)) {
+                    // Color orange/amber for Recent OBS CI+ Operators countries
+                    layer.setStyle({
+                        fillColor: '#f59e0b',
+                        weight: 3,
+                        opacity: 1,
+                        color: '#d97706',
+                        fillOpacity: 0.8
+                    });
+                } else if (tmobileFilterActive && hasTmobileMagenta(countryName, feature)) {
+                    // Color teal/cyan for T-Mobile/Magenta countries
+                    layer.setStyle({
+                        fillColor: '#06b6d4',
+                        weight: 3,
+                        opacity: 1,
+                        color: '#0891b2',
+                        fillOpacity: 0.8
+                    });
+                } else if (eu5FilterActive && isEu5Country(countryName, feature)) {
+                    // Color blue for EU5 countries
+                    layer.setStyle({
+                        fillColor: '#3b82f6',
+                        weight: 3,
+                        opacity: 1,
+                        color: '#2563eb',
+                        fillOpacity: 0.8
+                    });
+                } else if (canalPlusFilterActive && hasCanalPlus(countryName, feature)) {
+                    // Color pink/magenta for Canal+ countries
+                    layer.setStyle({
+                        fillColor: '#ec4899',
+                        weight: 3,
+                        opacity: 1,
+                        color: '#db2777',
+                        fillOpacity: 0.8
+                    });
+                } else if (upcFilterActive && hasUpc(countryName, feature)) {
+                    // Color indigo for UPC countries
+                    layer.setStyle({
+                        fillColor: '#6366f1',
+                        weight: 3,
+                        opacity: 1,
+                        color: '#4f46e5',
+                        fillOpacity: 0.8
+                    });
                 } else if (ciPlusFilterActive && hasCiPlusOperators(countryName)) {
                     // Color red for CI+ countries
                     layer.setStyle({
@@ -1943,7 +2358,7 @@
                         color: '#991b1b',
                         fillOpacity: 0.7
                     });
-                } else if (ciPlusFilterActive || nordicDvbFilterActive || hbbtvFilterActive) {
+                } else if (ciPlusFilterActive || nordicDvbFilterActive || hbbtvFilterActive || obsCiPlusFilterActive || tmobileFilterActive || eu5FilterActive || canalPlusFilterActive || upcFilterActive) {
                     // Gray out countries that don't match active filters
                     layer.setStyle({
                         fillColor: '#d1d5db',
@@ -1961,55 +2376,57 @@
         
         // CI+ Filter Toggle Function
         function toggleCiPlusFilter() {
-            ciPlusFilterActive = !ciPlusFilterActive;
-            const btn = document.getElementById('ci-plus-filter-btn');
-            
-            if (btn) {
-                if (ciPlusFilterActive) {
-                    btn.classList.add('active');
-                    btn.querySelector('.filter-label').textContent = 'Hide CI+ Countries';
-                } else {
-                    btn.classList.remove('active');
-                    btn.querySelector('.filter-label').textContent = 'Show CI+ Countries';
-                }
-            }
-            
+            const checkbox = document.getElementById('ci-plus-filter-input');
+            ciPlusFilterActive = checkbox.checked;
             applyMapFilters();
         }
         
         // Nordic DVB Filter Toggle Function
         function toggleNordicDvbFilter() {
-            nordicDvbFilterActive = !nordicDvbFilterActive;
-            const btn = document.getElementById('nordic-dvb-filter-btn');
-            
-            if (btn) {
-                if (nordicDvbFilterActive) {
-                    btn.classList.add('active');
-                    btn.querySelector('.filter-label').textContent = 'Hide Nordic DVB Countries';
-                } else {
-                    btn.classList.remove('active');
-                    btn.querySelector('.filter-label').textContent = 'Show Nordic DVB Countries';
-                }
-            }
-            
+            const checkbox = document.getElementById('nordic-dvb-filter-input');
+            nordicDvbFilterActive = checkbox.checked;
             applyMapFilters();
         }
         
         // HbbTV Filter Toggle Function
         function toggleHbbtvFilter() {
-            hbbtvFilterActive = !hbbtvFilterActive;
-            const btn = document.getElementById('hbbtv-filter-btn');
-            
-            if (btn) {
-                if (hbbtvFilterActive) {
-                    btn.classList.add('active');
-                    btn.querySelector('.filter-label').textContent = 'Hide HbbTV Countries';
-                } else {
-                    btn.classList.remove('active');
-                    btn.querySelector('.filter-label').textContent = 'Show HbbTV Countries';
-                }
-            }
-            
+            const checkbox = document.getElementById('hbbtv-filter-input');
+            hbbtvFilterActive = checkbox.checked;
+            applyMapFilters();
+        }
+        
+        // OBS CI+ Operators Filter Toggle Function
+        function toggleObsCiPlusFilter() {
+            const checkbox = document.getElementById('obs-ci-plus-filter-input');
+            obsCiPlusFilterActive = checkbox.checked;
+            applyMapFilters();
+        }
+        
+        // T-Mobile/Magenta Filter Toggle Function
+        function toggleTmobileFilter() {
+            const checkbox = document.getElementById('tmobile-filter-input');
+            tmobileFilterActive = checkbox.checked;
+            applyMapFilters();
+        }
+        
+        // EU5 Filter Toggle Function
+        function toggleEu5Filter() {
+            const checkbox = document.getElementById('eu5-filter-input');
+            eu5FilterActive = checkbox.checked;
+            applyMapFilters();
+        }
+        
+        // Canal+ Filter Toggle Function
+        function toggleCanalPlusFilter() {
+            const checkbox = document.getElementById('canal-plus-filter-input');
+            canalPlusFilterActive = checkbox.checked;
+            applyMapFilters();
+        }
+        
+        // UPC Filter Toggle Function
+        function toggleUpcFilter() {
+            const checkbox = document.getElementById('upc-filter-input');
+            upcFilterActive = checkbox.checked;
             applyMapFilters();
         }
         
