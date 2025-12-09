@@ -37,10 +37,11 @@
 - **IPTV/FTTH fastest growing** (35% of households, 85% FTTH coverage)
 - **RTVE Play**: 10.5M unique viewers (Oct 2024), 27% of TV consumption
 - **Atresplayer**: Disney+ partnership (300+ hours Spanish content annually)
+- **LovesTV**: Free hybrid TV platform (RTVE, Atresmedia, Mediaset España joint venture, HbbTV-based, launched 2018, redesigned Dec 2023)
 - **High OTT adoption**: 95% of internet users access TV online, 61.9% use streaming platforms
 - **Smart TV penetration**: 75% (preferred device for streaming)
 - **UHD rollout**: DVB-T2 approved (March 2025), UHD channels launched
-- **Key Partners**: RTVE (public service), Atresmedia (commercial), Movistar Plus+ (pay-TV leader)
+- **Key Partners**: RTVE (public service), Atresmedia (commercial), Mediaset España (commercial), Movistar Plus+ (pay-TV leader), LovesTV (hybrid platform)
 
 ### Market Characteristics (Beyond Germany)
 - **Strong local content preference**: Public service broadcasters (ORF, SRG SSR, NPO, France Télévisions, RAI, RTVE) and commercial broadcasters (TF1, M6, Mediaset, Atresmedia) dominate viewing

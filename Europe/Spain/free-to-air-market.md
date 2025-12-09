@@ -222,6 +222,29 @@ Spain's free-to-air TV market serves **~10-11 million households (55% of TV hous
 - **Market Position**: Leading pay-TV and OTT service
 - **Revenue Model**: Subscription
 
+#### • **LovesTV (LOVEStv)**
+- **Owner**: Joint venture (RTVE, Atresmedia, Mediaset España)
+- **Subscribers**: Free service (HbbTV-based hybrid platform)
+- **Launch**: 2018
+- **Content Focus**:
+  - **Hybrid TV Platform**: Combines broadcast and streaming content
+  - **RTVE Content**: Public service broadcaster content
+  - **Atresmedia Content**: Commercial broadcaster content (Antena 3, laSexta)
+  - **Mediaset España Content**: Commercial broadcaster content (Telecinco, Cuatro)
+  - **Catch-up**: 7-day catch-up for content from all three broadcasters
+  - **Start-over**: Ability to start programs from beginning even if already started
+- **Key Features**:
+  - **Free service**: No subscription required
+  - **HbbTV Technology**: Broadcast-triggered hybrid platform
+  - **Redesign (December 2023)**: Significant redesign to revitalize HbbTV presence in Spain
+  - **Enhanced EPG**: Improved program guide
+  - **Content Recommendations**: AI-powered content recommendations
+  - **Updated Player**: Improved compatibility with wider range of TVs, integrated audio/subtitle selection
+- **Platforms**: HbbTV-enabled smart TVs, web, mobile apps
+- **Market Position**: Free hybrid TV platform aggregating RTVE, Atresmedia, and Mediaset España content
+- **Revenue Model**: Free service (funded by advertising)
+- **Technology**: HbbTV (Hybrid Broadcast Broadband TV) standard
+
 ---
 
 ## 4. Market Insights
@@ -242,7 +265,8 @@ Spain's free-to-air TV market serves **~10-11 million households (55% of TV hous
 1. **RTVE Play**: Leading Spanish OTT platform (10.5M unique viewers, October 2024, 27% of TV consumption)
 2. **Atresplayer**: Leading commercial OTT (freemium model, Disney+ partnership)
 3. **Movistar Plus+**: Leading pay-TV OTT (28 original titles, 2023/2024 season)
-4. **OTT Adoption**: 61.9% of households with internet use streaming platforms (2024)
+4. **LovesTV**: Free hybrid TV platform (RTVE, Atresmedia, Mediaset España joint venture, HbbTV-based, launched 2018, redesigned December 2023)
+5. **OTT Adoption**: 61.9% of households with internet use streaming platforms (2024)
 
 ### 4.4 Content Strategy
 - **Public Service**: Information/news focus, cultural content, regional content (territorial disconnections), UHD leadership (2 UHD channels)
@@ -285,6 +309,7 @@ Spain's free-to-air TV market serves **~10-11 million households (55% of TV hous
 ### 6.2 OTT Competition
 - **Public Service OTT**: RTVE Play (10.5M unique viewers, October 2024, 27% of TV consumption)
 - **Commercial OTT**: Atresplayer (Disney+ partnership), Movistar Plus+ (28 original titles)
+- **Hybrid Platform**: LovesTV (RTVE, Atresmedia, Mediaset España joint venture, HbbTV-based, free service)
 - **International OTT**: Netflix, Amazon Prime Video, Disney+, HBO Max
 - **OTT Adoption**: 61.9% of households with internet use streaming platforms (2024)
 
@@ -323,6 +348,7 @@ Spain's free-to-air TV market serves **~10-11 million households (55% of TV hous
 - **Must-Carry Compliance**: RTVE must be carried on all platforms
 - **Local Content Focus**: Spanish content preferred, strong original productions
 - **Streaming Integration**: Growing importance of OTT services (RTVE Play, Atresplayer, Movistar Plus+)
+- **Hybrid Platform**: LovesTV demonstrates broadcaster collaboration (RTVE, Atresmedia, Mediaset España) and HbbTV adoption
 - **International Partnerships**: Atresmedia-Disney+ partnership (September 2025), RTVE-Movistar Plus+ partnership (February 2024)
 - **UHD Technology**: DVB-T2 enables UHD broadcasts, UHD channels launched
 
