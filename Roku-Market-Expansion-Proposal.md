@@ -28,39 +28,41 @@
 
 **Key Requirements**: Broadcasters need guaranteed prominence, must-carry/LCN compliance, cost-effective distribution, and support for both HbbTV and proprietary applications. **Market research indicates that pay-TV and pay-lite services may provide better market share opportunities based on active broadcaster investments and revenue potential.** Additionally, **CI+ rollout may help drive market access** by enabling conditional access and premium content distribution through standardized interfaces.
 
+**Market Prioritization Strategy**: **Prioritize markets with high connectivity and smart TV adoption rates**, as these indicators directly correlate with Roku platform success. **Consumer demand for OTT services is a leading indicator for Roku success**, making markets with strong streaming adoption and high broadband penetration ideal targets. **Driving Roku TVOS, channel, and content availability is key to making market engagement successful**, ensuring the platform offers compelling local content that meets consumer expectations and drives adoption.
+
 ---
 
 ## Proposed Approach
 
 ### Phase 1: Market Analysis & Partner Identification (Weeks 1-4)
 
-**Market mapping identifies key broadcasters, OTT platforms, regulatory requirements (must-carry, LCN, prominence), and technical specifications (HbbTV, app requirements, CI+ compatibility) per market, while analyzing the competitive landscape.** Partner prioritization ranks partners by market impact and strategic value, identifies decision-makers and key contacts, and assesses partnership readiness and requirements. **CI+ rollout status and adoption rates are evaluated per market to identify opportunities for conditional access and premium content distribution.**
+**Market mapping identifies key broadcasters, OTT platforms, regulatory requirements (must-carry, LCN, prominence), and technical specifications (HbbTV, app requirements, CI+ compatibility) per market, while analyzing the competitive landscape.** **Market prioritization focuses on high connectivity and smart TV adoption rates, with consumer OTT demand as a leading success indicator.** Partner prioritization ranks partners by market impact and strategic value, identifies decision-makers and key contacts, and assesses partnership readiness and requirements. **CI+ rollout status and adoption rates are evaluated per market to identify opportunities for conditional access and premium content distribution.**
 
-**Deliverables**: Market analysis reports per country, partner engagement roadmap, regulatory compliance checklist, technical requirements matrix, CI+ market assessment.
+**Deliverables**: Market analysis reports per country (including connectivity, smart TV adoption, OTT demand metrics), partner engagement roadmap, regulatory compliance checklist, technical requirements matrix, CI+ market assessment, market prioritization ranking.
 
 ---
 
 ### Phase 2: Broadcaster & Operator Engagement (Weeks 5-12)
 
-**Initial outreach engages broadcasters as Roku representatives, positioning Roku as a non-threatening partner that adds value through prominence, cost reduction, and audience reach, while scheduling technical and business discussions.** Partnership development understands broadcaster objectives and pain points, aligns Roku capabilities with broadcaster needs, develops partnership proposals, and negotiates terms and agreements. **CI+ integration discussions explore conditional access opportunities, premium content distribution models, and CI+ certification requirements with broadcasters and operators.** **Key messages**: Roku adds value (prominence, cost reduction, audience growth), complements broadcaster objectives, commits to local content and regulatory compliance, supports HbbTV, proprietary apps, and CI+ standards.
+**Initial outreach engages broadcasters as Roku representatives, positioning Roku as a non-threatening partner that adds value through prominence, cost reduction, and audience reach, while scheduling technical and business discussions.** Partnership development understands broadcaster objectives and pain points, aligns Roku capabilities with broadcaster needs, develops partnership proposals, and negotiates terms and agreements. **Content and channel strategy discussions prioritize driving Roku TVOS, channel, and content availability to ensure compelling local content that meets consumer demand and drives platform adoption.** **CI+ integration discussions explore conditional access opportunities, premium content distribution models, and CI+ certification requirements with broadcasters and operators.** **Key messages**: Roku adds value (prominence, cost reduction, audience growth), complements broadcaster objectives, commits to local content and regulatory compliance, supports HbbTV, proprietary apps, and CI+ standards.
 
-**Deliverables**: Partner engagement tracker, partnership proposals, signed letters of intent/agreements, technical requirements documentation, CI+ integration plans.
+**Deliverables**: Partner engagement tracker, partnership proposals, signed letters of intent/agreements, technical requirements documentation, CI+ integration plans, content and channel strategy roadmap.
 
 ---
 
 ### Phase 3: Technical Integration (Weeks 13-24)
 
-**Specification access obtains technical specifications from broadcasters, accesses HbbTV requirements and standards, documents LCN listing requirements, gathers must-carry compliance requirements, and evaluates CI+ module integration and certification needs.** Application porting ports OTT applications to Roku platform, ensures HbbTV compatibility where required, implements LCN listings and channel numbering, configures must-carry compliance, and integrates CI+ support for conditional access and premium content.
+**Specification access obtains technical specifications from broadcasters, accesses HbbTV requirements and standards, documents LCN listing requirements, gathers must-carry compliance requirements, and evaluates CI+ module integration and certification needs.** Application porting ports OTT applications to Roku platform, ensures HbbTV compatibility where required, implements LCN listings and channel numbering, configures must-carry compliance, and integrates CI+ support for conditional access and premium content. **Roku TVOS, channel, and content development prioritizes markets with high connectivity and smart TV adoption, ensuring content availability aligns with consumer OTT demand.**
 
-**Testing & validation accesses test material from content partners, executes testing protocols, validates compliance with local requirements, tests CI+ module functionality and conditional access workflows, and provides feedback to Roku teams and content partners.** **Deliverables**: Technical specifications documentation, ported applications (per broadcaster/OTT), LCN listings implementation, must-carry compliance verification, CI+ integration and certification, test results and feedback reports.
+**Testing & validation accesses test material from content partners, executes testing protocols, validates compliance with local requirements, tests CI+ module functionality and conditional access workflows, and provides feedback to Roku teams and content partners.** **Deliverables**: Technical specifications documentation, ported applications (per broadcaster/OTT), LCN listings implementation, must-carry compliance verification, CI+ integration and certification, Roku TVOS channel and content implementation, test results and feedback reports.
 
 ---
 
 ### Phase 4: Launch Support & Optimization (Weeks 25-36)
 
-**Launch coordination coordinates market launches with partners, supports go-to-market activities, monitors launch performance, addresses post-launch issues, and validates CI+ functionality in live environments.** Relationship management maintains ongoing partner relationships, gathers feedback and iterates, identifies expansion opportunities, supports additional market entry, and monitors CI+ adoption and premium content performance.
+**Launch coordination coordinates market launches with partners, supports go-to-market activities, monitors launch performance, addresses post-launch issues, and validates CI+ functionality in live environments.** **Performance monitoring tracks consumer OTT demand indicators, smart TV adoption rates, and connectivity metrics to validate market prioritization and identify expansion opportunities.** Relationship management maintains ongoing partner relationships, gathers feedback and iterates, identifies expansion opportunities, supports additional market entry, and monitors CI+ adoption and premium content performance.
 
-**Deliverables**: Launch readiness reports, performance monitoring dashboards, partner feedback summaries, CI+ performance metrics, expansion recommendations.
+**Deliverables**: Launch readiness reports, performance monitoring dashboards (including OTT demand, connectivity, smart TV adoption metrics), partner feedback summaries, CI+ performance metrics, Roku TVOS channel and content performance analysis, expansion recommendations.
 
 ---
 
