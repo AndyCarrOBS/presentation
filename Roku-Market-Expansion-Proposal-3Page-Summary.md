@@ -21,6 +21,27 @@
 - **Market Size**: 50+ million free-to-air households across expansion target markets
 - **Foundation**: Proven Germany model (must-carry compliance, HbbTV support, automated testing) enables rapid expansion
 
+### Priority Markets: Italy & Spain
+
+**Italy**:
+- **15-16 million free-to-air households** (65% of TV households)
+- **Tivùsat platform dominant** (40% of households, 3M+ active decoders)
+- **RAI Play**: 11.5M monthly users (H1 2024), fiction leading (53% of views)
+- **Mediaset Infinity**: Freemium model, TIMvision partnership
+- **Streaming growth**: 12.5% Q1 2024, surpassing pay-TV
+- **Smart TV penetration**: 22.4M smart TVs (surpassing traditional TVs)
+- **Key Partners**: RAI (public service), Mediaset (commercial), TIMvision (telecom OTT)
+
+**Spain**:
+- **10-11 million free-to-air households** (55% of TV households)
+- **IPTV/FTTH fastest growing** (35% of households, 85% FTTH coverage)
+- **RTVE Play**: 10.5M unique viewers (Oct 2024), 27% of TV consumption
+- **Atresplayer**: Disney+ partnership (300+ hours Spanish content annually)
+- **High OTT adoption**: 95% of internet users access TV online, 61.9% use streaming platforms
+- **Smart TV penetration**: 75% (preferred device for streaming)
+- **UHD rollout**: DVB-T2 approved (March 2025), UHD channels launched
+- **Key Partners**: RTVE (public service), Atresmedia (commercial), Movistar Plus+ (pay-TV leader)
+
 ### Market Characteristics (Beyond Germany)
 - **Strong local content preference**: Public service broadcasters (ORF, SRG SSR, NPO, France Télévisions, RAI, RTVE) and commercial broadcasters (TF1, M6, Mediaset, Atresmedia) dominate viewing
 - **Regulatory Requirements**: Must-carry rules, LCN listings, prominence requirements vary by country (similar patterns to Germany)

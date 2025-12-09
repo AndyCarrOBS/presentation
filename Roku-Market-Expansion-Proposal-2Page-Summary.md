@@ -21,6 +21,27 @@
 - **Market Size**: 50+ million free-to-air households across expansion target markets
 - **Foundation**: Proven Germany model (must-carry compliance, HbbTV support, automated testing) enables rapid expansion
 
+### Priority Markets: Italy & Spain
+
+**Italy**:
+- **15-16 million free-to-air households** (65% of TV households)
+- **Tivùsat platform dominant** (40% of households, 3M+ active decoders)
+- **RAI Play**: 11.5M monthly users (H1 2024), fiction leading (53% of views)
+- **Mediaset Infinity**: Freemium model, TIMvision partnership
+- **Streaming growth**: 12.5% Q1 2024, surpassing pay-TV
+- **Smart TV penetration**: 22.4M smart TVs (surpassing traditional TVs)
+- **Key Partners**: RAI (public service), Mediaset (commercial), TIMvision (telecom OTT)
+
+**Spain**:
+- **10-11 million free-to-air households** (55% of TV households)
+- **IPTV/FTTH fastest growing** (35% of households, 85% FTTH coverage)
+- **RTVE Play**: 10.5M unique viewers (Oct 2024), 27% of TV consumption
+- **Atresplayer**: Disney+ partnership (300+ hours Spanish content annually)
+- **High OTT adoption**: 95% of internet users access TV online, 61.9% use streaming platforms
+- **Smart TV penetration**: 75% (preferred device for streaming)
+- **UHD rollout**: DVB-T2 approved (March 2025), UHD channels launched
+- **Key Partners**: RTVE (public service), Atresmedia (commercial), Movistar Plus+ (pay-TV leader)
+
 ### Market Characteristics (Beyond Germany)
 - **Strong local content preference**: Public service broadcasters (ORF, SRG SSR, NPO, France Télévisions, RAI, RTVE) and commercial broadcasters (TF1, M6, Mediaset, Atresmedia) dominate viewing
 - **Regulatory Requirements**: Must-carry rules, LCN listings, prominence requirements vary by country (similar patterns to Germany)
@@ -28,7 +49,7 @@
 
 **Key Requirements**: Broadcasters need guaranteed prominence, must-carry/LCN compliance, cost-effective distribution, and support for both HbbTV and proprietary applications. **Market research indicates that pay-TV and pay-lite services may provide better market share opportunities based on active broadcaster investments and revenue potential.** Additionally, **CI+ rollout may help drive market access** by enabling conditional access and premium content distribution through standardized interfaces.
 
-**Market Prioritization Strategy**: **Sequential, one-country-at-a-time approach** to maximize budget efficiency and ensure successful market entry before expanding further. **Prioritize markets with high connectivity and smart TV adoption rates**, as these indicators directly correlate with Roku platform success. **Consumer demand for OTT services is a leading indicator for Roku success**, making markets with strong streaming adoption and high broadband penetration ideal targets. **Driving Roku TVOS, channel, and content availability is key to making market engagement successful**, ensuring the platform offers compelling local content that meets consumer expectations and drives adoption. **Leverage Germany success**: Use proven Germany model (ARD/ZDF integration, RTL/ProSiebenSat.1 partnerships, HbbTV support, automated testing) as blueprint for each sequential market entry.
+**Market Prioritization Strategy**: **Sequential, one-country-at-a-time approach** to maximize budget efficiency and ensure successful market entry before expanding further. **Prioritize markets with high connectivity and smart TV adoption rates**, as these indicators directly correlate with Roku platform success. **Consumer demand for OTT services is a leading indicator for Roku success**, making markets with strong streaming adoption and high broadband penetration ideal targets. **Italy and Spain are high-priority targets** due to large free-to-air markets (25-27M combined households), strong OTT adoption (Italy: 12.5% streaming growth, Spain: 61.9% streaming platform usage), and high smart TV penetration (Italy: 22.4M smart TVs, Spain: 75% penetration). **Driving Roku TVOS, channel, and content availability is key to making market engagement successful**, ensuring the platform offers compelling local content that meets consumer expectations and drives adoption. **Leverage Germany success**: Use proven Germany model (ARD/ZDF integration, RTL/ProSiebenSat.1 partnerships, HbbTV support, automated testing) as blueprint for each sequential market entry.
 
 ---
 
