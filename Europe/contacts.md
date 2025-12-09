@@ -165,6 +165,9 @@ This document provides a comprehensive list of organizations that need to be eng
   - **Certification** - HbbTV compliance testing, certification
   - **Membership** - Membership benefits, industry networking
 - **Who to Engage**: 
+  - **Vincent Grivet** (Eutelsat) - Chairman, HbbTV Association (Re-elected June 2024, two-year term through 2026)
+  - **Jon Piesing** (TP Vision) - Vice-Chairman, HbbTV Association (Re-elected June 2024, term through 2026)
+  - **Xavi Redon** (Cellnex Telecom) - Treasurer, HbbTV Association
   - Technical Committee Chair
   - Certification Manager
   - Membership Coordinator
