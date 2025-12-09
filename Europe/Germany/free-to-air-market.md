@@ -84,16 +84,27 @@ Germany's free-to-air TV market serves **~24.8 million households (62% of TV hou
 - **Structure**: Consortium of 9 regional broadcasters
 - **Main Channels**:
   - **Das Erste** (ARD) - Main national channel
-  - **ARD regional channels**: BR (Bavaria), WDR (North Rhine-Westphalia), NDR (Northern Germany), SWR (Southwest), MDR (Central Germany), RBB (Berlin-Brandenburg), hr (Hesse), SR (Saarland), Radio Bremen
+  - **ARD regional channels**: 
+    - **BR (Bayerischer Rundfunk)** - Bavaria
+    - **WDR (Westdeutscher Rundfunk)** - North Rhine-Westphalia
+    - **NDR (Norddeutscher Rundfunk)** - Northern Germany (Lower Saxony, Schleswig-Holstein, Mecklenburg-Vorpommern, Hamburg)
+    - **SWR (Südwestrundfunk)** - Southwest (Baden-Württemberg, Rhineland-Palatinate)
+    - **MDR (Mitteldeutscher Rundfunk)** - Central Germany (Saxony, Saxony-Anhalt, Thuringia)
+    - **RBB (Rundfunk Berlin-Brandenburg)** - Berlin and Brandenburg
+    - **hr (Hessischer Rundfunk)** - Hesse
+    - **SR (Saarländischer Rundfunk)** - Saarland
+    - **Radio Bremen** - Bremen
 - **Reach**: Near universal coverage (public service broadcaster)
 - **Content Focus**: News, entertainment, documentaries, regional content, sports
 - **Funding**: GEZ fee (broadcasting fee) + advertising (limited)
 - **Key Characteristics**:
   - Strong news and information programming
-  - Regional content production
+  - Regional content production (each regional broadcaster produces local content)
   - High-quality documentaries
   - Sports rights (Bundesliga highlights, Olympics, etc.)
   - Must-carry on all platforms
+  - Regional channels available via satellite (Astra 19.2° East), cable, DVB-T2 HD, and online streaming
+  - ARD discontinued SD broadcasts in January 2025 (HD-only)
 
 #### • **ZDF (Zweites Deutsches Fernsehen)**
 - **Market Share**: 15.4% (2024)
