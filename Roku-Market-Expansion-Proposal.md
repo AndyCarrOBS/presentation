@@ -54,15 +54,15 @@
 
 **Specification access obtains technical specifications from broadcasters, accesses HbbTV requirements and standards, documents LCN listing requirements, gathers must-carry compliance requirements, and evaluates CI+ module integration and certification needs.** Application porting ports OTT applications to Roku platform, ensures HbbTV compatibility where required, implements LCN listings and channel numbering, configures must-carry compliance, and integrates CI+ support for conditional access and premium content. **Roku TVOS, channel, and content development prioritizes markets with high connectivity and smart TV adoption, ensuring content availability aligns with consumer OTT demand.**
 
-**Testing & validation accesses test material from content partners, executes testing protocols, validates compliance with local requirements, tests CI+ module functionality and conditional access workflows, and provides feedback to Roku teams and content partners.** **Deliverables**: Technical specifications documentation, ported applications (per broadcaster/OTT), LCN listings implementation, must-carry compliance verification, CI+ integration and certification, Roku TVOS channel and content implementation, test results and feedback reports.
+**Testing & validation accesses test material from content partners, executes testing protocols, validates compliance with local requirements, tests CI+ module functionality and conditional access workflows, and provides feedback to Roku teams and content partners.** **Iterative automated testing framework enables Roku technical teams to maintain product fleet compliance and alignment with local partner needs, driving positive testing experiences with local partners and volunteering compliant test results for each software update.** **Deliverables**: Technical specifications documentation, ported applications (per broadcaster/OTT), LCN listings implementation, must-carry compliance verification, CI+ integration and certification, Roku TVOS channel and content implementation, automated testing framework and test results, feedback reports.
 
 ---
 
 ### Phase 4: Launch Support & Optimization (Weeks 25-36)
 
-**Launch coordination coordinates market launches with partners, supports go-to-market activities, monitors launch performance, addresses post-launch issues, and validates CI+ functionality in live environments.** **Performance monitoring tracks consumer OTT demand indicators, smart TV adoption rates, and connectivity metrics to validate market prioritization and identify expansion opportunities.** Relationship management maintains ongoing partner relationships, gathers feedback and iterates, identifies expansion opportunities, supports additional market entry, and monitors CI+ adoption and premium content performance.
+**Launch coordination coordinates market launches with partners, supports go-to-market activities, monitors launch performance, addresses post-launch issues, and validates CI+ functionality in live environments.** **Performance monitoring tracks consumer OTT demand indicators, smart TV adoption rates, and connectivity metrics to validate market prioritization and identify expansion opportunities.** **Ongoing automated testing continues to keep Roku product fleet compliant and aligned with local partner needs, with each software update generating compliant test results that are proactively shared with local partners to drive positive testing experiences and maintain trust.**
 
-**Deliverables**: Launch readiness reports, performance monitoring dashboards (including OTT demand, connectivity, smart TV adoption metrics), partner feedback summaries, CI+ performance metrics, Roku TVOS channel and content performance analysis, expansion recommendations.
+**Relationship management maintains ongoing partner relationships, gathers feedback and iterates, identifies expansion opportunities, supports additional market entry, and monitors CI+ adoption and premium content performance.** **Deliverables**: Launch readiness reports, performance monitoring dashboards (including OTT demand, connectivity, smart TV adoption metrics), partner feedback summaries, CI+ performance metrics, Roku TVOS channel and content performance analysis, automated testing results per software update, expansion recommendations.
 
 ---
 
@@ -108,6 +108,8 @@
 
 **Compliance**: Automatic must-carry compliance, LCN listings implementation, HbbTV support, proprietary app porting, standards compliance (DVB-I, HbbTV 2.0).
 
+**Automated Testing**: Iterative automated testing framework enables Roku technical teams to maintain product fleet compliance and alignment with local partner needs, driving positive testing experiences by volunteering compliant test results for each software update.
+
 ---
 
 ---
@@ -148,6 +150,8 @@
 **Partner Satisfaction**: Partner feedback scores, partnership renewal rates, expansion to additional markets.
 
 **Business Impact**: User acquisition, content library growth, revenue from new market partnerships.
+
+**Product Compliance**: Automated testing framework effectiveness, product fleet compliance rate, local partner testing satisfaction, proactive test result sharing adoption.
 
 ---
 
