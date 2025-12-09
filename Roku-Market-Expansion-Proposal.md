@@ -26,13 +26,7 @@
 - **Regulatory Requirements**: Must-carry rules, LCN listings, prominence requirements vary by country
 - **Technical Requirements**: HbbTV support, proprietary app porting, platform certification
 
-### Key Challenge
-Local broadcasters and OTT platforms require:
-- Guaranteed content prominence
-- Compliance with must-carry and LCN requirements
-- Cost-effective distribution
-- Support for both HbbTV and proprietary applications
-- Understanding of local market dynamics
+**Key Requirements**: Broadcasters need guaranteed prominence, must-carry/LCN compliance, cost-effective distribution, and support for both HbbTV and proprietary applications.
 
 ---
 
@@ -75,11 +69,7 @@ Local broadcasters and OTT platforms require:
    - Develop partnership proposals
    - Negotiate terms and agreements
 
-**Key Messages:**
-- **Roku adds value**: Guaranteed prominence, reduced distribution costs, audience growth
-- **Non-threatening**: Roku complements broadcaster objectives, not competes
-- **Local focus**: Commitment to local content and regulatory compliance
-- **Technical excellence**: Support for HbbTV, proprietary apps, and local requirements
+**Key Messages**: Roku adds value (prominence, cost reduction, audience growth), complements broadcaster objectives, commits to local content and regulatory compliance, supports HbbTV and proprietary apps.
 
 **Deliverables:**
 - Partner engagement tracker
@@ -165,102 +155,26 @@ Local broadcasters and OTT platforms require:
 
 ### Embedded Team Value Proposition
 
-**Market Expertise:**
-- Deep knowledge of European broadcast markets
-- Understanding of regulatory requirements (must-carry, LCN, prominence)
-- Relationships with key broadcasters and operators
-- Technical expertise in HbbTV, OTT applications, platform integration
+**Market Expertise**: Deep knowledge of European broadcast markets, regulatory requirements (must-carry, LCN, prominence), relationships with key broadcasters, technical expertise in HbbTV and OTT applications.
 
-**Roku Integration:**
-- Act as Roku team members, not external consultants
-- Leverage Roku brand and resources
-- Work directly with Roku management and teams
-- Represent Roku in market engagements
+**Roku Integration**: Act as Roku team members (not external consultants), leverage Roku brand/resources, work directly with Roku management, represent Roku in market engagements.
 
-**Positioning Support:**
-- Position Roku as non-threatening partner
-- Align Roku capabilities with broadcaster objectives
-- Address broadcaster concerns and objections
-- Build trust and credibility
+**Positioning Support**: Position Roku as non-threatening partner, align capabilities with broadcaster objectives, address concerns, build trust.
 
 ---
 
 ## Key Success Factors
 
-### 1. Positioning Roku as Non-Threatening Partner
+**Positioning**: Position Roku as non-threatening partner that adds value (prominence, cost reduction, audience growth, regulatory compliance). Messaging: "Roku helps broadcasters reach more viewers, reduces costs, ensures local content prominence, supports broadcaster objectives."
 
-**Value Proposition:**
-- **Adds Value**: Roku enhances broadcaster reach and revenue, doesn't compete
-- **Prominence Guarantees**: Local content gets prominent placement
-- **Cost Reduction**: Single platform vs. multiple platform porting
-- **Audience Growth**: Access to Roku user base
-- **Regulatory Compliance**: Built-in support for must-carry, LCN, prominence
+**Partner Engagement**: 
+- **Public Service**: Emphasize must-carry compliance, mission alignment, prominence guarantees
+- **Commercial**: Focus on revenue opportunities, audience growth, addressable TV
+- **Regional**: Highlight affordable distribution, regional prominence, technical support
 
-**Messaging:**
-- "Roku helps broadcasters reach more viewers"
-- "Roku reduces distribution costs and complexity"
-- "Roku ensures local content prominence"
-- "Roku supports broadcaster objectives, not competes"
-
-### 2. Local Content Partner Engagement
-
-**Engagement Strategy:**
-- **Public Service Broadcasters**: Emphasize must-carry compliance, public service mission alignment, prominence guarantees
-- **Commercial Broadcasters**: Focus on revenue opportunities, audience growth, cost reduction, addressable TV
-- **Regional Broadcasters**: Highlight affordable distribution, regional prominence, technical support
-
-**Partnership Model:**
-- Revenue sharing opportunities
-- Prominence guarantees
-- Technical support and integration
-- Joint marketing and promotion
-
-### 3. Compliance & Technical Requirements
-
-**Must-Carry Compliance:**
-- Automatic compliance with must-carry rules
-- Support for public service broadcaster requirements
-- Regulatory reporting and monitoring
-
-**LCN Listings:**
-- Implement local channel numbering requirements
-- Support country-specific LCN standards
-- Ensure proper channel ordering and prominence
-
-**Technical Integration:**
-- HbbTV support (broadcast-triggered applications)
-- Proprietary app porting and certification
-- Platform-specific requirements (testing, whitelisting)
-- Standards compliance (DVB-I, HbbTV 2.0)
+**Compliance**: Automatic must-carry compliance, LCN listings implementation, HbbTV support, proprietary app porting, standards compliance (DVB-I, HbbTV 2.0).
 
 ---
-
-## Deliverables
-
-### Market Analysis
-- Country-by-country market analysis reports
-- Partner identification and prioritization
-- Regulatory compliance checklists
-- Technical requirements matrices
-
-### Partner Engagement
-- Partner engagement tracker
-- Partnership proposals and agreements
-- Relationship management documentation
-- Feedback and iteration reports
-
-### Technical Integration
-- Technical specifications documentation
-- Ported OTT applications
-- LCN listings implementation
-- Must-carry compliance verification
-- Test results and validation reports
-
-### Launch Support
-- Launch readiness reports
-- Performance monitoring dashboards
-- Partner feedback summaries
-- Expansion recommendations
 
 ---
 
@@ -285,39 +199,21 @@ Local broadcasters and OTT platforms require:
 
 ## Investment
 
-### Embedded Team Costs
-- **Option 1 (Single Member)**: 12-18 months embedded engagement
-- **Option 2 (Two Members)**: 12-18 months embedded engagement
+**Embedded Team**: Option 1 (Single Member) or Option 2 (Two Members) for 12-18 months embedded engagement.
 
-### Additional Costs
-- Travel and market engagement expenses
-- Technical integration and development support
-- Testing and validation resources
-- Launch and marketing support
+**Additional Costs**: Travel and market engagement, technical integration/development support, testing/validation resources, launch/marketing support.
 
 ---
 
 ## Success Metrics
 
-### Market Entry
-- Number of markets entered
-- Number of broadcaster/OTT partnerships signed
-- Number of applications ported and launched
+**Market Entry**: Markets entered, broadcaster/OTT partnerships signed, applications ported/launched.
 
-### Compliance
-- Must-carry compliance achieved (100% target)
-- LCN listings implemented correctly
-- Regulatory requirements met
+**Compliance**: Must-carry compliance (100% target), LCN listings implemented correctly, regulatory requirements met.
 
-### Partner Satisfaction
-- Partner feedback scores
-- Partnership renewal rates
-- Expansion to additional markets
+**Partner Satisfaction**: Partner feedback scores, partnership renewal rates, expansion to additional markets.
 
-### Business Impact
-- User acquisition from new markets
-- Content library growth
-- Revenue from new market partnerships
+**Business Impact**: User acquisition, content library growth, revenue from new market partnerships.
 
 ---
 
@@ -333,8 +229,4 @@ Local broadcasters and OTT platforms require:
 
 ## Conclusion
 
-This proposal enables Roku to expand into new European markets by leveraging embedded market expertise to engage local content partners, ensure regulatory compliance, and position Roku as a valuable, non-threatening partner that supports broadcaster objectives.
-
-The embedded team model ensures seamless integration with Roku operations while providing deep market knowledge and relationships necessary for successful market entry.
-
-**Key Advantage**: Embedded team members act as Roku representatives, leveraging market experience to build trust, navigate regulatory requirements, and develop partnerships that drive market expansion.
+Embedded team members act as Roku representatives, leveraging market experience to engage local content partners, ensure regulatory compliance, and position Roku as a valuable, non-threatening partner that supports broadcaster objectives. This model ensures seamless integration with Roku operations while providing deep market knowledge and relationships necessary for successful market expansion.
