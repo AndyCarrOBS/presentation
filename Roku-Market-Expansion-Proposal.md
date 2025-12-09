@@ -34,33 +34,33 @@
 
 ### Phase 1: Market Analysis & Partner Identification (Weeks 1-4)
 
-**Market mapping identifies key broadcasters, OTT platforms, regulatory requirements (must-carry, LCN, prominence), and technical specifications (HbbTV, app requirements) per market, while analyzing the competitive landscape.** Partner prioritization ranks partners by market impact and strategic value, identifies decision-makers and key contacts, and assesses partnership readiness and requirements.
+**Market mapping identifies key broadcasters, OTT platforms, regulatory requirements (must-carry, LCN, prominence), and technical specifications (HbbTV, app requirements, CI+ compatibility) per market, while analyzing the competitive landscape.** Partner prioritization ranks partners by market impact and strategic value, identifies decision-makers and key contacts, and assesses partnership readiness and requirements. **CI+ rollout status and adoption rates are evaluated per market to identify opportunities for conditional access and premium content distribution.**
 
-**Deliverables**: Market analysis reports per country, partner engagement roadmap, regulatory compliance checklist, technical requirements matrix.
+**Deliverables**: Market analysis reports per country, partner engagement roadmap, regulatory compliance checklist, technical requirements matrix, CI+ market assessment.
 
 ---
 
 ### Phase 2: Broadcaster & Operator Engagement (Weeks 5-12)
 
-**Initial outreach engages broadcasters as Roku representatives, positioning Roku as a non-threatening partner that adds value through prominence, cost reduction, and audience reach, while scheduling technical and business discussions.** Partnership development understands broadcaster objectives and pain points, aligns Roku capabilities with broadcaster needs, develops partnership proposals, and negotiates terms and agreements. **Key messages**: Roku adds value (prominence, cost reduction, audience growth), complements broadcaster objectives, commits to local content and regulatory compliance, supports HbbTV and proprietary apps.
+**Initial outreach engages broadcasters as Roku representatives, positioning Roku as a non-threatening partner that adds value through prominence, cost reduction, and audience reach, while scheduling technical and business discussions.** Partnership development understands broadcaster objectives and pain points, aligns Roku capabilities with broadcaster needs, develops partnership proposals, and negotiates terms and agreements. **CI+ integration discussions explore conditional access opportunities, premium content distribution models, and CI+ certification requirements with broadcasters and operators.** **Key messages**: Roku adds value (prominence, cost reduction, audience growth), complements broadcaster objectives, commits to local content and regulatory compliance, supports HbbTV, proprietary apps, and CI+ standards.
 
-**Deliverables**: Partner engagement tracker, partnership proposals, signed letters of intent/agreements, technical requirements documentation.
+**Deliverables**: Partner engagement tracker, partnership proposals, signed letters of intent/agreements, technical requirements documentation, CI+ integration plans.
 
 ---
 
 ### Phase 3: Technical Integration (Weeks 13-24)
 
-**Specification access obtains technical specifications from broadcasters, accesses HbbTV requirements and standards, documents LCN listing requirements, and gathers must-carry compliance requirements.** Application porting ports OTT applications to Roku platform, ensures HbbTV compatibility where required, implements LCN listings and channel numbering, and configures must-carry compliance.
+**Specification access obtains technical specifications from broadcasters, accesses HbbTV requirements and standards, documents LCN listing requirements, gathers must-carry compliance requirements, and evaluates CI+ module integration and certification needs.** Application porting ports OTT applications to Roku platform, ensures HbbTV compatibility where required, implements LCN listings and channel numbering, configures must-carry compliance, and integrates CI+ support for conditional access and premium content.
 
-**Testing & validation accesses test material from content partners, executes testing protocols, validates compliance with local requirements, and provides feedback to Roku teams and content partners.** **Deliverables**: Technical specifications documentation, ported applications (per broadcaster/OTT), LCN listings implementation, must-carry compliance verification, test results and feedback reports.
+**Testing & validation accesses test material from content partners, executes testing protocols, validates compliance with local requirements, tests CI+ module functionality and conditional access workflows, and provides feedback to Roku teams and content partners.** **Deliverables**: Technical specifications documentation, ported applications (per broadcaster/OTT), LCN listings implementation, must-carry compliance verification, CI+ integration and certification, test results and feedback reports.
 
 ---
 
 ### Phase 4: Launch Support & Optimization (Weeks 25-36)
 
-**Launch coordination coordinates market launches with partners, supports go-to-market activities, monitors launch performance, and addresses post-launch issues.** Relationship management maintains ongoing partner relationships, gathers feedback and iterates, identifies expansion opportunities, and supports additional market entry.
+**Launch coordination coordinates market launches with partners, supports go-to-market activities, monitors launch performance, addresses post-launch issues, and validates CI+ functionality in live environments.** Relationship management maintains ongoing partner relationships, gathers feedback and iterates, identifies expansion opportunities, supports additional market entry, and monitors CI+ adoption and premium content performance.
 
-**Deliverables**: Launch readiness reports, performance monitoring dashboards, partner feedback summaries, expansion recommendations.
+**Deliverables**: Launch readiness reports, performance monitoring dashboards, partner feedback summaries, CI+ performance metrics, expansion recommendations.
 
 ---
 
