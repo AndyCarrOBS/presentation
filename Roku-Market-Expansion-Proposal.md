@@ -26,7 +26,7 @@
 - **Regulatory Requirements**: Must-carry rules, LCN listings, prominence requirements vary by country
 - **Technical Requirements**: HbbTV support, proprietary app porting, platform certification
 
-**Key Requirements**: Broadcasters need guaranteed prominence, must-carry/LCN compliance, cost-effective distribution, and support for both HbbTV and proprietary applications.
+**Key Requirements**: Broadcasters need guaranteed prominence, must-carry/LCN compliance, cost-effective distribution, and support for both HbbTV and proprietary applications. **Market research indicates that pay-TV and pay-lite services may provide better market share opportunities based on active broadcaster investments and revenue potential.** Additionally, **CI+ rollout may help drive market access** by enabling conditional access and premium content distribution through standardized interfaces.
 
 ---
 
