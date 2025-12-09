@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digi Communications - Operator Profile</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header with OBS Logo */
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #0066CC; /* OBS blue */
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            gap: 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .obs-logo {
+            height: 60px;
+            width: auto;
+        }
+        
+        /* Footer with Roku */
+        .footer {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background: white;
+            width: 100%;
+            border-top: 2px solid #0066CC;
+        }
+        
+        .footer-text {
+            color: #0066CC; /* OBS blue */
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .roku-logo {
+            height: 30px;
+            width: auto;
+        }
+        
+        /* Operator Detail Page */
+        .operator-detail-page {
+            background: white;
+            color: #333;
+            min-height: 100vh;
+            padding-top: 100px;
+            padding-bottom: 80px;
+        }
+        
+        .operator-detail-page .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+        
+        .operator-header-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .operator-logo-large {
+            width: 120px;
+            height: auto;
+            max-height: 80px;
+            object-fit: contain;
+        }
+        
+        .operator-title-section h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin: 0 0 10px 0;
+        }
+        
+        .operator-title-section .operator-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 0;
+        }
+        
+        .operator-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card h3:before {
+            content: "▸";
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .info-card p, .info-card ul {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .info-card ul {
+            padding-left: 20px;
+        }
+        
+        .info-card li {
+            margin: 8px 0;
+        }
+        
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .swot-card {
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid;
+        }
+        
+        .swot-card.strengths {
+            background: #f0fdf4;
+            border-color: #22c55e;
+        }
+        
+        .swot-card.weaknesses {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+        
+        .swot-card.opportunities {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+        
+        .swot-card.threats {
+            background: #fff7ed;
+            border-color: #f59e0b;
+        }
+        
+        .swot-card h3 {
+            font-size: 1.3rem;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .swot-card.strengths h3 {
+            color: #22c55e;
+        }
+        
+        .swot-card.weaknesses h3 {
+            color: #ef4444;
+        }
+        
+        .swot-card.opportunities h3 {
+            color: #3b82f6;
+        }
+        
+        .swot-card.threats h3 {
+            color: #f59e0b;
+        }
+        
+        .swot-card ul {
+            margin: 10px 0;
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+        
+        .swot-card li {
+            margin: 8px 0;
+        }
+        
+        .metrics-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metrics-section h3 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin: 0 0 20px 0;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .metric-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .metric-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .full-width-card {
+            grid-column: 1 / -1;
+        }
+        
+        .key-points {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .key-points h3 {
+            color: #f59e0b;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .key-points p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 1024px) {
+            .operator-info-grid,
+            .swot-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .operator-header-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="operator-detail-page">
+        <div class="header">
+            <img src="img/OBS-Logo.png" alt="OBS Logo" class="obs-logo">
+            <h1 class="header-title">Operator Profile</h1>
+        </div>
+        
+        <div class="content">
+            <!-- Operator Header -->
+            <div class="operator-header-section">
+                <img src="img/canal-digital.png" alt="Digi Communications" class="operator-logo-large" onerror="this.style.display='none';">
+                <div class="operator-title-section">
+                    <h2>Digi Communications</h2>
+                    <p class="operator-subtitle">Leading Pay-TV and Fixed Internet Provider in Romania</p>
+                </div>
+            </div>
+            
+            <!-- Company & Structure -->
+            <div class="operator-info-grid">
+                <div class="info-card full-width-card">
+                    <h3>Company & Structure</h3>
+                    <p><strong>Background:</strong> Digi Communications is headquartered in the Netherlands (statutory seat) but the effective management and its major business is in Romania. The Romanian entity (formerly RCS & RDS) traces back to early 1990s cable beginnings and now operates under the "Digi" brand (cable, broadband, mobile, TV) through Digi Romania S.A.</p>
+                    <p><strong>Key People:</strong> Founder/majority shareholder Zoltán Teszári; CEO of the group: Serghei Bulgac.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Scope & Financials</h3>
+                    <ul>
+                        <li>Group revenues: €1.70 billion in 2023</li>
+                        <li>Romania revenue: ~€1.13 billion (2023)</li>
+                        <li>Major credit facilities secured in March 2025</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Market Position</h3>
+                    <ul>
+                        <li>~6.6 million cable subscribers (2022)</li>
+                        <li>~69% cable TV market share</li>
+                        <li>Leading pay-TV and fixed internet provider in Romania</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Services & Business Segments -->
+            <div class="info-card">
+                <h3>Services & Business Segments</h3>
+                <ul>
+                    <li><strong>Cable & Satellite TV:</strong> Historically strong via the Digi TV brand</li>
+                    <li><strong>Broadband Internet:</strong> Comprehensive fibre/hybrid network (FTTB/FTTH)</li>
+                    <li><strong>Mobile:</strong> Digi Mobil operator, 5G launched in 2019</li>
+                    <li><strong>Business Services:</strong> DIGI Internet Business (150 Mbps - 1 Gbps)</li>
+                    <li><strong>Media Channels:</strong> Own TV channels (Digi Sport, Digi 24)</li>
+                </ul>
+            </div>
+            
+            <!-- Competitive Strengths -->
+            <div class="info-card">
+                <h3>Competitive & Strategic Strengths</h3>
+                <ul>
+                    <li>High penetration/fixed-line dominance with scale and distribution</li>
+                    <li>Own infrastructure & fibre rollout (FTTB → FTTH)</li>
+                    <li>Bundle offerings (triple/quad-play packages)</li>
+                    <li>Cost-focused strategy with low OPEX</li>
+                    <li>Growth potential via mobile & acquisitions</li>
+                </ul>
+            </div>
+            
+            <!-- Risks & Challenges -->
+            <div class="info-card">
+                <h3>Risks & Challenges</h3>
+                <ul>
+                    <li>Mobile growth and competitive pressure</li>
+                    <li>Regulatory/spectrum/rights costs</li>
+                    <li>Margin pressure from competitive pricing</li>
+                    <li>Debt/finance risk from large investments</li>
+                    <li>Technology & substitution risk (OTT/streaming)</li>
+                    <li>Consolidation/regulatory approval challenges</li>
+                </ul>
+            </div>
+            
+            <!-- SWOT Analysis -->
+            <div class="swot-grid">
+                <div class="swot-card strengths">
+                    <h3>Strengths</h3>
+                    <ul>
+                        <li>Market leading position in fixed broadband/cable TV</li>
+                        <li>Strong infrastructure (fibre, cable) and scale</li>
+                        <li>Ability to bundle services (TV + broadband + mobile)</li>
+                        <li>Cost-focused strategy, relatively low OPEX</li>
+                        <li>Momentum for growth (via mobile, regional expansion)</li>
+                    </ul>
+                </div>
+                <div class="swot-card weaknesses">
+                    <h3>Weaknesses</h3>
+                    <ul>
+                        <li>Mobile business less dominant and margin likely lower</li>
+                        <li>Heavy CAPEX/investment needed for network upgrades</li>
+                        <li>Dependence on content rights/licensing for TV business</li>
+                    </ul>
+                </div>
+                <div class="swot-card opportunities">
+                    <h3>Opportunities</h3>
+                    <ul>
+                        <li>Consolidation via M&A (e.g., acquisition of mobile assets)</li>
+                        <li>Growth in broadband/FTTH as households upgrade</li>
+                        <li>Exploit bundling and cross-selling in converged services</li>
+                        <li>Monetise streaming/OTT or next-gen entertainment services</li>
+                        <li>Regional expansion or replication of Romanian model</li>
+                    </ul>
+                </div>
+                <div class="swot-card threats">
+                    <h3>Threats</h3>
+                    <ul>
+                        <li>Intense competition (fixed, mobile, OTT) eroding prices/margins</li>
+                        <li>Regulatory changes (spectrum, broadcast rights, net neutrality)</li>
+                        <li>Technology shift away from traditional cable/satellite TV</li>
+                        <li>Debt/financial risk if investments don't pay off</li>
+                        <li>Potential disruption from new entrants, OTT players</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Recent Strategic Moves -->
+            <div class="info-card">
+                <h3>Recent Strategic Moves & Outlook</h3>
+                <ul>
+                    <li><strong>Acquisition Activity:</strong> In September 2025, Digi Romania and Vodafone Romania agreed to acquire separate parts of Telekom Romania Mobile Communications</li>
+                    <li><strong>Financing:</strong> In March 2025 the group secured major credit facilities to support expansion across Romania, Portugal, Spain</li>
+                    <li><strong>Network Upgrades:</strong> Already live with 5G in Romania (2019)</li>
+                    <li><strong>Strategy:</strong> Emphasis on high-quality telecom services at competitive prices, network optimisation and low cost infrastructure</li>
+                </ul>
+            </div>
+            
+            <!-- Key Metrics -->
+            <div class="metrics-section">
+                <h3>Key Metrics to Watch</h3>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-label">Subscriber Numbers & Growth</div>
+                        <div class="metric-value">By segment: cable TV, broadband, mobile</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Average Revenue Per User (ARPU)</div>
+                        <div class="metric-value">By segment; bundle impact</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Churn / Retention Rates</div>
+                        <div class="metric-value">Customer stickiness in TV & broadband</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Infrastructure & CAPEX</div>
+                        <div class="metric-value">FTTH rollout, 5G, mobile network ROI</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Profitability / Margins</div>
+                        <div class="metric-value">EBITA, EBITDA by segment</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Debt Levels / Leverage</div>
+                        <div class="metric-value">Maturity profiles, interest costs</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business Summary -->
+            <div class="key-points">
+                <h3>Business Summary</h3>
+                <p>For Romania, Digi Communications appears very strong in its core: fixed broadband + cable TV. With ~6.6 million cable subscribers and ~69% market share, they have scale, distribution, and leverage. The challenge is in the mobile side (where they are less dominant) and in managing transitions (network upgrades + competition + technology shifts).</p>
+                <p><strong>Assessment:</strong> The "core" (fixed + TV) is robust with defensive characteristics, but growth and margin improvement will likely come from mobile, bundles, and new offerings — which carry more risk. The business is well-positioned but needs execution.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <span class="footer-text">prepared for</span>
+            <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+        </div>
+    </div>
+</body>
+</html>

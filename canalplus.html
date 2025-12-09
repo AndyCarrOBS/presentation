@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canal+ Group - Operator Profile</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header with OBS Logo */
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #0066CC; /* OBS blue */
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            gap: 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .obs-logo {
+            height: 60px;
+            width: auto;
+        }
+        
+        /* Footer with Roku */
+        .footer {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background: white;
+            width: 100%;
+            border-top: 2px solid #0066CC;
+        }
+        
+        .footer-text {
+            color: #0066CC; /* OBS blue */
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .roku-logo {
+            height: 30px;
+            width: auto;
+        }
+        
+        /* Operator Detail Page */
+        .operator-detail-page {
+            background: white;
+            color: #333;
+            min-height: 100vh;
+            padding-top: 100px;
+            padding-bottom: 80px;
+        }
+        
+        .operator-detail-page .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+        
+        .operator-header-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #ec4899;
+        }
+        
+        .operator-logo-large {
+            width: 120px;
+            height: auto;
+            max-height: 80px;
+            object-fit: contain;
+        }
+        
+        .operator-title-section h2 {
+            font-size: 2.5rem;
+            color: #ec4899;
+            margin: 0 0 10px 0;
+        }
+        
+        .operator-title-section .operator-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 0;
+        }
+        
+        .operator-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #ec4899;
+        }
+        
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: #ec4899;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card h3:before {
+            content: "▸";
+            color: #ec4899;
+            font-weight: bold;
+        }
+        
+        .info-card p, .info-card ul {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .info-card ul {
+            padding-left: 20px;
+        }
+        
+        .info-card li {
+            margin: 8px 0;
+        }
+        
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .swot-card {
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid;
+        }
+        
+        .swot-card.strengths {
+            background: #f0fdf4;
+            border-color: #22c55e;
+        }
+        
+        .swot-card.weaknesses {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+        
+        .swot-card.opportunities {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+        
+        .swot-card.threats {
+            background: #fff7ed;
+            border-color: #f59e0b;
+        }
+        
+        .swot-card h3 {
+            font-size: 1.3rem;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .swot-card.strengths h3 {
+            color: #22c55e;
+        }
+        
+        .swot-card.weaknesses h3 {
+            color: #ef4444;
+        }
+        
+        .swot-card.opportunities h3 {
+            color: #3b82f6;
+        }
+        
+        .swot-card.threats h3 {
+            color: #f59e0b;
+        }
+        
+        .swot-card ul {
+            margin: 10px 0;
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+        
+        .swot-card li {
+            margin: 8px 0;
+        }
+        
+        .metrics-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metrics-section h3 {
+            font-size: 1.5rem;
+            color: #ec4899;
+            margin: 0 0 20px 0;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .metric-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #ec4899;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .metric-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .full-width-card {
+            grid-column: 1 / -1;
+        }
+        
+        .key-points {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .key-points h3 {
+            color: #f59e0b;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .key-points p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        .market-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        .market-table th {
+            background: #ec4899;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .market-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .market-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        @media (max-width: 1024px) {
+            .operator-info-grid,
+            .swot-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .operator-header-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="operator-detail-page">
+        <div class="header">
+            <img src="img/OBS-Logo.png" alt="OBS Logo" class="obs-logo">
+            <h1 class="header-title">Operator Profile</h1>
+        </div>
+        
+        <div class="content">
+            <!-- Operator Header -->
+            <div class="operator-header-section">
+                <div class="operator-title-section">
+                    <h2>Canal+ Group</h2>
+                    <p class="operator-subtitle">Premium Pay-TV and Streaming Platform Across Europe</p>
+                </div>
+            </div>
+            
+            <!-- Overview & Subscriber Numbers -->
+            <div class="operator-info-grid">
+                <div class="info-card full-width-card">
+                    <h3>Overview & Subscriber Numbers</h3>
+                    <p><strong>Global Summary:</strong> At end 2024 Canal+ reported ~26.9 million subscribers worldwide. In Europe specifically: ~17.2 million subscribers at end-2024.</p>
+                    <p><strong>Revenue:</strong> In 2024 the Group reported ~€6.45 billion in revenue globally. European revenues were ~€4.7 billion.</p>
+                    <p><strong>Recent Update:</strong> For H1 2025, Canal+ total subscriber base fell to ~25.7 million as of 30 June 2025, down ~323k.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Select Market Highlights</h3>
+                    <ul>
+                        <li><strong>France:</strong> Home market; ~9.8 million in mainland France at end 2023</li>
+                        <li><strong>Poland:</strong> Second-largest European country base; ~2.9-3.0 million subscribers</li>
+                        <li><strong>Other Markets:</strong> Presence via M7 Group acquisition in Austria, Belgium, Netherlands, Czech Republic, Slovakia, Hungary, Romania</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Key Observations</h3>
+                    <ul>
+                        <li>Growth is modest in Europe overall</li>
+                        <li>Strategy focuses on quality over quantity: retail D2C rather than wholesale low-margin subs</li>
+                        <li>Europe is a mature market with cable/satellite/OTT saturation</li>
+                        <li>Some markets show DTH decline while OTT is growing</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Value Proposition -->
+            <div class="info-card">
+                <h3>Value Proposition</h3>
+                <ul>
+                    <li><strong>Premium Content:</strong> Emphasis on premium films, series, sports rights (especially in France, Poland) to differentiate in crowded marketplace</li>
+                    <li><strong>Multi-platform Offering:</strong> Transitioning from traditional pay-TV (satellite, cable) toward OTT/streaming and hybrid offerings</li>
+                    <li><strong>Localisation + Regional Expertise:</strong> Adapted to local markets (language, local sports rights, local content) rather than purely global generic offering</li>
+                    <li><strong>Production/Distribution:</strong> Through StudioCanal subsidiary has film/TV production and distribution capabilities, giving content control and margin advantages</li>
+                    <li><strong>Broad Footprint:</strong> Via acquisitions (e.g., M7 Group) gains access across smaller European markets with shared infrastructure/distribution</li>
+                    <li><strong>Focus on Profitability:</strong> Prioritising profitability and cash flows over simply subscriber growth</li>
+                </ul>
+            </div>
+            
+            <!-- Forecast / Strategy -->
+            <div class="info-card">
+                <h3>Forecast / Strategy by Territory (Europe)</h3>
+                <ul>
+                    <li>Europe is still core to Canal+'s business: "has continued to lead the way in its European markets, notably France and Poland"</li>
+                    <li>For H1 2025, Europe revenues were €1.15 billion for Q1, down 4.5% reported basis but up 0.8% organically</li>
+                    <li>In Poland: PayTV revenues rising, driven by subscriptions and sports rights sublicensing, even though subscriber base declined due to termination of wholesale agreement</li>
+                    <li>The Group expects to continue optimising cash flow: forecast CFFO (cash flow from operations) above €500m in 2025</li>
+                    <li>Market expansion: Pursuing streaming expansion and distribution in smaller European markets via platforms (e.g., Czech & Slovakia launch Feb 2023)</li>
+                    <li>Strategy focuses on stabilising subscriber base, retaining ARPU/up-selling, migrating to OTT/hybrid, and leveraging content/distribution synergies</li>
+                </ul>
+            </div>
+            
+            <!-- SWOT Analysis - Europe -->
+            <div class="swot-grid">
+                <div class="swot-card strengths">
+                    <h3>Strengths</h3>
+                    <ul>
+                        <li>Strong brand recognition in Europe, particularly in France and select markets</li>
+                        <li>Premium content offering (films, series, sports) helps differentiate</li>
+                        <li>Production & distribution capability (StudioCanal) gives leverage</li>
+                        <li>Multi-territory reach and distribution scale via acquisitions (M7 etc) offering cost synergies</li>
+                        <li>Strategic focus on profitability and D2C retail rather than purely growth</li>
+                        <li>Localised operations in key markets (France, Poland) with deeper market knowledge</li>
+                    </ul>
+                </div>
+                <div class="swot-card weaknesses">
+                    <h3>Weaknesses</h3>
+                    <ul>
+                        <li>Heavy reliance on content rights which are expensive and may squeeze margins</li>
+                        <li>In many European markets pay-TV penetration is mature or declining; DTH business is under pressure</li>
+                        <li>Subscriber growth in Europe is limited; base of 17.2m indicates limited headroom for large expansion</li>
+                        <li>Integration complexity across multiple smaller markets (local languages, regulatory regimes)</li>
+                        <li>In Europe, global streaming competitors (Netflix, Disney+, Amazon) are very strong; differentiation may be harder</li>
+                    </ul>
+                </div>
+                <div class="swot-card opportunities">
+                    <h3>Opportunities</h3>
+                    <ul>
+                        <li>Migration from DTH/traditional pay-TV to OTT/streaming presents chance to modernise offering, cut costs, improve margins</li>
+                        <li>Upselling services (premium sports, 4K, multi-device) and bundling with telecom/internet providers</li>
+                        <li>Expansion into smaller/middle European markets via streaming (cost-effective) rather than full DTH infrastructure</li>
+                        <li>Local original content production in key markets to lock in subscribers</li>
+                        <li>Use of production/distribution arms (StudioCanal) to monetise content globally and cross-sell across territories</li>
+                        <li>Consolidation/partnerships in Europe to gain scale and reduce cost base</li>
+                    </ul>
+                </div>
+                <div class="swot-card threats">
+                    <h3>Threats</h3>
+                    <ul>
+                        <li>Intense competition from global streaming players (and local players) which may challenge pricing, increase churn</li>
+                        <li>Content rights inflation (especially sports) requiring larger spending; risk of over-paying</li>
+                        <li>Regulatory risks (media regulation, copyright, EU digital regulation, local competition law) across multiple jurisdictions</li>
+                        <li>Technological disruption and changing consumer behaviour (cord-cutting, shorter attention spans) may reduce traditional pay-TV subs faster than OTT uptake</li>
+                        <li>Economic pressures (in Europe) leading consumers to cut discretionary spend (premium pay-TV may be vulnerable)</li>
+                        <li>Currency/operational risks across multiple countries</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- SWOT Analysis - Selected Markets -->
+            <div class="operator-info-grid">
+                <div class="info-card">
+                    <h3>France - SWOT</h3>
+                    <p><strong>Strengths:</strong> Home market; brand heritage strong. Good awareness, infrastructure, premium content rights. Able to bundle with French telecom/internet providers.</p>
+                    <p><strong>Weaknesses:</strong> Market maturity means limited new sub growth. High cost environment (content, regulation in France tends to be stringent).</p>
+                    <p><strong>Opportunities:</strong> Transition to streaming (D2C) increasing; potential to upsell premium services. Local original French content production (leveraging StudioCanal) to lock in subscribers.</p>
+                    <p><strong>Threats:</strong> Increasing competition from global streaming platforms heavily targeting France. Regulatory constraints (e.g., French cultural quotas, restrictions) may limit flexibility. Churn risk — consumers may trade down from premium offering.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Poland - SWOT</h3>
+                    <p><strong>Strengths:</strong> Recognised as Canal+'s second-largest country base in Europe; ~2.9-3 million subscribers. Localised offering: local content plus sports rights, good market share. Growth in revenue (subscriptions & sports rights) reported.</p>
+                    <p><strong>Weaknesses:</strong> Subscriber base recently declined due to termination of wholesale agreement. Market may have more fierce competition from other local pay-TV/streaming players.</p>
+                    <p><strong>Opportunities:</strong> Upselling OTT streaming, multi-device, stronger sports packages, leveraging local content. Potential to increase ARPU rather than simply base growth.</p>
+                    <p><strong>Threats:</strong> DTH decline (satellite) remains an issue. Economic/consumer spending constraints in Poland. Local regulation/fines: Canal+ Poland was fined heavily in Jan 2024.</p>
+                </div>
+            </div>
+            
+            <!-- Markets-by-Markets -->
+            <div class="info-card">
+                <h3>Markets-by-Markets</h3>
+                <table class="market-table">
+                    <thead>
+                        <tr>
+                            <th>Market</th>
+                            <th>Status / Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>France</strong></td>
+                            <td>Core market; premium pay-TV and streaming. ~9.8 million subscribers (end 2023)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Poland</strong></td>
+                            <td>Second largest European country base; pay-TV + streaming. ~2.9-3.0 million subscribers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Austria / Belgium / Netherlands</strong></td>
+                            <td>Present via acquisition/distribution (M7 Group). Provides scale and geographic diversification</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Czech Republic / Slovakia</strong></td>
+                            <td>Streaming platform launched Feb 2023. Presence via M7 Group (Skylink)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hungary / Romania</strong></td>
+                            <td>Presence via M7 Group acquisition. Distribution and scale benefits</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Other smaller markets (Luxembourg, etc)</strong></td>
+                            <td>Niche presence via M7 Group</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Key Headlines & Strategic Implications -->
+            <div class="key-points">
+                <h3>Key Headlines & Strategic Implications</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>• Canal+ is shifting its business model: moving away from low-margin wholesale subscriber growth toward D2C retail and higher ARPU segments</li>
+                    <li>• In Europe, the key battle is value (premium content, bundling, streaming) rather than just subscriber numbers</li>
+                    <li>• The Group is balancing mature European markets (slow growth, high competition) with growth opportunities in other regions</li>
+                    <li>• Cost control, content strategy and platform migration are critical for future profitability</li>
+                    <li>• Churn, content cost inflation and competition from global players are major risks</li>
+                </ul>
+            </div>
+            
+            <!-- Recommendations / Strategic Options -->
+            <div class="info-card">
+                <h3>Recommendations / Strategic Options for Canal+ in Europe</h3>
+                <ul>
+                    <li>Continue to invest in original/local content in key markets (France & Poland) to strengthen differentiation</li>
+                    <li>Accelerate OTT & streaming growth, reduce dependence on legacy DTH models, especially in markets where DTH is declining</li>
+                    <li>Focus on bundled offers (with telecom/internet providers) to improve stickiness and ARPU</li>
+                    <li>Rationalise weaker markets/distribution channels where scale is low and cost is high, and consider exit or consolidation</li>
+                    <li>Monitor content cost inflation and be selective about sports rights – avoid over-paying which erodes margins</li>
+                    <li>Strengthen data/analytics and UX of streaming platform to improve customer experience and reduce churn</li>
+                    <li>Expand value beyond pay-TV subscription (e.g., advertising, ad-supported tier, ancillary services) where regulation allows</li>
+                </ul>
+            </div>
+            
+            <!-- Key Metrics -->
+            <div class="metrics-section">
+                <h3>Key Metrics</h3>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-label">Global Subscribers (End 2024)</div>
+                        <div class="metric-value">~26.9 million</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">European Subscribers (End 2024)</div>
+                        <div class="metric-value">~17.2 million</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Global Revenue (2024)</div>
+                        <div class="metric-value">~€6.45 billion</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">European Revenue (2024)</div>
+                        <div class="metric-value">~€4.7 billion</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">France Subscribers (End 2023)</div>
+                        <div class="metric-value">~9.8 million</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Poland Subscribers</div>
+                        <div class="metric-value">~2.9-3.0 million</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Forecast CFFO (2025)</div>
+                        <div class="metric-value">Above €500m</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">H1 2025 Subscribers</div>
+                        <div class="metric-value">~25.7 million</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conclusion -->
+            <div class="key-points">
+                <h3>Conclusion</h3>
+                <p>Canal+ in Europe is a strong player with a good base of ~17.2 million subscribers and ~€4.7 billion revenue in 2024. But growth is challenging: market maturity, competition, cost pressures. The Group is wisely shifting to D2C, focusing on profitable segments and leveraging its content/distribution strengths. Success will depend on how well it transitions its business model, controls costs and competes with large global streamers.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <span class="footer-text">prepared for</span>
+            <img src="img/roku-logo.png" alt="Roku Logo" class="roku-logo">
+        </div>
+    </div>
+</body>
+</html>
