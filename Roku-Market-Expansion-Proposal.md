@@ -18,7 +18,7 @@
 ### Current Position
 - **UK**: Established market presence
 - **Germany**: Established market presence
-- **Expansion Targets**: Austria, Switzerland, Netherlands, France, Belgium, Czech Republic, Poland, Denmark, Luxembourg
+- **Expansion Targets**: Austria, Switzerland, Netherlands, France, Belgium, Czech Republic, Poland, Denmark, Luxembourg, **Italy, Spain**
 
 ### Market Characteristics
 - **50+ million free-to-air households** across target markets

@@ -5,13 +5,15 @@
 
 ## Executive Summary
 
-This document provides a comprehensive, data-driven strategy for launching a new smart TV streaming operating system (OS) across Germany and its nine neighboring countries. The strategy leverages the free-to-air television sector, which represents **50+ million households** across the target markets, with a primary focus on aggregating local public service and commercial broadcaster content through superior user experience and strategic partnerships.
+This document provides a comprehensive, data-driven strategy for launching a new smart TV streaming operating system (OS) across Germany, its nine neighboring countries, **Italy, and Spain**. The strategy leverages the free-to-air television sector, which represents **75+ million households** across the target markets, with a primary focus on aggregating local public service and commercial broadcaster content through superior user experience and strategic partnerships.
 
 ### Market Opportunity
 
 **Total Addressable Market:**
 - **Germany**: 24.8 million free-to-air households (62% of TV households), 66% smart TV penetration, 43% internet-based TV consumption
-- **Regional Total**: ~50+ million free-to-air households across 10 target markets
+- **Italy**: 15-16 million free-to-air households (65% of TV households), 22.4M smart TVs, 12% OTT-only households
+- **Spain**: 10-11 million free-to-air households (55% of TV households), 75% smart TV penetration, 61.9% streaming platform usage
+- **Regional Total**: ~75+ million free-to-air households across 12 target markets
 - **Key Trend**: Shift from traditional platforms (satellite/cable declining) to internet-based consumption, creating opportunity for new smart TV OS platforms
 
 **Strategic Positioning:**
@@ -34,6 +36,10 @@ Position as the **preferred free-to-air aggregation platform** by integrating lo
 8. **Poland** - 33.7% cable, TVN 22.4% market share, FAST channels growing
 9. **Denmark** - 65% streaming adoption, TV2 Play matches Netflix, high digital maturity
 10. **Luxembourg** - Small market, cross-border access important
+
+**Tier 4 - Additional Priority Markets (Months 19-24):**
+11. **Italy** - 15-16M free-to-air households (65%), 22.4M smart TVs, RAI Play 11.5M monthly users, Tivùsat platform dominant
+12. **Spain** - 10-11M free-to-air households (55%), 75% smart TV penetration, RTVE Play 10.5M unique viewers (27% of TV consumption), 61.9% streaming platform usage
 
 ### Key Success Factors
 
