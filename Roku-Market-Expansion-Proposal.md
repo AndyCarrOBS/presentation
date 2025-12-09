@@ -34,101 +34,33 @@
 
 ### Phase 1: Market Analysis & Partner Identification (Weeks 1-4)
 
-**Activities:**
-1. **Market Mapping**
-   - Identify key broadcasters and OTT platforms per market
-   - Map regulatory requirements (must-carry, LCN, prominence)
-   - Document technical specifications (HbbTV, app requirements)
-   - Analyze competitive landscape
+**Market mapping identifies key broadcasters, OTT platforms, regulatory requirements (must-carry, LCN, prominence), and technical specifications (HbbTV, app requirements) per market, while analyzing the competitive landscape.** Partner prioritization ranks partners by market impact and strategic value, identifies decision-makers and key contacts, and assesses partnership readiness and requirements.
 
-2. **Partner Prioritization**
-   - Rank partners by market impact and strategic value
-   - Identify decision-makers and key contacts
-   - Assess partnership readiness and requirements
-
-**Deliverables:**
-- Market analysis report per country
-- Partner engagement roadmap
-- Regulatory compliance checklist
-- Technical requirements matrix
+**Deliverables**: Market analysis reports per country, partner engagement roadmap, regulatory compliance checklist, technical requirements matrix.
 
 ---
 
 ### Phase 2: Broadcaster & Operator Engagement (Weeks 5-12)
 
-**Activities:**
-1. **Initial Outreach**
-   - Engage as Roku representatives
-   - Position Roku as non-threatening partner that adds value
-   - Present value proposition: prominence, cost reduction, audience reach
-   - Schedule technical and business discussions
+**Initial outreach engages broadcasters as Roku representatives, positioning Roku as a non-threatening partner that adds value through prominence, cost reduction, and audience reach, while scheduling technical and business discussions.** Partnership development understands broadcaster objectives and pain points, aligns Roku capabilities with broadcaster needs, develops partnership proposals, and negotiates terms and agreements. **Key messages**: Roku adds value (prominence, cost reduction, audience growth), complements broadcaster objectives, commits to local content and regulatory compliance, supports HbbTV and proprietary apps.
 
-2. **Partnership Development**
-   - Understand broadcaster objectives and pain points
-   - Align Roku capabilities with broadcaster needs
-   - Develop partnership proposals
-   - Negotiate terms and agreements
-
-**Key Messages**: Roku adds value (prominence, cost reduction, audience growth), complements broadcaster objectives, commits to local content and regulatory compliance, supports HbbTV and proprietary apps.
-
-**Deliverables:**
-- Partner engagement tracker
-- Partnership proposals
-- Signed letters of intent / agreements
-- Technical requirements documentation
+**Deliverables**: Partner engagement tracker, partnership proposals, signed letters of intent/agreements, technical requirements documentation.
 
 ---
 
 ### Phase 3: Technical Integration (Weeks 13-24)
 
-**Activities:**
-1. **Specification Access**
-   - Obtain technical specifications from broadcasters
-   - Access HbbTV requirements and standards
-   - Document LCN listing requirements
-   - Gather must-carry compliance requirements
+**Specification access obtains technical specifications from broadcasters, accesses HbbTV requirements and standards, documents LCN listing requirements, and gathers must-carry compliance requirements.** Application porting ports OTT applications to Roku platform, ensures HbbTV compatibility where required, implements LCN listings and channel numbering, and configures must-carry compliance.
 
-2. **Application Porting**
-   - Port OTT applications to Roku platform
-   - Ensure HbbTV compatibility where required
-   - Implement LCN listings and channel numbering
-   - Configure must-carry compliance
-
-3. **Testing & Validation**
-   - Access test material from content partners
-   - Execute testing protocols
-   - Validate compliance with local requirements
-   - Provide feedback to Roku teams and content partners
-
-**Deliverables:**
-- Technical specifications documentation
-- Ported applications (per broadcaster/OTT)
-- LCN listings implementation
-- Must-carry compliance verification
-- Test results and feedback reports
+**Testing & validation accesses test material from content partners, executes testing protocols, validates compliance with local requirements, and provides feedback to Roku teams and content partners.** **Deliverables**: Technical specifications documentation, ported applications (per broadcaster/OTT), LCN listings implementation, must-carry compliance verification, test results and feedback reports.
 
 ---
 
 ### Phase 4: Launch Support & Optimization (Weeks 25-36)
 
-**Activities:**
-1. **Launch Coordination**
-   - Coordinate market launches with partners
-   - Support go-to-market activities
-   - Monitor launch performance
-   - Address post-launch issues
+**Launch coordination coordinates market launches with partners, supports go-to-market activities, monitors launch performance, and addresses post-launch issues.** Relationship management maintains ongoing partner relationships, gathers feedback and iterates, identifies expansion opportunities, and supports additional market entry.
 
-2. **Relationship Management**
-   - Maintain ongoing partner relationships
-   - Gather feedback and iterate
-   - Identify expansion opportunities
-   - Support additional market entry
-
-**Deliverables:**
-- Launch readiness reports
-- Performance monitoring dashboards
-- Partner feedback summaries
-- Expansion recommendations
+**Deliverables**: Launch readiness reports, performance monitoring dashboards, partner feedback summaries, expansion recommendations.
 
 ---
 
