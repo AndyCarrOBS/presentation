@@ -43,7 +43,10 @@ This document provides a comprehensive list of organizations that need to be eng
   - **ARD Technology & Innovation** - Technical integration, HbbTV implementation
   - **ARD Business Development** - Partnership agreements, licensing
 - **Who to Engage**: 
-  - Head of Digital/OTT Partnerships
+  - **Ralf Hape** - CEO, ARD MEDIA GmbH (Marketing activities, partnerships)
+  - **Alireza Mojtahedi** - Lead Expert Product Management, ARD Mediathek (Product vision and strategy)
+  - **Kristin Mehner** - Lead Expert Product Management, ARD Audiothek (Product roadmap, stakeholder management)
+  - **Christian Klöckner** (WDR) - Co-Chair, EBU TV Platforms Group (Video and TV platform innovations)
   - Head of Technology/Innovation
   - Business Development Manager
   - HbbTV Standards Coordinator
@@ -62,10 +65,12 @@ This document provides a comprehensive list of organizations that need to be eng
   - **ZDF Business Development** - Partnership agreements, licensing
   - **ZDF Studios** - Content licensing, international distribution
 - **Who to Engage**: 
-  - Head of Digital/OTT Partnerships
-  - Head of Technology/Innovation
+  - **Tina Kutscher** - Head of Digital Products and Automation (Co-lead)
+  - **Andreas Grün** - Head of Digital Products and Automation (Co-lead)
+  - **Robert Amlung** - Head of Digital Strategy
+  - **Stefanie Jellen** - Project Manager, Interactive and Digital Media
+  - **Amelie Jakob** - Product Manager, HbbTV Application (Strategic development of HbbTV app and manufacturer portals)
   - Business Development Manager
-  - HbbTV Standards Coordinator
 - **Contact**: 
   - Phone: +49 6131 70-0
   - Website: https://www.zdf.de
@@ -86,11 +91,12 @@ This document provides a comprehensive list of organizations that need to be eng
   - **RTL Advertising** - Addressable TV, advertising technology partnerships
 - **Who to Engage**: 
   - Head of RTL+ Platform/OTT Partnerships
+  - **Malte Niemeyer** - Engineer, Process Development and Distribution (HbbTV, technical integration)
   - Head of Technology/Innovation
   - Business Development Manager
   - Head of Addressable TV (ATVI initiative)
 - **Contact**: 
-  - Press: Oliver Fahlbusch, Executive VP Communications & Investor Relations
+  - Press: **Oliver Fahlbusch**, Executive VP Communications & Investor Relations
   - Phone: +352 24 86 5200
   - Email: oliver.fahlbusch@rtl.com
   - Website: https://company.rtl.com
@@ -105,12 +111,13 @@ This document provides a comprehensive list of organizations that need to be eng
   - **ProSiebenSat.1 Business Development** - Partnership agreements, licensing
   - **Virtual Minds** - Advertising technology partnerships
 - **Who to Engage**: 
-  - Head of Joyn Platform/OTT Partnerships
+  - **Katharina Frömsdorf** - CEO, Joyn (Overall direction, growth, partnerships, business development)
+  - **Nicole Agudo Berbel** - Managing Director, Seven.One Media & Chief Distribution Officer, Seven.One Entertainment Group (Distribution business, Joyn platform partnerships, pay-TV channel distribution)
   - Head of Technology/Innovation
   - Business Development Manager
   - Head of Advertising Technology
 - **Contact**: 
-  - Press: Maurice Böhler, Head of Business Communications
+  - Press: **Maurice Böhler**, Head of Business Communications
   - Phone: +49 89 9507-4139
   - Email: maurice.boehler@seven.one
   - Website: https://www.prosiebensat1.com
@@ -184,7 +191,9 @@ This document provides a comprehensive list of organizations that need to be eng
   - **ORF Business Development** - Partnership agreements, licensing
   - **ORS Group** - Content distribution, satellite partnerships
 - **Who to Engage**: 
-  - Head of ORF TVthek/Digital Partnerships
+  - **Stefan Kollinger** - Chief Innovation Officer (Technological innovations, digital solutions integration)
+  - **Astrid Zöchling** - CIO (Digital transformation leadership, Austria's Confare CIO of the Year 2025)
+  - Head of ORF ON/Digital Partnerships (ORF TVthek rebranded to ORF ON in 2024)
   - Head of Technology/Innovation
   - Business Development Manager
   - ORS Group Partnership Manager
@@ -225,7 +234,11 @@ This document provides a comprehensive list of organizations that need to be eng
   - **SRG SSR Technology & Innovation** - Technical integration, HbbTV implementation
   - **SRG SSR Business Development** - Partnership agreements, licensing
 - **Who to Engage**: 
-  - Head of Play Platform/Digital Partnerships
+  - **Bakel Walden** - Former Director of Development and Offering (Departed November 2024, instrumental in Play Suisse platform establishment)
+  - **Delila Kurtovic** - Marketing Co-lead, Play Suisse
+  - **Emmanuelle Masset** - Marketing Co-lead, Play Suisse
+  - **Maya Kügele-Aubert** - Social Media and Communications Manager, Play Suisse
+  - Head of Play Platform/Digital Partnerships (unified platform, autumn 2025)
   - Head of Technology/Innovation
   - Business Development Manager
   - Multi-language Content Coordinator
@@ -288,9 +301,10 @@ This document provides a comprehensive list of organizations that need to be eng
   - **France Télévisions Technology & Innovation** - Technical integration, HbbTV implementation
   - **France Télévisions Business Development** - Partnership agreements, licensing
 - **Who to Engage**: 
-  - Head of Streaming/Digital Partnerships
+  - Head of Streaming/Digital Partnerships (Amazon Prime Video partnership, YouTube discussions)
   - Head of Technology/Innovation
   - Business Development Manager
+  - Content Management Partnerships (Mediagenix partnership for unified media business management)
 - **Contact**: 
   - Website: https://www.francetv.fr
   - Contact via website form
@@ -306,9 +320,10 @@ This document provides a comprehensive list of organizations that need to be eng
   - **TF1 Technology & Innovation** - Technical integration
   - **TF1 Business Development** - Partnership agreements, licensing
 - **Who to Engage**: 
-  - Head of TF1+/OTT Partnerships
+  - Head of TF1+/OTT Partnerships (33M monthly users, January 2025)
   - Technology Manager
-  - Business Development Manager
+  - Business Development Manager (Responsible Business Development Partnerships and Adtech role posted 2025)
+  - Advertising Partnerships Manager (Amazon Publisher Cloud partnership, November 2025)
 - **Contact**: 
   - Website: https://www.tf1.fr
   - Contact via website form
@@ -322,9 +337,10 @@ This document provides a comprehensive list of organizations that need to be eng
   - **M6 Technology & Innovation** - Technical integration, HbbTV 2.0 implementation
   - **M6 Business Development** - Partnership agreements, licensing
 - **Who to Engage**: 
-  - Head of M6+/OTT Partnerships
+  - Head of M6+/OTT Partnerships (Bedrock platform, €100M investment, launched February 2024)
   - Technology Manager (HbbTV 2.0 specialist)
   - Business Development Manager
+  - Advertising Partnerships Manager (Amazon Publisher Cloud partnership, November 2025)
 - **Contact**: 
   - Website: https://www.m6.fr
   - Contact via website form
@@ -345,6 +361,7 @@ This document provides a comprehensive list of organizations that need to be eng
   - **VRT Business Development** - Partnership agreements, licensing
   - **VRT Regulatory Affairs** - Pre-installation mandate compliance
 - **Who to Engage**: 
+  - **Ruth Degraeve** - Manager, VRT MAX (Platform management, personalization, AI integration)
   - Head of VRT Max/Digital Partnerships
   - Technology Manager
   - Business Development Manager
