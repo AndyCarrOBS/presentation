@@ -2204,6 +2204,100 @@
 
 ## Austria
 
+### Magenta TV (Deutsche Telekom)
+
+**Senior Leadership**
+
+**CEO T-Mobile US (Former CEO Telekom Deutschland)**
+- **Name**: Srini Gopalan
+- **Title**: Current CEO of T-Mobile US, previously served as CEO of Telekom Deutschland (Germany)
+- **Email**: srini.gopalan@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: United States / Germany
+- **Note**: Responsible for fixed-network, broadband business, and IPTV product development in previous role at Telekom Deutschland. Magenta TV is a key product under his previous leadership.
+
+**Board of Management Member - Europe Segment**
+- **Name**: Dominique Leroy
+- **Title**: Member of the Board of Management for Deutsche Telekom AG, responsible for the Europe segment
+- **Email**: dominique.leroy@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Europe
+- **Note**: Has experience managing European operations, including interim CEO role at Magenta Telekom in Austria. Responsible for Europe segment where Magenta TV operates.
+
+**Board Member & Managing Director Telekom Deutschland**
+- **Name**: Rodrigo Diehl
+- **Title**: Board member at Deutsche Telekom AG and Managing Director of Telekom Deutschland GmbH
+- **Email**: rodrigo.diehl@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Germany
+- **Note**: Managing Director of Telekom Deutschland GmbH, the German subsidiary where Magenta TV service originates. Previously served as CEO of Magenta Telekom in Austria.
+
+**CEO Magenta Telekom (Austria)**
+- **Name**: Thomas Kicker
+- **Title**: CEO of Magenta Telekom (Austria) since August 2025
+- **Email**: thomas.kicker@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Austria
+- **Note**: Current CEO of Magenta Telekom (Austria) with long history at the company, focusing on telecommunications, digital services, and AI.
+
+**CFO Deutsche Telekom AG**
+- **Name**: Dr. Christian P. Illek
+- **Title**: CFO of Deutsche Telekom AG and T-Mobile US board member
+- **Email**: christian.illek@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Germany
+- **Note**: Previously oversaw international product development for Deutsche Telekom's fixed network, including IP TV, in a prior marketing director role at Telekom Deutschland.
+
+**Magenta Telekom Austria Board Members**
+
+**Chief Financial Officer**
+- **Name**: Aleksander Bek
+- **Title**: Chief Financial Officer, Magenta Telekom Austria
+- **Email**: aleksander.bek@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Austria
+- **Note**: Chief Financial Officer and Member of the Board at Magenta Telekom Austria
+
+**Chief Human Resources Officer**
+- **Name**: Christian Hauer
+- **Title**: Chief Human Resources Officer, Magenta Telekom Austria
+- **Email**: christian.hauer@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Austria
+- **Note**: Chief Human Resources Officer and Member of the Board at Magenta Telekom Austria
+
+**Chief Commercial Officer, Business**
+- **Name**: Werner Kraus
+- **Title**: Chief Commercial Officer, Business, Magenta Telekom Austria
+- **Email**: werner.kraus@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Austria
+- **Note**: Chief Commercial Officer, Business and Member of the Board at Magenta Telekom Austria
+
+**Chief Technology & Information Officer**
+- **Name**: Volker Libovsky
+- **Title**: Chief Technology & Information Officer, Magenta Telekom Austria
+- **Email**: volker.libovsky@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Austria
+- **Note**: Chief Technology & Information Officer and Member of the Board at Magenta Telekom Austria. Key contact for technical specifications and Magenta TV platform.
+
+**Chief Commercial Officer, Consumer**
+- **Name**: Branko Stanchev
+- **Title**: Chief Commercial Officer, Consumer, Magenta Telekom Austria
+- **Email**: branko.stanchev@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Austria
+- **Note**: Chief Commercial Officer, Consumer and Member of the Board at Magenta Telekom Austria. Key contact for consumer-facing products including Magenta TV.
+
+**Chief Corporate Affairs Officer**
+- **Name**: Anja Tretbar-Bustorf
+- **Title**: Chief Corporate Affairs Officer and Member of the Board, Magenta Telekom Austria
+- **Email**: anja.tretbar-bustorf@telekom.de (predicted)
+- **Platform**: Corporate
+- **Location**: Austria
+- **Note**: Chief Corporate Affairs Officer and Member of the Board at Magenta Telekom Austria
+
 ### ORF (Österreichischer Rundfunk)
 
 **Director General**

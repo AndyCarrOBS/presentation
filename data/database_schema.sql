@@ -204,3 +204,79 @@ LEFT JOIN operator_countries oc ON c.country_id = oc.country_id
 LEFT JOIN operators o ON oc.operator_id = o.operator_id
 GROUP BY c.country_id, c.country_name, c.region
 ORDER BY c.region, operator_count DESC, c.country_name;
+
+-- Subscriptions table - subscriber/subscription data with full provenance
+CREATE TABLE IF NOT EXISTS subscriptions (
+    subscription_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    operator_id INTEGER,
+    country_id INTEGER,
+    operator_name TEXT NOT NULL,
+    country_name TEXT NOT NULL,
+    subscription_value REAL NOT NULL,
+    unit TEXT DEFAULT 'subscribers',
+    metric_type TEXT,
+    year INTEGER,
+    observed_at DATE,
+    source_id INTEGER,
+    source_text TEXT,
+    file_path TEXT,
+    context TEXT,
+    confidence TEXT DEFAULT 'medium',
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (operator_id) REFERENCES operators(operator_id),
+    FOREIGN KEY (country_id) REFERENCES countries(country_id),
+    FOREIGN KEY (source_id) REFERENCES sources(source_id)
+);
+
+-- Indexes for subscriptions
+CREATE INDEX IF NOT EXISTS idx_subscriptions_operator ON subscriptions(operator_id);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_country ON subscriptions(country_id);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_year ON subscriptions(year);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_operator_country ON subscriptions(operator_name, country_name);
+
+-- Dashboard views for subscriptions
+
+-- Latest subscriptions by operator
+CREATE VIEW IF NOT EXISTS v_subscriptions_latest AS
+SELECT 
+    s.subscription_id,
+    s.operator_name,
+    s.country_name,
+    s.subscription_value,
+    s.unit,
+    s.metric_type,
+    s.year,
+    s.source_text,
+    s.confidence,
+    o.canonical_name as operator_canonical,
+    c.region
+FROM subscriptions s
+LEFT JOIN operators o ON s.operator_id = o.operator_id
+LEFT JOIN countries c ON s.country_id = c.country_id
+WHERE s.subscription_id IN (
+    SELECT MAX(s2.subscription_id)
+    FROM subscriptions s2
+    WHERE s2.operator_name = s.operator_name 
+    AND s2.country_name = s.country_name
+    AND s2.metric_type = COALESCE(s.metric_type, 'total')
+    GROUP BY s2.operator_name, s2.country_name, s2.metric_type
+);
+
+-- Subscriptions time series
+CREATE VIEW IF NOT EXISTS v_subscriptions_timeseries AS
+SELECT 
+    s.subscription_id,
+    s.operator_name,
+    s.country_name,
+    s.subscription_value,
+    s.unit,
+    s.metric_type,
+    s.year,
+    s.source_text,
+    s.confidence,
+    c.region
+FROM subscriptions s
+LEFT JOIN countries c ON s.country_id = c.country_id
+WHERE s.year IS NOT NULL
+ORDER BY s.operator_name, s.country_name, s.year DESC;

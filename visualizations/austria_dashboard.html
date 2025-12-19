@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Austria - Broadcast Industry Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .country-flag {
+            font-size: 8em;
+            text-align: center;
+        }
+        
+        .country-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .country-name {
+            font-size: 3.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .country-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .operators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .operator-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .operator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+        
+        .operator-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .operator-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: white;
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .operator-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .subscriptions-chart {
+            height: 150px;
+            margin: 15px 0;
+        }
+        
+        .revenue-data {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .revenue-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.9em;
+        }
+        
+        .revenue-year {
+            color: #666;
+        }
+        
+        .revenue-value {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .psb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .psb-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .psb-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .psb-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin: 0 auto 15px;
+        }
+        
+        .psb-name {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .no-data {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="database_visualization.html" class="back-link">← Back to Main Dashboard</a>
+        
+        <div class="header-section">
+            <div class="country-flag">🇦🇹</div>
+            <div class="country-info">
+                <h1 class="country-name">Austria</h1>
+                <div class="country-stats">
+                    <div class="stat-box">
+                        <div class="stat-value">8.97M</div>
+                        <div class="stat-label">Population</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">4.20M</div>
+                        <div class="stat-label">TV Households</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">📺 Top Operators</h2>
+            <div class="operators-grid" id="operatorsGrid">
+                <!-- Operators will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">📻 Public Service Broadcasters</h2>
+            <div class="psb-grid" id="psbGrid">
+                <!-- PSBs will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const operatorsData = [{"operator_id": 1, "canonical_name": "A1 Telekom Austria", "name_in_country": "A1 Telekom Austria", "aliases": ["A1 Telekom Austria (A1 TV)"], "subscriptions": [], "revenue": [{"year": 2024, "value": 450000000000.0, "unit": "EUR", "source": "From demographics.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}], "logo": null}, {"operator_id": 8, "canonical_name": "Deutsche Telekom Magenta TV", "name_in_country": "Magenta TV", "aliases": ["Magenta TV"], "subscriptions": [], "revenue": [{"year": 2025, "value": 6347000000.0, "unit": "EUR", "source": "From Deutsche Telekom Magenta TV.md"}, {"year": 2025, "value": 5669000000.0, "unit": "EUR", "source": "From Deutsche Telekom Magenta TV.md"}, {"year": 2025, "value": 6347000000.0, "unit": "EUR", "source": "From Deutsche Telekom Magenta TV.md"}], "logo": "vodafone-logo.png"}, {"operator_id": 10, "canonical_name": "Drei Austria", "name_in_country": "Drei Austria", "aliases": ["Drei Austria (3 / Hutchison Drei Austria)"], "subscriptions": [], "revenue": [{"year": 2024, "value": 450000000000.0, "unit": "EUR", "source": "From demographics.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}], "logo": null}, {"operator_id": 19, "canonical_name": "M7 Group", "name_in_country": "M7 HD Austria", "aliases": ["M7 Telesat", "M7 Canal Digitaal", "M7 HD Austria", "M7 Skylink CZ", "M7 Skylink SK"], "subscriptions": [], "revenue": [{"year": 2024, "value": 450000000000.0, "unit": "EUR", "source": "From demographics.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}], "logo": "canal-digital.png"}, {"operator_id": 24, "canonical_name": "ORF", "name_in_country": "ORF", "aliases": [], "subscriptions": [], "revenue": [{"year": 2024, "value": 450000000000.0, "unit": "EUR", "source": "From demographics.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}], "logo": "orf-logo.svg"}, {"operator_id": 31, "canonical_name": "ServusTV", "name_in_country": "ServusTV", "aliases": [], "subscriptions": [], "revenue": [{"year": 2024, "value": 450000000000.0, "unit": "EUR", "source": "From demographics.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}], "logo": null}, {"operator_id": 32, "canonical_name": "SimpliTV", "name_in_country": "SimpliTV", "aliases": [], "subscriptions": [], "revenue": [{"year": 2024, "value": 450000000000.0, "unit": "EUR", "source": "From demographics.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}, {"year": 2024, "value": 1494000000.0, "unit": "EUR", "source": "From Magenta TV.md"}], "logo": null}];
+        const psbsData = [{"name": "ORF", "logo": "img/orf-logo.svg"}, {"name": "ServusTV", "logo": "img/servustv-logo.png"}, {"name": "broadcasters", "logo": null}, {"name": "Broadcasters", "logo": null}, {"name": "broadcaster)", "logo": null}, {"name": "Broadcaster OTT Services", "logo": null}, {"name": "OTT service", "logo": null}, {"name": "OTT**: ORF TVthek", "logo": null}, {"name": "OTT", "logo": null}];
+        
+        // Format value
+        function formatValue(value) {
+            if (value >= 1000000) {
+                return (value / 1000000).toFixed(2) + 'M';
+            } else if (value >= 1000) {
+                return (value / 1000).toFixed(1) + 'K';
+            }
+            return value.toFixed(0);
+        }
+        
+        // Format revenue
+        function formatRevenue(value) {
+            if (value >= 1000000000) {
+                return '€' + (value / 1000000000).toFixed(2) + 'B';
+            } else if (value >= 1000000) {
+                return '€' + (value / 1000000).toFixed(2) + 'M';
+            }
+            return '€' + value.toFixed(0);
+        }
+        
+        // Populate operators
+        const operatorsGrid = document.getElementById('operatorsGrid');
+        
+        operatorsData.forEach((op, index) => {
+            const card = document.createElement('div');
+            card.className = 'operator-card';
+            
+            // Operator header
+            const header = document.createElement('div');
+            header.className = 'operator-header';
+            
+            const logoImg = document.createElement('img');
+            logoImg.className = 'operator-logo';
+            logoImg.src = op.logo || 'img/OBS-Logo.png';
+            logoImg.alt = op.canonical_name;
+            logoImg.onerror = function() { this.style.display = 'none'; };
+            
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'operator-name';
+            nameDiv.textContent = op.name_in_country;
+            
+            header.appendChild(logoImg);
+            header.appendChild(nameDiv);
+            
+            // Subscriptions chart
+            let chartHtml = '';
+            if (op.subscriptions && op.subscriptions.length > 0) {
+                const years = op.subscriptions.map(s => s.year).reverse();
+                const values = op.subscriptions.map(s => s.value).reverse();
+                
+                chartHtml = `
+                    <div class="subscriptions-chart">
+                        <canvas id="chart${index}"></canvas>
+                    </div>
+                `;
+                
+                card.innerHTML = header.outerHTML + chartHtml;
+                
+                // Create chart after DOM is ready
+                setTimeout(() => {
+                    const canvas = document.getElementById(`chart${index}`);
+                    if (!canvas) return;
+                    
+                    const ctx = canvas.getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: years,
+                            datasets: [{
+                                label: 'Subscribers',
+                                data: values,
+                                borderColor: '#667eea',
+                                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                                tension: 0.4,
+                                fill: true
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            return formatValue(context.parsed.y);
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        callback: function(value) {
+                                            return formatValue(value);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }, 200);
+            } else {
+                card.innerHTML = header.outerHTML + '<div class="no-data">No subscription data available</div>';
+            }
+            
+            // Revenue data
+            if (op.revenue && op.revenue.length > 0) {
+                const revenueDiv = document.createElement('div');
+                revenueDiv.className = 'revenue-data';
+                revenueDiv.innerHTML = '<strong>Revenue:</strong>';
+                
+                op.revenue.forEach(rev => {
+                    const item = document.createElement('div');
+                    item.className = 'revenue-item';
+                    item.innerHTML = `
+                        <span class="revenue-year">${rev.year || 'N/A'}</span>
+                        <span class="revenue-value">${formatRevenue(rev.value)}</span>
+                    `;
+                    revenueDiv.appendChild(item);
+                });
+                
+                card.appendChild(revenueDiv);
+            }
+            
+            operatorsGrid.appendChild(card);
+        });
+        
+        // Populate PSBs
+        const psbGrid = document.getElementById('psbGrid');
+        
+        if (psbsData.length > 0) {
+            psbsData.forEach(psb => {
+                const card = document.createElement('div');
+                card.className = 'psb-card';
+                
+                const logoImg = document.createElement('img');
+                logoImg.className = 'psb-logo';
+                logoImg.src = psb.logo || 'img/OBS-Logo.png';
+                logoImg.alt = psb.name;
+                logoImg.onerror = function() { this.style.display = 'none'; };
+                
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'psb-name';
+                nameDiv.textContent = psb.name;
+                
+                card.appendChild(logoImg);
+                card.appendChild(nameDiv);
+                psbGrid.appendChild(card);
+            });
+        } else {
+            psbGrid.innerHTML = '<div class="no-data">No Public Service Broadcasters data available</div>';
+        }
+    </script>
+</body>
+</html>

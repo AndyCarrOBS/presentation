@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Data - Fact Checked</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        select, input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #f5f5f5;
+            font-weight: 600;
+            color: #667eea;
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .value {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .source {
+            font-size: 0.9em;
+            color: #666;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .confidence-high {
+            color: #4caf50;
+        }
+        
+        .confidence-medium {
+            color: #ff9800;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+        
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="database_visualization.html" class="back-link">← Back to Main Dashboard</a>
+        
+        <header>
+            <h1>📊 Subscription Data</h1>
+            <p class="subtitle">Fact-Checked Subscriber Numbers with Sources and Years</p>
+        </header>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalRecords">35</div>
+                <div class="stat-label">Total Records</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">11</div>
+                <div class="stat-label">Operators</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">11</div>
+                <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">2018 - 2025</div>
+                <div class="stat-label">Year Range</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📈 Subscriptions Over Time</h2>
+            <div class="controls">
+                <select id="operatorFilter">
+                    <option value="">All Operators</option>
+                    <option value="Canal+">Canal+</option><option value="Canal+ France">Canal+ France</option><option value="Deutsche Telekom Magenta TV">Deutsche Telekom Magenta TV</option><option value="Free France">Free France</option><option value="M7 HD Austria">M7 HD Austria</option><option value="Norlys">Norlys</option><option value="Sky Deutschland">Sky Deutschland</option><option value="YouSee">YouSee</option><option value="Ziggo-UPC">Ziggo-UPC</option><option value="demographics.md">demographics.md</option><option value="free-to-air-market.md">free-to-air-market.md</option>
+                </select>
+                <select id="countryFilter">
+                    <option value="">All Countries</option>
+                    <option value="Austria">Austria</option><option value="Croatia">Croatia</option><option value="Denmark">Denmark</option><option value="France">France</option><option value="Germany">Germany</option><option value="Netherlands">Netherlands</option><option value="Poland">Poland</option><option value="Romania">Romania</option><option value="Slovenia">Slovenia</option><option value="Spain">Spain</option><option value="United Kingdom">United Kingdom</option>
+                </select>
+            </div>
+            <div class="chart-container">
+                <canvas id="timeSeriesChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 All Subscription Records</h2>
+            <p>Only includes data with clear sources and years. Sorted by year (most recent first).</p>
+            <div style="overflow-x: auto; max-height: 600px;">
+                <table id="subscriptionsTable">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Operator</th>
+                            <th>Country</th>
+                            <th>Subscriptions</th>
+                            <th>Metric Type</th>
+                            <th>Source</th>
+                            <th>Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const subscriptionsData = [{"operator": "YouSee", "country": "Denmark", "value": 845000.0, "year": 2025, "source": "1.4 million in 2015", "metric_type": "total", "confidence": "high"}, {"operator": "YouSee", "country": "Denmark", "value": 845000.0, "year": 2025, "source": "1.4 million in 2015", "metric_type": "total", "confidence": "high"}, {"operator": "YouSee", "country": "Denmark", "value": 845000.0, "year": 2025, "source": "peak of 1.4 million in 2015", "metric_type": "total", "confidence": "high"}, {"operator": "demographics.md", "country": "Denmark", "value": 2860000.0, "year": 2025, "source": "2024", "metric_type": "total", "confidence": "high"}, {"operator": "Deutsche Telekom Magenta TV", "country": "Germany", "value": 4725000.0, "year": 2025, "source": "37,000 new subscribers in Q1 2025, reaching 4.675 million by end of Q1 2025", "metric_type": "paytv_households", "confidence": "high"}, {"operator": "Deutsche Telekom Magenta TV", "country": "Germany", "value": 72813000.0, "year": 2025, "source": "Deutsche Telekom operates own mobile network", "metric_type": "total", "confidence": "high"}, {"operator": "Deutsche Telekom Magenta TV", "country": "Germany", "value": 4725000.0, "year": 2025, "source": "37,000 new subscribers in Q1 2025, reaching 4.675 million by end of Q1 2025", "metric_type": "total", "confidence": "high"}, {"operator": "Deutsche Telekom Magenta TV", "country": "Germany", "value": 72813000.0, "year": 2025, "source": "Deutsche Telekom operates own mobile network", "metric_type": "total", "confidence": "high"}, {"operator": "Deutsche Telekom Magenta TV", "country": "Germany", "value": 4725000.0, "year": 2025, "source": "37,000 new subscribers in Q1 2025, reaching 4.675 million by end of Q1 2025", "metric_type": "total", "confidence": "high"}, {"operator": "Sky Deutschland", "country": "Germany", "value": 2300000.0, "year": 2025, "source": "Sky Deutschland does not operate FTTH network", "metric_type": "total", "confidence": "high"}, {"operator": "Canal+", "country": "Poland", "value": 2700000.0, "year": 2025, "source": "Canal+ Poland does not offer mobile services", "metric_type": "paytv_households", "confidence": "high"}, {"operator": "Canal+", "country": "Poland", "value": 2700000.0, "year": 2025, "source": "limited, via streaming services", "metric_type": "total", "confidence": "high"}, {"operator": "Canal+", "country": "Poland", "value": 2700000.0, "year": 2025, "source": "Canal+ Poland does not operate FTTH network", "metric_type": "total", "confidence": "high"}, {"operator": "Canal+", "country": "Poland", "value": 2700000.0, "year": 2025, "source": "August 2025", "metric_type": "total", "confidence": "high"}, {"operator": "Canal+", "country": "Poland", "value": 2700000.0, "year": 2025, "source": "limited, via streaming services", "metric_type": "total", "confidence": "high"}, {"operator": "free-to-air-market.md", "country": "Austria", "value": 19000.0, "year": 2024, "source": "205,000 households, 2024", "metric_type": "total", "confidence": "high"}, {"operator": "demographics.md", "country": "Croatia", "value": 1300000.0, "year": 2024, "source": "previous year", "metric_type": "total", "confidence": "high"}, {"operator": "Norlys", "country": "Denmark", "value": 1500000.0, "year": 2024, "source": "post-Telia acquisition, 2024", "metric_type": "total", "confidence": "high"}, {"operator": "Norlys", "country": "Denmark", "value": 1500000.0, "year": 2024, "source": "post-Telia acquisition, 2024", "metric_type": "total", "confidence": "high"}, {"operator": "Canal+ France", "country": "France", "value": 118000.0, "year": 2024, "source": "2024", "metric_type": "total", "confidence": "high"}, {"operator": "Free France", "country": "France", "value": 7570000.0, "year": 2024, "source": "primary delivery method over broadband", "metric_type": "broadband_households", "confidence": "high"}, {"operator": "Free France", "country": "France", "value": 7570000.0, "year": 2024, "source": "+2.1% in 2024", "metric_type": "total", "confidence": "high"}, {"operator": "Free France", "country": "France", "value": 7570000.0, "year": 2024, "source": "+2.1% in 2024", "metric_type": "total", "confidence": "high"}, {"operator": "Free France", "country": "France", "value": 7570000.0, "year": 2024, "source": "\u20ac35.7). Fixed services revenue +9.4% (2024), Q1 2025 ARPU \u20ac36.3/month (+5.6% YoY), fixed services revenue +6.2%.", "metric_type": "total", "confidence": "high"}, {"operator": "Ziggo-UPC", "country": "Netherlands", "value": 3200000.0, "year": 2024, "source": "if operator offers mobile", "metric_type": "broadband_households", "confidence": "high"}, {"operator": "Ziggo-UPC", "country": "Netherlands", "value": 3200000.0, "year": 2024, "source": "-18,500 in Q3 2025", "metric_type": "total", "confidence": "high"}, {"operator": "Ziggo-UPC", "country": "Netherlands", "value": 3200000.0, "year": 2024, "source": "-18,500 in Q3 2025", "metric_type": "total", "confidence": "high"}, {"operator": "demographics.md", "country": "Slovenia", "value": 837000.0, "year": 2024, "source": "previous year", "metric_type": "total", "confidence": "high"}, {"operator": "demographics.md", "country": "Spain", "value": 19350000.0, "year": 2024, "source": "Jan 2024", "metric_type": "total", "confidence": "high"}, {"operator": "demographics.md", "country": "United Kingdom", "value": 28600000.0, "year": 2024, "source": "mid-2023", "metric_type": "total", "confidence": "high"}, {"operator": "demographics.md", "country": "Netherlands", "value": 8100000.0, "year": 2023, "source": "2024", "metric_type": "total", "confidence": "high"}, {"operator": "demographics.md", "country": "Romania", "value": 4000000.0, "year": 2022, "source": "M7 Group", "metric_type": "total", "confidence": "high"}, {"operator": "M7 HD Austria", "country": "Austria", "value": 125000.0, "year": 2018, "source": "2018", "metric_type": "total", "confidence": "high"}, {"operator": "M7 HD Austria", "country": "Austria", "value": 125000.0, "year": 2018, "source": "25% growth reported in 2018", "metric_type": "total", "confidence": "high"}, {"operator": "M7 HD Austria", "country": "Austria", "value": 125000.0, "year": 2018, "source": "2018", "metric_type": "total", "confidence": "high"}];
+        const operatorTimeseries = {"Canal+": [{"year": 2025, "value": 2700000.0, "country": "Poland", "source": "limited, via streaming services"}, {"year": 2025, "value": 2700000.0, "country": "Poland", "source": "August 2025"}, {"year": 2025, "value": 2700000.0, "country": "Poland", "source": "Canal+ Poland does not operate FTTH network"}, {"year": 2025, "value": 2700000.0, "country": "Poland", "source": "limited, via streaming services"}, {"year": 2025, "value": 2700000.0, "country": "Poland", "source": "Canal+ Poland does not offer mobile services"}], "Canal+ France": [{"year": 2024, "value": 118000.0, "country": "France", "source": "2024"}], "Deutsche Telekom Magenta TV": [{"year": 2025, "value": 4725000.0, "country": "Germany", "source": "37,000 new subscribers in Q1 2025, reaching 4.675 million by end of Q1 2025"}, {"year": 2025, "value": 72813000.0, "country": "Germany", "source": "Deutsche Telekom operates own mobile network"}, {"year": 2025, "value": 4725000.0, "country": "Germany", "source": "37,000 new subscribers in Q1 2025, reaching 4.675 million by end of Q1 2025"}, {"year": 2025, "value": 72813000.0, "country": "Germany", "source": "Deutsche Telekom operates own mobile network"}, {"year": 2025, "value": 4725000.0, "country": "Germany", "source": "37,000 new subscribers in Q1 2025, reaching 4.675 million by end of Q1 2025"}], "Free France": [{"year": 2024, "value": 7570000.0, "country": "France", "source": "\u20ac35.7). Fixed services revenue +9.4% (2024), Q1 2025 ARPU \u20ac36.3/month (+5.6% YoY), fixed services revenue +6.2%."}, {"year": 2024, "value": 7570000.0, "country": "France", "source": "+2.1% in 2024"}, {"year": 2024, "value": 7570000.0, "country": "France", "source": "+2.1% in 2024"}, {"year": 2024, "value": 7570000.0, "country": "France", "source": "primary delivery method over broadband"}], "M7 HD Austria": [{"year": 2018, "value": 125000.0, "country": "Austria", "source": "2018"}, {"year": 2018, "value": 125000.0, "country": "Austria", "source": "25% growth reported in 2018"}, {"year": 2018, "value": 125000.0, "country": "Austria", "source": "2018"}], "Norlys": [{"year": 2024, "value": 1500000.0, "country": "Denmark", "source": "post-Telia acquisition, 2024"}, {"year": 2024, "value": 1500000.0, "country": "Denmark", "source": "post-Telia acquisition, 2024"}], "Sky Deutschland": [{"year": 2025, "value": 2300000.0, "country": "Germany", "source": "Sky Deutschland does not operate FTTH network"}], "YouSee": [{"year": 2025, "value": 845000.0, "country": "Denmark", "source": "peak of 1.4 million in 2015"}, {"year": 2025, "value": 845000.0, "country": "Denmark", "source": "1.4 million in 2015"}, {"year": 2025, "value": 845000.0, "country": "Denmark", "source": "1.4 million in 2015"}], "Ziggo-UPC": [{"year": 2024, "value": 3200000.0, "country": "Netherlands", "source": "-18,500 in Q3 2025"}, {"year": 2024, "value": 3200000.0, "country": "Netherlands", "source": "-18,500 in Q3 2025"}, {"year": 2024, "value": 3200000.0, "country": "Netherlands", "source": "if operator offers mobile"}], "demographics.md": [{"year": 2025, "value": 2860000.0, "country": "Denmark", "source": "2024"}, {"year": 2024, "value": 1300000.0, "country": "Croatia", "source": "previous year"}, {"year": 2024, "value": 837000.0, "country": "Slovenia", "source": "previous year"}, {"year": 2024, "value": 19350000.0, "country": "Spain", "source": "Jan 2024"}, {"year": 2024, "value": 28600000.0, "country": "United Kingdom", "source": "mid-2023"}, {"year": 2023, "value": 8100000.0, "country": "Netherlands", "source": "2024"}, {"year": 2022, "value": 4000000.0, "country": "Romania", "source": "M7 Group"}], "free-to-air-market.md": [{"year": 2024, "value": 19000.0, "country": "Austria", "source": "205,000 households, 2024"}]};
+        const countryTimeseries = {"Austria": [{"year": 2024, "value": 19000.0, "operator": "free-to-air-market.md", "source": "205,000 households, 2024"}, {"year": 2018, "value": 125000.0, "operator": "M7 HD Austria", "source": "2018"}, {"year": 2018, "value": 125000.0, "operator": "M7 HD Austria", "source": "25% growth reported in 2018"}, {"year": 2018, "value": 125000.0, "operator": "M7 HD Austria", "source": "2018"}], "Croatia": [{"year": 2024, "value": 1300000.0, "operator": "demographics.md", "source": "previous year"}], "Denmark": [{"year": 2025, "value": 2860000.0, "operator": "demographics.md", "source": "2024"}, {"year": 2025, "value": 845000.0, "operator": "YouSee", "source": "peak of 1.4 million in 2015"}, {"year": 2025, "value": 845000.0, "operator": "YouSee", "source": "1.4 million in 2015"}, {"year": 2025, "value": 845000.0, "operator": "YouSee", "source": "1.4 million in 2015"}, {"year": 2024, "value": 1500000.0, "operator": "Norlys", "source": "post-Telia acquisition, 2024"}, {"year": 2024, "value": 1500000.0, "operator": "Norlys", "source": "post-Telia acquisition, 2024"}], "France": [{"year": 2024, "value": 7570000.0, "operator": "Free France", "source": "\u20ac35.7). Fixed services revenue +9.4% (2024), Q1 2025 ARPU \u20ac36.3/month (+5.6% YoY), fixed services revenue +6.2%."}, {"year": 2024, "value": 7570000.0, "operator": "Free France", "source": "+2.1% in 2024"}, {"year": 2024, "value": 7570000.0, "operator": "Free France", "source": "+2.1% in 2024"}, {"year": 2024, "value": 7570000.0, "operator": "Free France", "source": "primary delivery method over broadband"}, {"year": 2024, "value": 118000.0, "operator": "Canal+ France", "source": "2024"}], "Germany": [{"year": 2025, "value": 4725000.0, "operator": "Deutsche Telekom Magenta TV", "source": "37,000 new subscribers in Q1 2025, reaching 4.675 million by end of Q1 2025"}, {"year": 2025, "value": 72813000.0, "operator": "Deutsche Telekom Magenta TV", "source": "Deutsche Telekom operates own mobile network"}, {"year": 2025, "value": 4725000.0, "operator": "Deutsche Telekom Magenta TV", "source": "37,000 new subscribers in Q1 2025, reaching 4.675 million by end of Q1 2025"}, {"year": 2025, "value": 72813000.0, "operator": "Deutsche Telekom Magenta TV", "source": "Deutsche Telekom operates own mobile network"}, {"year": 2025, "value": 4725000.0, "operator": "Deutsche Telekom Magenta TV", "source": "37,000 new subscribers in Q1 2025, reaching 4.675 million by end of Q1 2025"}, {"year": 2025, "value": 2300000.0, "operator": "Sky Deutschland", "source": "Sky Deutschland does not operate FTTH network"}], "Netherlands": [{"year": 2024, "value": 3200000.0, "operator": "Ziggo-UPC", "source": "-18,500 in Q3 2025"}, {"year": 2024, "value": 3200000.0, "operator": "Ziggo-UPC", "source": "-18,500 in Q3 2025"}, {"year": 2024, "value": 3200000.0, "operator": "Ziggo-UPC", "source": "if operator offers mobile"}, {"year": 2023, "value": 8100000.0, "operator": "demographics.md", "source": "2024"}], "Poland": [{"year": 2025, "value": 2700000.0, "operator": "Canal+", "source": "limited, via streaming services"}, {"year": 2025, "value": 2700000.0, "operator": "Canal+", "source": "August 2025"}, {"year": 2025, "value": 2700000.0, "operator": "Canal+", "source": "Canal+ Poland does not operate FTTH network"}, {"year": 2025, "value": 2700000.0, "operator": "Canal+", "source": "limited, via streaming services"}, {"year": 2025, "value": 2700000.0, "operator": "Canal+", "source": "Canal+ Poland does not offer mobile services"}], "Romania": [{"year": 2022, "value": 4000000.0, "operator": "demographics.md", "source": "M7 Group"}], "Slovenia": [{"year": 2024, "value": 837000.0, "operator": "demographics.md", "source": "previous year"}], "Spain": [{"year": 2024, "value": 19350000.0, "operator": "demographics.md", "source": "Jan 2024"}], "United Kingdom": [{"year": 2024, "value": 28600000.0, "operator": "demographics.md", "source": "mid-2023"}]};
+        
+        // Format value
+        function formatValue(value) {
+            if (value >= 1000000) {
+                return (value / 1000000).toFixed(2) + 'M';
+            } else if (value >= 1000) {
+                return (value / 1000).toFixed(1) + 'K';
+            }
+            return value.toFixed(0);
+        }
+        
+        // Populate table
+        const tableBody = document.getElementById('tableBody');
+        subscriptionsData.forEach(sub => {
+            const row = tableBody.insertRow();
+            row.insertCell(0).textContent = sub.year || 'N/A';
+            row.insertCell(1).textContent = sub.operator;
+            row.insertCell(2).textContent = sub.country;
+            const valueCell = row.insertCell(3);
+            valueCell.textContent = formatValue(sub.value);
+            valueCell.className = 'value';
+            row.insertCell(4).textContent = sub.metric_type;
+            const sourceCell = row.insertCell(5);
+            sourceCell.textContent = sub.source;
+            sourceCell.className = 'source';
+            const confCell = row.insertCell(6);
+            confCell.textContent = sub.confidence;
+            confCell.className = 'confidence-' + sub.confidence;
+        });
+        
+        // Time series chart
+        const ctx = document.getElementById('timeSeriesChart').getContext('2d');
+        let timeSeriesChart = null;
+        
+        function updateChart() {
+            const operatorFilter = document.getElementById('operatorFilter').value;
+            const countryFilter = document.getElementById('countryFilter').value;
+            
+            const filtered = subscriptionsData.filter(sub => {
+                return (!operatorFilter || sub.operator === operatorFilter) &&
+                       (!countryFilter || sub.country === countryFilter);
+            });
+            
+            // Group by year
+            const byYear = {};
+            filtered.forEach(sub => {
+                if (!byYear[sub.year]) {
+                    byYear[sub.year] = [];
+                }
+                byYear[sub.year].push(sub.value);
+            });
+            
+            const years = Object.keys(byYear).sort();
+            const datasets = [];
+            
+            if (operatorFilter) {
+                // Show single operator over time
+                const operatorData = operatorTimeseries[operatorFilter] || [];
+                const data = years.map(year => {
+                    const entry = operatorData.find(e => e.year == year);
+                    return entry ? entry.value : null;
+                });
+                
+                datasets.push({
+                    label: operatorFilter,
+                    data: data,
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4
+                });
+            } else {
+                // Show aggregated by year
+                const data = years.map(year => {
+                    const values = byYear[year];
+                    return values.reduce((a, b) => a + b, 0);
+                });
+                
+                datasets.push({
+                    label: 'Total Subscriptions',
+                    data: data,
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4
+                });
+            }
+            
+            if (timeSeriesChart) {
+                timeSeriesChart.destroy();
+            }
+            
+            timeSeriesChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true },
+                        title: { display: true, text: 'Subscriptions Over Time' }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatValue(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        document.getElementById('operatorFilter').addEventListener('change', updateChart);
+        document.getElementById('countryFilter').addEventListener('change', updateChart);
+        
+        // Initial chart
+        updateChart();
+    </script>
+</body>
+</html>

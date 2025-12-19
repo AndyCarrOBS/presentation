@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broadcast Industry Database - Visualization</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        .network-container {
+            width: 100%;
+            height: 800px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fafafa;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .zoom-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .zoom-btn {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .zoom-btn:hover {
+            background: #f5f5f5;
+        }
+        
+        .zoom-info {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(255,255,255,0.9);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .operator-tag {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin: 2px;
+            font-size: 0.9em;
+        }
+        
+        .country-tag {
+            display: inline-block;
+            background: #f3e5f5;
+            color: #7b1fa2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin: 2px;
+            font-size: 0.9em;
+        }
+        
+        .node {
+            cursor: pointer;
+        }
+        
+        .node circle {
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+        
+        .link {
+            stroke: #999;
+            stroke-opacity: 0.6;
+            stroke-width: 1.5px;
+        }
+        
+        .link:hover {
+            stroke-opacity: 1;
+            stroke-width: 2px;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            pointer-events: none;
+            font-size: 12px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📺 Broadcast Industry Database</h1>
+            <p class="subtitle">Visualization & Relationship Explorer</p>
+        </header>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-countries">196</div>
+                <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-operators">55</div>
+                <div class="stat-label">Operators</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-relationships">70</div>
+                <div class="stat-label">Relationships</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-facts">318</div>
+                <div class="stat-label">Facts</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🌍 Countries by Region</h2>
+            <div class="chart-container">
+                <canvas id="regionsChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🔗 Operator-Country Network</h2>
+            <p>Interactive network graph showing relationships between operators and countries. 
+            <strong>Zoom:</strong> Mouse wheel or pinch gesture. <strong>Pan:</strong> Click and drag background. <strong>Move nodes:</strong> Click and drag nodes.</p>
+            <div class="network-container" id="network">
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomIn">+</button>
+                    <button class="zoom-btn" id="zoomOut">−</button>
+                    <button class="zoom-btn" id="resetZoom">⌂</button>
+                </div>
+                <div class="zoom-info" id="zoomInfo">Zoom: 100%</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📊 Top Operators by Country Coverage</h2>
+            <div class="chart-container">
+                <canvas id="operatorsChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🏢 Top Countries by Operator Count</h2>
+            <div class="chart-container">
+                <canvas id="countriesChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📈 Facts Summary</h2>
+            <div class="chart-container">
+                <canvas id="factsChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 Multi-Country Operators</h2>
+            <div class="table-container">
+                <table id="multiCountryTable">
+                    <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Countries</th>
+                            <th>Country Names</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🗺️ Countries with Operators</h2>
+            <div class="controls">
+                <input type="text" id="countrySearch" placeholder="Search countries..." style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; flex: 1;">
+            </div>
+            <div class="table-container">
+                <table id="countriesTable">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Region</th>
+                            <th>Operators</th>
+                            <th>Operator Names</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Data from Python
+        const regionsData = [{"region": "Africa", "total": 53, "with_data": 0}, {"region": "Asia", "total": 44, "with_data": 0}, {"region": "Europe", "total": 49, "with_data": 45}, {"region": "North America", "total": 23, "with_data": 0}, {"region": "Oceania", "total": 14, "with_data": 0}, {"region": "South America", "total": 13, "with_data": 0}];
+        const operatorsData = [{"name": "M7 Group", "aliases": ["M7 Telesat", "M7 Canal Digitaal", "M7 HD Austria", "M7 Skylink CZ", "M7 Skylink SK"], "country_count": 6, "countries": ["Austria", "Belgium", "Czech Republic", "Luxembourg", "Netherlands", "Slovakia"], "country_names": ["M7 HD Austria", "M7 Telesat", "M7 Skylink CZ", "M7 Telesat", "M7 Canal Digitaal", "M7-Skylink-SK"]}, {"name": "Allente", "aliases": [], "country_count": 4, "countries": ["Denmark", "Finland", "Norway", "Sweden"], "country_names": ["Allente", "Allente", "Allente", "Allente"]}, {"name": "Sky", "aliases": ["Sky Italia", "Sky Ireland", "Sky Deutschland"], "country_count": 3, "countries": ["Germany", "Ireland", "Italy"], "country_names": ["Sky Deutschland", "Sky-Ireland", "Sky-Italia"]}, {"name": "UPC", "aliases": ["UPC (Vodafone)", "UPC Switzerland", "M7 UPC Direct"], "country_count": 3, "countries": ["Hungary", "Romania", "Switzerland"], "country_names": ["UPC", "UPC", "UPC-Switzerland"]}, {"name": "Boxer HD", "aliases": [], "country_count": 2, "countries": ["Denmark", "Sweden"], "country_names": ["Boxer HD", "Boxer-HD"]}, {"name": "Canal+", "aliases": ["Canal+ France", "CANAL+ Polska"], "country_count": 2, "countries": ["France", "Poland"], "country_names": ["Canal+ France", "CANAL+-Polska"]}, {"name": "Orange", "aliases": ["Orange France", "Orange Polska"], "country_count": 2, "countries": ["France", "Poland"], "country_names": ["Orange France", "Orange-Polska"]}, {"name": "Telenor", "aliases": ["Telenor Norway"], "country_count": 2, "countries": ["Norway", "Sweden"], "country_names": ["Telenor-Norway", "Telenor"]}, {"name": "A1 Telekom Austria", "aliases": ["A1 Telekom Austria (A1 TV)"], "country_count": 1, "countries": ["Austria"], "country_names": ["A1 Telekom Austria"]}, {"name": "Altibox", "aliases": [], "country_count": 1, "countries": ["Norway"], "country_names": ["Altibox"]}, {"name": "Bouygues Telecom", "aliases": [], "country_count": 1, "countries": ["France"], "country_names": ["Bouygues Telecom"]}, {"name": "Cyfrowy Polsat", "aliases": [], "country_count": 1, "countries": ["Poland"], "country_names": ["Cyfrowy-Polsat"]}, {"name": "Deutsche Telekom Magenta TV", "aliases": ["Magenta TV"], "country_count": 1, "countries": ["Austria"], "country_names": ["Magenta TV"]}, {"name": "DigiTV", "aliases": ["DigiTV (4iG)"], "country_count": 1, "countries": ["Romania"], "country_names": ["DigiTV"]}, {"name": "Drei Austria", "aliases": ["Drei Austria (3 / Hutchison Drei Austria)"], "country_count": 1, "countries": ["Austria"], "country_names": ["Drei Austria"]}, {"name": "Eir", "aliases": [], "country_count": 1, "countries": ["Ireland"], "country_names": ["Eir"]}, {"name": "Elisa", "aliases": [], "country_count": 1, "countries": ["Finland"], "country_names": ["Elisa"]}, {"name": "France 24", "aliases": [], "country_count": 1, "countries": ["France"], "country_names": ["France-24"]}, {"name": "Fransat", "aliases": [], "country_count": 1, "countries": ["France"], "country_names": ["Fransat"]}, {"name": "Free France", "aliases": [], "country_count": 1, "countries": ["France"], "country_names": ["Free France"]}, {"name": "HD+", "aliases": ["HD+ (HD PLUS GmbH)"], "country_count": 1, "countries": ["Germany"], "country_names": ["HD+"]}, {"name": "KPN", "aliases": [], "country_count": 1, "countries": ["Netherlands"], "country_names": ["KPN"]}, {"name": "Kabelio", "aliases": [], "country_count": 1, "countries": ["Switzerland"], "country_names": ["Kabelio"]}, {"name": "Mediaset", "aliases": [], "country_count": 1, "countries": ["Italy"], "country_names": ["Mediaset"]}, {"name": "Norlys", "aliases": [], "country_count": 1, "countries": ["Denmark"], "country_names": ["Norlys"]}, {"name": "O2", "aliases": ["O2 Germany (Telef\u00f3nica Germany)"], "country_count": 1, "countries": ["Germany"], "country_names": ["O2 Germany"]}, {"name": "O2 Czech Republic", "aliases": [], "country_count": 1, "countries": ["Czech Republic"], "country_names": ["O2-Czech-Republic"]}, {"name": "ORF", "aliases": [], "country_count": 1, "countries": ["Austria"], "country_names": ["ORF"]}, {"name": "PYUR", "aliases": ["PYUR (formerly Telecolumbus)"], "country_count": 1, "countries": ["Germany"], "country_names": ["PYUR"]}, {"name": "Proximus Pickx", "aliases": [], "country_count": 1, "countries": ["Belgium"], "country_names": ["Proximus-Pickx"]}, {"name": "RAI", "aliases": ["RAI (Radiotelevisione Italiana)"], "country_count": 1, "countries": ["Italy"], "country_names": ["RAI"]}, {"name": "SFR", "aliases": [], "country_count": 1, "countries": ["France"], "country_names": ["SFR"]}, {"name": "Saorview", "aliases": [], "country_count": 1, "countries": ["Ireland"], "country_names": ["Saorview"]}, {"name": "ServusTV", "aliases": [], "country_count": 1, "countries": ["Austria"], "country_names": ["ServusTV"]}, {"name": "SimpliTV", "aliases": [], "country_count": 1, "countries": ["Austria"], "country_names": ["SimpliTV"]}, {"name": "Stofa", "aliases": [], "country_count": 1, "countries": ["Denmark"], "country_names": ["Stofa"]}, {"name": "Sunrise", "aliases": [], "country_count": 1, "countries": ["Switzerland"], "country_names": ["Sunrise"]}, {"name": "Swisscom TV", "aliases": [], "country_count": 1, "countries": ["Switzerland"], "country_names": ["Swisscom-TV"]}, {"name": "T-Mobile Czech Republic", "aliases": [], "country_count": 1, "countries": ["Czech Republic"], "country_names": ["T-Mobile-Czech-Republic"]}, {"name": "T2 CZ", "aliases": [], "country_count": 1, "countries": ["Czech Republic"], "country_names": ["T2 CZ"]}, {"name": "TIM", "aliases": [], "country_count": 1, "countries": ["Italy"], "country_names": ["TIM"]}, {"name": "Tele2", "aliases": [], "country_count": 1, "countries": ["Sweden"], "country_names": ["Tele2"]}, {"name": "Telenet", "aliases": [], "country_count": 1, "countries": ["Belgium"], "country_names": ["Telenet"]}, {"name": "Telia", "aliases": ["Telia Norway"], "country_count": 1, "countries": ["Norway"], "country_names": ["Telia-Norway"]}, {"name": "Telia Finland", "aliases": [], "country_count": 1, "countries": ["Finland"], "country_names": ["Telia-Finland"]}, {"name": "Tivusat", "aliases": ["Tivusat - LaTivu"], "country_count": 1, "countries": ["Italy"], "country_names": ["Tivusat---LaTivu"]}, {"name": "Vectra", "aliases": [], "country_count": 1, "countries": ["Poland"], "country_names": ["Vectra"]}, {"name": "Virgin Media", "aliases": ["Virgin Media Ireland"], "country_count": 1, "countries": ["Ireland"], "country_names": ["Virgin-Media-Ireland"]}, {"name": "Vodafone", "aliases": ["Vodafone Germany"], "country_count": 1, "countries": ["Germany"], "country_names": ["Vodafone Germany"]}, {"name": "Vodafone Czech Republic", "aliases": [], "country_count": 1, "countries": ["Czech Republic"], "country_names": ["Vodafone-Czech-Republic"]}, {"name": "Voo", "aliases": [], "country_count": 1, "countries": ["Belgium"], "country_names": ["Voo"]}, {"name": "YouSee", "aliases": [], "country_count": 1, "countries": ["Denmark"], "country_names": ["YouSee"]}, {"name": "Zattoo", "aliases": [], "country_count": 1, "countries": ["Switzerland"], "country_names": ["Zattoo"]}, {"name": "Ziggo", "aliases": [], "country_count": 1, "countries": ["Netherlands"], "country_names": ["Ziggo-UPC"]}, {"name": "Simply.TV", "aliases": [], "country_count": 0, "countries": [], "country_names": []}];
+        const countriesData = [{"name": "Austria", "region": "Europe", "iso_code": "AT", "operator_count": 7, "operators": ["A1 Telekom Austria", "Deutsche Telekom Magenta TV", "Drei Austria", "M7 Group", "ORF", "ServusTV", "SimpliTV"], "operator_names": ["A1 Telekom Austria", "Magenta TV", "Drei Austria", "M7 HD Austria", "ORF", "ServusTV", "SimpliTV"]}, {"name": "France", "region": "Europe", "iso_code": "FR", "operator_count": 7, "operators": ["Bouygues Telecom", "Canal+", "France 24", "Fransat", "Free France", "Orange", "SFR"], "operator_names": ["Bouygues Telecom", "Canal+ France", "France-24", "Fransat", "Free France", "Orange France", "SFR"]}, {"name": "Czech Republic", "region": "Europe", "iso_code": "CZ", "operator_count": 5, "operators": ["M7 Group", "O2 Czech Republic", "T-Mobile Czech Republic", "T2 CZ", "Vodafone Czech Republic"], "operator_names": ["M7 Skylink CZ", "O2-Czech-Republic", "T-Mobile-Czech-Republic", "T2 CZ", "Vodafone-Czech-Republic"]}, {"name": "Denmark", "region": "Europe", "iso_code": "DK", "operator_count": 5, "operators": ["Allente", "Boxer HD", "Norlys", "Stofa", "YouSee"], "operator_names": ["Allente", "Boxer HD", "Norlys", "Stofa", "YouSee"]}, {"name": "Germany", "region": "Europe", "iso_code": "DE", "operator_count": 5, "operators": ["HD+", "O2", "PYUR", "Sky", "Vodafone"], "operator_names": ["HD+", "O2 Germany", "PYUR", "Sky Deutschland", "Vodafone Germany"]}, {"name": "Italy", "region": "Europe", "iso_code": "IT", "operator_count": 5, "operators": ["Mediaset", "RAI", "Sky", "TIM", "Tivusat"], "operator_names": ["Mediaset", "RAI", "Sky-Italia", "TIM", "Tivusat---LaTivu"]}, {"name": "Switzerland", "region": "Europe", "iso_code": "CH", "operator_count": 5, "operators": ["Kabelio", "Sunrise", "Swisscom TV", "UPC", "Zattoo"], "operator_names": ["Kabelio", "Sunrise", "Swisscom-TV", "UPC-Switzerland", "Zattoo"]}, {"name": "Belgium", "region": "Europe", "iso_code": "BE", "operator_count": 4, "operators": ["M7 Group", "Proximus Pickx", "Telenet", "Voo"], "operator_names": ["M7 Telesat", "Proximus-Pickx", "Telenet", "Voo"]}, {"name": "Ireland", "region": "Europe", "iso_code": "IE", "operator_count": 4, "operators": ["Eir", "Saorview", "Sky", "Virgin Media"], "operator_names": ["Eir", "Saorview", "Sky-Ireland", "Virgin-Media-Ireland"]}, {"name": "Norway", "region": "Europe", "iso_code": "NO", "operator_count": 4, "operators": ["Allente", "Altibox", "Telenor", "Telia"], "operator_names": ["Allente", "Altibox", "Telenor-Norway", "Telia-Norway"]}, {"name": "Poland", "region": "Europe", "iso_code": "PL", "operator_count": 4, "operators": ["Canal+", "Cyfrowy Polsat", "Orange", "Vectra"], "operator_names": ["CANAL+-Polska", "Cyfrowy-Polsat", "Orange-Polska", "Vectra"]}, {"name": "Sweden", "region": "Europe", "iso_code": "SE", "operator_count": 4, "operators": ["Allente", "Boxer HD", "Tele2", "Telenor"], "operator_names": ["Allente", "Boxer-HD", "Tele2", "Telenor"]}, {"name": "Finland", "region": "Europe", "iso_code": "FI", "operator_count": 3, "operators": ["Allente", "Elisa", "Telia Finland"], "operator_names": ["Allente", "Elisa", "Telia-Finland"]}, {"name": "Netherlands", "region": "Europe", "iso_code": "NL", "operator_count": 3, "operators": ["KPN", "M7 Group", "Ziggo"], "operator_names": ["KPN", "M7 Canal Digitaal", "Ziggo-UPC"]}, {"name": "Romania", "region": "Europe", "iso_code": "RO", "operator_count": 2, "operators": ["DigiTV", "UPC"], "operator_names": ["DigiTV", "UPC"]}, {"name": "Hungary", "region": "Europe", "iso_code": "HU", "operator_count": 1, "operators": ["UPC"], "operator_names": ["UPC"]}, {"name": "Luxembourg", "region": "Europe", "iso_code": "LU", "operator_count": 1, "operators": ["M7 Group"], "operator_names": ["M7 Telesat"]}, {"name": "Slovakia", "region": "Europe", "iso_code": "SK", "operator_count": 1, "operators": ["M7 Group"], "operator_names": ["M7-Skylink-SK"]}, {"name": "Albania", "region": "Europe", "iso_code": "AL", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Andorra", "region": "Europe", "iso_code": "AD", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Armenia", "region": "Europe", "iso_code": "AM", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Azerbaijan", "region": "Europe", "iso_code": "AZ", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Belarus", "region": "Europe", "iso_code": "BY", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Bosnia and Herzegovina", "region": "Europe", "iso_code": "BA", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Bulgaria", "region": "Europe", "iso_code": "BG", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Croatia", "region": "Europe", "iso_code": "HR", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Cyprus", "region": "Europe", "iso_code": "CY", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Estonia", "region": "Europe", "iso_code": "EE", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Georgia", "region": "Europe", "iso_code": "GE", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Greece", "region": "Europe", "iso_code": "GR", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Iceland", "region": "Europe", "iso_code": "IS", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Latvia", "region": "Europe", "iso_code": "LV", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Liechtenstein", "region": "Europe", "iso_code": "LI", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Lithuania", "region": "Europe", "iso_code": "LT", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Malta", "region": "Europe", "iso_code": "MT", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Moldova", "region": "Europe", "iso_code": "MD", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Monaco", "region": "Europe", "iso_code": "MC", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Montenegro", "region": "Europe", "iso_code": "ME", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "North Macedonia", "region": "Europe", "iso_code": "MK", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Portugal", "region": "Europe", "iso_code": "PT", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Russia", "region": "Europe", "iso_code": "RU", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "San Marino", "region": "Europe", "iso_code": "SM", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Serbia", "region": "Europe", "iso_code": "RS", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Slovenia", "region": "Europe", "iso_code": "SI", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Spain", "region": "Europe", "iso_code": "ES", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Turkey", "region": "Europe", "iso_code": "TR", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Ukraine", "region": "Europe", "iso_code": "UA", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "United Kingdom", "region": "Europe", "iso_code": "GB", "operator_count": 0, "operators": [], "operator_names": []}, {"name": "Vatican City", "region": "Europe", "iso_code": "VA", "operator_count": 0, "operators": [], "operator_names": []}];
+        const factsData = [{"type": "broadband_penetration", "count": 46, "entities": 46}, {"type": "svod_penetration", "count": 46, "entities": 46}, {"type": "gdp_per_capita", "count": 45, "entities": 45}, {"type": "smart_tv_penetration", "count": 45, "entities": 45}, {"type": "gdp_total", "count": 44, "entities": 44}, {"type": "population", "count": 41, "entities": 41}, {"type": "tv_households", "count": 31, "entities": 31}, {"type": "paytv_households", "count": 20, "entities": 20}];
+        const networkData = {"nodes": [{"id": "A1 Telekom Austria", "name": "A1 Telekom Austria", "type": "operator", "group": "operator"}, {"id": "Austria", "name": "Austria", "type": "country", "group": "Europe"}, {"id": "Allente", "name": "Allente", "type": "operator", "group": "operator"}, {"id": "Denmark", "name": "Denmark", "type": "country", "group": "Europe"}, {"id": "Finland", "name": "Finland", "type": "country", "group": "Europe"}, {"id": "Norway", "name": "Norway", "type": "country", "group": "Europe"}, {"id": "Sweden", "name": "Sweden", "type": "country", "group": "Europe"}, {"id": "Altibox", "name": "Altibox", "type": "operator", "group": "operator"}, {"id": "Bouygues Telecom", "name": "Bouygues Telecom", "type": "operator", "group": "operator"}, {"id": "France", "name": "France", "type": "country", "group": "Europe"}, {"id": "Boxer HD", "name": "Boxer HD", "type": "operator", "group": "operator"}, {"id": "Canal+", "name": "Canal+", "type": "operator", "group": "operator"}, {"id": "Poland", "name": "Poland", "type": "country", "group": "Europe"}, {"id": "Cyfrowy Polsat", "name": "Cyfrowy Polsat", "type": "operator", "group": "operator"}, {"id": "Deutsche Telekom Magenta TV", "name": "Deutsche Telekom Magenta TV", "type": "operator", "group": "operator"}, {"id": "DigiTV", "name": "DigiTV", "type": "operator", "group": "operator"}, {"id": "Romania", "name": "Romania", "type": "country", "group": "Europe"}, {"id": "Drei Austria", "name": "Drei Austria", "type": "operator", "group": "operator"}, {"id": "Eir", "name": "Eir", "type": "operator", "group": "operator"}, {"id": "Ireland", "name": "Ireland", "type": "country", "group": "Europe"}, {"id": "Elisa", "name": "Elisa", "type": "operator", "group": "operator"}, {"id": "France 24", "name": "France 24", "type": "operator", "group": "operator"}, {"id": "Fransat", "name": "Fransat", "type": "operator", "group": "operator"}, {"id": "Free France", "name": "Free France", "type": "operator", "group": "operator"}, {"id": "HD+", "name": "HD+", "type": "operator", "group": "operator"}, {"id": "Germany", "name": "Germany", "type": "country", "group": "Europe"}, {"id": "KPN", "name": "KPN", "type": "operator", "group": "operator"}, {"id": "Netherlands", "name": "Netherlands", "type": "country", "group": "Europe"}, {"id": "Kabelio", "name": "Kabelio", "type": "operator", "group": "operator"}, {"id": "Switzerland", "name": "Switzerland", "type": "country", "group": "Europe"}, {"id": "M7 Group", "name": "M7 Group", "type": "operator", "group": "operator"}, {"id": "Belgium", "name": "Belgium", "type": "country", "group": "Europe"}, {"id": "Czech Republic", "name": "Czech Republic", "type": "country", "group": "Europe"}, {"id": "Luxembourg", "name": "Luxembourg", "type": "country", "group": "Europe"}, {"id": "Slovakia", "name": "Slovakia", "type": "country", "group": "Europe"}, {"id": "Mediaset", "name": "Mediaset", "type": "operator", "group": "operator"}, {"id": "Italy", "name": "Italy", "type": "country", "group": "Europe"}, {"id": "Norlys", "name": "Norlys", "type": "operator", "group": "operator"}, {"id": "O2", "name": "O2", "type": "operator", "group": "operator"}, {"id": "O2 Czech Republic", "name": "O2 Czech Republic", "type": "operator", "group": "operator"}, {"id": "ORF", "name": "ORF", "type": "operator", "group": "operator"}, {"id": "Orange", "name": "Orange", "type": "operator", "group": "operator"}, {"id": "PYUR", "name": "PYUR", "type": "operator", "group": "operator"}, {"id": "Proximus Pickx", "name": "Proximus Pickx", "type": "operator", "group": "operator"}, {"id": "RAI", "name": "RAI", "type": "operator", "group": "operator"}, {"id": "SFR", "name": "SFR", "type": "operator", "group": "operator"}, {"id": "Saorview", "name": "Saorview", "type": "operator", "group": "operator"}, {"id": "ServusTV", "name": "ServusTV", "type": "operator", "group": "operator"}, {"id": "SimpliTV", "name": "SimpliTV", "type": "operator", "group": "operator"}, {"id": "Sky", "name": "Sky", "type": "operator", "group": "operator"}, {"id": "Stofa", "name": "Stofa", "type": "operator", "group": "operator"}, {"id": "Sunrise", "name": "Sunrise", "type": "operator", "group": "operator"}, {"id": "Swisscom TV", "name": "Swisscom TV", "type": "operator", "group": "operator"}, {"id": "T-Mobile Czech Republic", "name": "T-Mobile Czech Republic", "type": "operator", "group": "operator"}, {"id": "T2 CZ", "name": "T2 CZ", "type": "operator", "group": "operator"}, {"id": "TIM", "name": "TIM", "type": "operator", "group": "operator"}, {"id": "Tele2", "name": "Tele2", "type": "operator", "group": "operator"}, {"id": "Telenet", "name": "Telenet", "type": "operator", "group": "operator"}, {"id": "Telenor", "name": "Telenor", "type": "operator", "group": "operator"}, {"id": "Telia", "name": "Telia", "type": "operator", "group": "operator"}, {"id": "Telia Finland", "name": "Telia Finland", "type": "operator", "group": "operator"}, {"id": "Tivusat", "name": "Tivusat", "type": "operator", "group": "operator"}, {"id": "UPC", "name": "UPC", "type": "operator", "group": "operator"}, {"id": "Hungary", "name": "Hungary", "type": "country", "group": "Europe"}, {"id": "Vectra", "name": "Vectra", "type": "operator", "group": "operator"}, {"id": "Virgin Media", "name": "Virgin Media", "type": "operator", "group": "operator"}, {"id": "Vodafone", "name": "Vodafone", "type": "operator", "group": "operator"}, {"id": "Vodafone Czech Republic", "name": "Vodafone Czech Republic", "type": "operator", "group": "operator"}, {"id": "Voo", "name": "Voo", "type": "operator", "group": "operator"}, {"id": "YouSee", "name": "YouSee", "type": "operator", "group": "operator"}, {"id": "Zattoo", "name": "Zattoo", "type": "operator", "group": "operator"}, {"id": "Ziggo", "name": "Ziggo", "type": "operator", "group": "operator"}], "links": [{"source": "A1 Telekom Austria", "target": "Austria", "value": 1, "label": "A1 Telekom Austria"}, {"source": "Allente", "target": "Denmark", "value": 1, "label": "Allente"}, {"source": "Allente", "target": "Finland", "value": 1, "label": "Allente"}, {"source": "Allente", "target": "Norway", "value": 1, "label": "Allente"}, {"source": "Allente", "target": "Sweden", "value": 1, "label": "Allente"}, {"source": "Altibox", "target": "Norway", "value": 1, "label": "Altibox"}, {"source": "Bouygues Telecom", "target": "France", "value": 1, "label": "Bouygues Telecom"}, {"source": "Boxer HD", "target": "Denmark", "value": 1, "label": "Boxer HD"}, {"source": "Boxer HD", "target": "Sweden", "value": 1, "label": "Boxer-HD"}, {"source": "Canal+", "target": "France", "value": 1, "label": "Canal+ France"}, {"source": "Canal+", "target": "Poland", "value": 1, "label": "CANAL+-Polska"}, {"source": "Cyfrowy Polsat", "target": "Poland", "value": 1, "label": "Cyfrowy-Polsat"}, {"source": "Deutsche Telekom Magenta TV", "target": "Austria", "value": 1, "label": "Magenta TV"}, {"source": "DigiTV", "target": "Romania", "value": 1, "label": "DigiTV"}, {"source": "Drei Austria", "target": "Austria", "value": 1, "label": "Drei Austria"}, {"source": "Eir", "target": "Ireland", "value": 1, "label": "Eir"}, {"source": "Elisa", "target": "Finland", "value": 1, "label": "Elisa"}, {"source": "France 24", "target": "France", "value": 1, "label": "France-24"}, {"source": "Fransat", "target": "France", "value": 1, "label": "Fransat"}, {"source": "Free France", "target": "France", "value": 1, "label": "Free France"}, {"source": "HD+", "target": "Germany", "value": 1, "label": "HD+"}, {"source": "KPN", "target": "Netherlands", "value": 1, "label": "KPN"}, {"source": "Kabelio", "target": "Switzerland", "value": 1, "label": "Kabelio"}, {"source": "M7 Group", "target": "Austria", "value": 1, "label": "M7 HD Austria"}, {"source": "M7 Group", "target": "Belgium", "value": 1, "label": "M7 Telesat"}, {"source": "M7 Group", "target": "Czech Republic", "value": 1, "label": "M7 Skylink CZ"}, {"source": "M7 Group", "target": "Luxembourg", "value": 1, "label": "M7 Telesat"}, {"source": "M7 Group", "target": "Netherlands", "value": 1, "label": "M7 Canal Digitaal"}, {"source": "M7 Group", "target": "Slovakia", "value": 1, "label": "M7-Skylink-SK"}, {"source": "Mediaset", "target": "Italy", "value": 1, "label": "Mediaset"}, {"source": "Norlys", "target": "Denmark", "value": 1, "label": "Norlys"}, {"source": "O2", "target": "Germany", "value": 1, "label": "O2 Germany"}, {"source": "O2 Czech Republic", "target": "Czech Republic", "value": 1, "label": "O2-Czech-Republic"}, {"source": "ORF", "target": "Austria", "value": 1, "label": "ORF"}, {"source": "Orange", "target": "France", "value": 1, "label": "Orange France"}, {"source": "Orange", "target": "Poland", "value": 1, "label": "Orange-Polska"}, {"source": "PYUR", "target": "Germany", "value": 1, "label": "PYUR"}, {"source": "Proximus Pickx", "target": "Belgium", "value": 1, "label": "Proximus-Pickx"}, {"source": "RAI", "target": "Italy", "value": 1, "label": "RAI"}, {"source": "SFR", "target": "France", "value": 1, "label": "SFR"}, {"source": "Saorview", "target": "Ireland", "value": 1, "label": "Saorview"}, {"source": "ServusTV", "target": "Austria", "value": 1, "label": "ServusTV"}, {"source": "SimpliTV", "target": "Austria", "value": 1, "label": "SimpliTV"}, {"source": "Sky", "target": "Germany", "value": 1, "label": "Sky Deutschland"}, {"source": "Sky", "target": "Ireland", "value": 1, "label": "Sky-Ireland"}, {"source": "Sky", "target": "Italy", "value": 1, "label": "Sky-Italia"}, {"source": "Stofa", "target": "Denmark", "value": 1, "label": "Stofa"}, {"source": "Sunrise", "target": "Switzerland", "value": 1, "label": "Sunrise"}, {"source": "Swisscom TV", "target": "Switzerland", "value": 1, "label": "Swisscom-TV"}, {"source": "T-Mobile Czech Republic", "target": "Czech Republic", "value": 1, "label": "T-Mobile-Czech-Republic"}, {"source": "T2 CZ", "target": "Czech Republic", "value": 1, "label": "T2 CZ"}, {"source": "TIM", "target": "Italy", "value": 1, "label": "TIM"}, {"source": "Tele2", "target": "Sweden", "value": 1, "label": "Tele2"}, {"source": "Telenet", "target": "Belgium", "value": 1, "label": "Telenet"}, {"source": "Telenor", "target": "Norway", "value": 1, "label": "Telenor-Norway"}, {"source": "Telenor", "target": "Sweden", "value": 1, "label": "Telenor"}, {"source": "Telia", "target": "Norway", "value": 1, "label": "Telia-Norway"}, {"source": "Telia Finland", "target": "Finland", "value": 1, "label": "Telia-Finland"}, {"source": "Tivusat", "target": "Italy", "value": 1, "label": "Tivusat---LaTivu"}, {"source": "UPC", "target": "Hungary", "value": 1, "label": "UPC"}, {"source": "UPC", "target": "Romania", "value": 1, "label": "UPC"}, {"source": "UPC", "target": "Switzerland", "value": 1, "label": "UPC-Switzerland"}, {"source": "Vectra", "target": "Poland", "value": 1, "label": "Vectra"}, {"source": "Virgin Media", "target": "Ireland", "value": 1, "label": "Virgin-Media-Ireland"}, {"source": "Vodafone", "target": "Germany", "value": 1, "label": "Vodafone Germany"}, {"source": "Vodafone Czech Republic", "target": "Czech Republic", "value": 1, "label": "Vodafone-Czech-Republic"}, {"source": "Voo", "target": "Belgium", "value": 1, "label": "Voo"}, {"source": "YouSee", "target": "Denmark", "value": 1, "label": "YouSee"}, {"source": "Zattoo", "target": "Switzerland", "value": 1, "label": "Zattoo"}, {"source": "Ziggo", "target": "Netherlands", "value": 1, "label": "Ziggo-UPC"}]};
+        
+        // Update stats
+        document.getElementById('stat-countries').textContent = regionsData.reduce((sum, r) => sum + r.total, 0);
+        document.getElementById('stat-operators').textContent = operatorsData.length;
+        document.getElementById('stat-relationships').textContent = networkData.links.length;
+        document.getElementById('stat-facts').textContent = factsData.reduce((sum, f) => sum + f.count, 0);
+        
+        // Regions Chart
+        const regionsCtx = document.getElementById('regionsChart').getContext('2d');
+        new Chart(regionsCtx, {
+            type: 'bar',
+            data: {
+                labels: regionsData.map(r => r.region),
+                datasets: [{
+                    label: 'Total Countries',
+                    data: regionsData.map(r => r.total),
+                    backgroundColor: 'rgba(102, 126, 234, 0.6)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'With Data',
+                    data: regionsData.map(r => r.with_data),
+                    backgroundColor: 'rgba(118, 75, 162, 0.6)',
+                    borderColor: 'rgba(118, 75, 162, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Countries by Region' }
+                }
+            }
+        });
+        
+        // Top Operators Chart
+        const topOperators = operatorsData
+            .filter(op => op.country_count > 0)
+            .sort((a, b) => b.country_count - a.country_count)
+            .slice(0, 10);
+        
+        const operatorsCtx = document.getElementById('operatorsChart').getContext('2d');
+        new Chart(operatorsCtx, {
+            type: 'bar',
+            indexAxis: 'y',
+            data: {
+                labels: topOperators.map(op => op.name),
+                datasets: [{
+                    label: 'Number of Countries',
+                    data: topOperators.map(op => op.country_count),
+                    backgroundColor: 'rgba(102, 126, 234, 0.6)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Top 10 Operators by Country Coverage' }
+                }
+            }
+        });
+        
+        // Top Countries Chart
+        const topCountries = countriesData
+            .filter(c => c.operator_count > 0)
+            .sort((a, b) => b.operator_count - a.operator_count)
+            .slice(0, 10);
+        
+        const countriesCtx = document.getElementById('countriesChart').getContext('2d');
+        new Chart(countriesCtx, {
+            type: 'bar',
+            indexAxis: 'y',
+            data: {
+                labels: topCountries.map(c => c.name),
+                datasets: [{
+                    label: 'Number of Operators',
+                    data: topCountries.map(c => c.operator_count),
+                    backgroundColor: 'rgba(118, 75, 162, 0.6)',
+                    borderColor: 'rgba(118, 75, 162, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Top 10 Countries by Operator Count' }
+                }
+            }
+        });
+        
+        // Facts Chart
+        const factsCtx = document.getElementById('factsChart').getContext('2d');
+        new Chart(factsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: factsData.map(f => f.type),
+                datasets: [{
+                    data: factsData.map(f => f.count),
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.6)',
+                        'rgba(118, 75, 162, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right' },
+                    title: { display: true, text: 'Facts by Type' }
+                }
+            }
+        });
+        
+        // Network Graph - wait for DOM and D3 to be ready
+        function initNetworkGraph() {
+            console.log('Initializing network graph...');
+            
+            if (typeof d3 === 'undefined') {
+                console.error('D3.js not loaded!');
+                const networkContainer = document.getElementById('network');
+                if (networkContainer) {
+                    networkContainer.innerHTML = '<p style="padding: 20px; color: red;">Error: D3.js library failed to load. Please check your internet connection.</p>';
+                }
+                return;
+            }
+            
+            const networkContainer = document.getElementById('network');
+            if (!networkContainer) {
+                console.error('Network container not found!');
+                return;
+            }
+            
+            const width = networkContainer.clientWidth || 1200;
+            const height = 800;
+            
+            console.log('Network container size:', width, 'x', height);
+            
+            // Clear any existing content
+            networkContainer.innerHTML = '';
+            
+            if (!networkData || !networkData.nodes || networkData.nodes.length === 0) {
+                console.error('No network data available!', networkData);
+                networkContainer.innerHTML = '<p style="padding: 20px;">No network data to display.</p>';
+                return;
+            }
+            
+            console.log('Network data:', networkData.nodes.length, 'nodes,', networkData.links.length, 'links');
+            
+            const svg = d3.select('#network')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .style('background', '#fafafa');
+            
+            // Create a container group for zoom/pan
+            const g = svg.append('g');
+            
+            // Set up zoom behavior
+            const zoom = d3.zoom()
+                .scaleExtent([0.1, 4])
+                .on('zoom', function(event) {
+                    g.attr('transform', event.transform);
+                    updateZoomInfo(event.transform.k);
+                });
+            
+            svg.call(zoom);
+            
+            // Initial zoom to fit all nodes
+            const bounds = g.node().getBBox();
+            const fullWidth = bounds.width;
+            const fullHeight = bounds.height;
+            const midX = bounds.x + fullWidth / 2;
+            const midY = bounds.y + fullHeight / 2;
+            
+            // Calculate initial scale to fit
+            const scale = Math.min(width / fullWidth, height / fullHeight, 1) * 0.9;
+            const translate = [width / 2 - scale * midX, height / 2 - scale * midY];
+            
+            // Apply initial transform
+            const initialTransform = d3.zoomIdentity
+                .translate(translate[0], translate[1])
+                .scale(scale);
+            
+            svg.call(zoom.transform, initialTransform);
+            
+            // Zoom controls
+            d3.select('#zoomIn').on('click', function() {
+                svg.transition().call(zoom.scaleBy, 1.5);
+            });
+            
+            d3.select('#zoomOut').on('click', function() {
+                svg.transition().call(zoom.scaleBy, 1 / 1.5);
+            });
+            
+            d3.select('#resetZoom').on('click', function() {
+                svg.transition().call(zoom.transform, initialTransform);
+            });
+            
+            function updateZoomInfo(scale) {
+                d3.select('#zoomInfo').text('Zoom: ' + Math.round(scale * 100) + '%');
+            }
+            
+            updateZoomInfo(scale);
+            
+            // Convert link source/target from strings to node objects
+            const nodeMap = new Map();
+            networkData.nodes.forEach(node => {
+                nodeMap.set(node.id, node);
+            });
+            
+            networkData.links.forEach(link => {
+                link.source = nodeMap.get(link.source);
+                link.target = nodeMap.get(link.target);
+            });
+            
+            // Create the force simulation
+            const simulation = d3.forceSimulation(networkData.nodes)
+                .force('link', d3.forceLink(networkData.links).id(d => d.id).distance(100))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(0, 0))
+                .force('collision', d3.forceCollide().radius(30))
+                .on('end', function() {
+                    // After simulation ends, fit the view
+                    const bounds = g.node().getBBox();
+                    const fullWidth = bounds.width;
+                    const fullHeight = bounds.height;
+                    const midX = bounds.x + fullWidth / 2;
+                    const midY = bounds.y + fullHeight / 2;
+                    
+                    const scale = Math.min(width / fullWidth, height / fullHeight, 1) * 0.9;
+                    const translate = [width / 2 - scale * midX, height / 2 - scale * midY];
+                    
+                    const fitTransform = d3.zoomIdentity
+                        .translate(translate[0], translate[1])
+                        .scale(scale);
+                    
+                    svg.transition().duration(750).call(zoom.transform, fitTransform);
+                });
+            
+            // Create links
+            const link = g.append('g')
+                .attr('class', 'links')
+                .selectAll('line')
+                .data(networkData.links)
+                .enter().append('line')
+                .attr('class', 'link')
+                .attr('stroke', '#999')
+                .attr('stroke-opacity', 0.6)
+                .attr('stroke-width', 2);
+            
+            // Create nodes
+            const node = g.append('g')
+                .attr('class', 'nodes')
+                .selectAll('circle')
+                .data(networkData.nodes)
+                .enter().append('circle')
+                .attr('class', 'node')
+                .attr('r', d => d.type === 'operator' ? 12 : 8)
+                .attr('fill', d => d.type === 'operator' ? '#667eea' : '#764ba2')
+                .attr('stroke', '#fff')
+                .attr('stroke-width', 2)
+                .call(d3.drag()
+                    .on('start', dragstarted)
+                    .on('drag', dragged)
+                    .on('end', dragended));
+            
+            // Create labels
+            const label = g.append('g')
+                .attr('class', 'labels')
+                .selectAll('text')
+                .data(networkData.nodes)
+                .enter().append('text')
+                .text(d => d.name.length > 20 ? d.name.substring(0, 20) + '...' : d.name)
+                .attr('font-size', '11px')
+                .attr('dx', 15)
+                .attr('dy', 4)
+                .attr('fill', '#333')
+                .attr('pointer-events', 'none');
+            
+            // Create tooltip
+            const tooltip = d3.select('body').append('div')
+                .attr('class', 'tooltip')
+                .style('opacity', 0)
+                .style('position', 'absolute')
+                .style('background', 'rgba(0,0,0,0.8)')
+                .style('color', 'white')
+                .style('padding', '10px')
+                .style('border-radius', '5px')
+                .style('pointer-events', 'none')
+                .style('z-index', '1000');
+            
+            // Node interactions
+            node.on('mouseover', function(event, d) {
+                tooltip.transition().duration(200).style('opacity', 0.9);
+                tooltip.html(`<strong>${d.name}</strong><br/>Type: ${d.type}<br/>Group: ${d.group}`)
+                    .style('left', (event.pageX + 10) + 'px')
+                    .style('top', (event.pageY - 28) + 'px');
+                d3.select(this).attr('r', d => d.type === 'operator' ? 16 : 12);
+            })
+            .on('mouseout', function(event, d) {
+                tooltip.transition().duration(500).style('opacity', 0);
+                d3.select(this).attr('r', d => d.type === 'operator' ? 12 : 8);
+            });
+            
+            // Update positions on simulation tick
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+                
+                node
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y);
+                
+                label
+                    .attr('x', d => d.x)
+                    .attr('y', d => d.y);
+            });
+            
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+            
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+            
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+            
+            console.log('Network graph initialized successfully');
+        }
+        
+        // Initialize network graph when page is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(initNetworkGraph, 500); // Small delay to ensure D3 is loaded
+            });
+        } else {
+            setTimeout(initNetworkGraph, 500);
+        }
+        
+        // Multi-country operators table
+        const multiCountryOps = operatorsData.filter(op => op.country_count > 1);
+        const multiTableBody = document.querySelector('#multiCountryTable tbody');
+        multiCountryOps.forEach(op => {
+            const row = multiTableBody.insertRow();
+            row.insertCell(0).textContent = op.name;
+            row.insertCell(1).textContent = op.country_count;
+            const countriesCell = row.insertCell(2);
+            op.countries.forEach((country, i) => {
+                const tag = document.createElement('span');
+                tag.className = 'country-tag';
+                tag.textContent = country + (op.country_names[i] && op.country_names[i] !== country ? ` (as ${op.country_names[i]})` : '');
+                countriesCell.appendChild(tag);
+            });
+        });
+        
+        // Countries table
+        const countriesTableBody = document.querySelector('#countriesTable tbody');
+        countriesData.forEach(country => {
+            const row = countriesTableBody.insertRow();
+            row.insertCell(0).textContent = country.name;
+            row.insertCell(1).textContent = country.region;
+            row.insertCell(2).textContent = country.operator_count;
+            const operatorsCell = row.insertCell(3);
+            if (country.operators.length > 0) {
+                country.operators.forEach((op, i) => {
+                    const tag = document.createElement('span');
+                    tag.className = 'operator-tag';
+                    tag.textContent = op + (country.operator_names[i] && country.operator_names[i] !== op ? ` (${country.operator_names[i]})` : '');
+                    operatorsCell.appendChild(tag);
+                });
+            }
+        });
+        
+        // Search functionality
+        document.getElementById('countrySearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = countriesTableBody.querySelectorAll('tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

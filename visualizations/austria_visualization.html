@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Austria - Broadcast Industry Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .flag {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .stat-unit {
+            font-size: 0.8em;
+            color: #999;
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            font-size: 2em;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        .operators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .operator-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .operator-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .operator-card .alias {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .facts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .facts-table th,
+        .facts-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .facts-table th {
+            background: #f5f5f5;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .facts-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .value-cell {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+        
+        .multi-country-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="database_visualization.html" class="back-link">← Back to Full Dashboard</a>
+        
+        <header>
+            <div class="flag">🇦🇹</div>
+            <h1>Austria</h1>
+            <p class="subtitle">Broadcast Industry Market Analysis</p>
+        </header>
+        
+        <div class="stats-grid" id="statsGrid">
+            <!-- Stats will be populated by JavaScript -->
+        </div>
+        
+        <div class="section">
+            <h2>📊 Market Demographics</h2>
+            <div class="chart-container">
+                <canvas id="demographicsChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📺 Operators in Austria</h2>
+            <p>Austria has 7 broadcast operators serving the market.</p>
+            <div class="operators-grid" id="operatorsGrid">
+                <!-- Operators will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📈 Market Facts & Data</h2>
+            <table class="facts-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>Unit</th>
+                        <th>Observed</th>
+                        <th>Confidence</th>
+                    </tr>
+                </thead>
+                <tbody id="factsTableBody">
+                    <!-- Facts will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>🌍 Operator Geographic Reach</h2>
+            <p>Some operators in Austria also operate in other countries.</p>
+            <div class="chart-container">
+                <canvas id="reachChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const operatorsData = [{"name": "A1 Telekom Austria", "aliases": ["A1 Telekom Austria (A1 TV)"], "name_in_austria": "A1 Telekom Austria"}, {"name": "Deutsche Telekom Magenta TV", "aliases": ["Magenta TV"], "name_in_austria": "Magenta TV"}, {"name": "Drei Austria", "aliases": ["Drei Austria (3 / Hutchison Drei Austria)"], "name_in_austria": "Drei Austria"}, {"name": "M7 Group", "aliases": ["M7 Telesat", "M7 Canal Digitaal", "M7 HD Austria", "M7 Skylink CZ", "M7 Skylink SK"], "name_in_austria": "M7 HD Austria"}, {"name": "ORF", "aliases": [], "name_in_austria": "ORF"}, {"name": "ServusTV", "aliases": [], "name_in_austria": "ServusTV"}, {"name": "SimpliTV", "aliases": [], "name_in_austria": "SimpliTV"}];
+        const factsData = [{"type": "broadband_penetration", "value": 95.7, "unit": "percent", "observed_at": "2024-01-01", "confidence": "high"}, {"type": "gdp_per_capita", "value": 50000.0, "unit": "currency", "observed_at": "2024-01-01", "confidence": "high"}, {"type": "gdp_total", "value": 450.0, "unit": "billion", "observed_at": "2024-01-01", "confidence": "high"}, {"type": "population", "value": 8.97, "unit": "million", "observed_at": "2024-01-01", "confidence": "high"}, {"type": "smart_tv_penetration", "value": 65.0, "unit": "percent", "observed_at": "2024-01-01", "confidence": "high"}, {"type": "svod_penetration", "value": 77.0, "unit": "percent", "observed_at": "2024-01-01", "confidence": "high"}, {"type": "tv_households", "value": 4.2, "unit": "million", "observed_at": "2024-01-01", "confidence": "high"}];
+        const relationshipsData = [{"operator": "M7 Group", "other_countries": 6}, {"operator": "A1 Telekom Austria", "other_countries": 1}, {"operator": "Deutsche Telekom Magenta TV", "other_countries": 1}, {"operator": "Drei Austria", "other_countries": 1}, {"operator": "ORF", "other_countries": 1}, {"operator": "ServusTV", "other_countries": 1}, {"operator": "SimpliTV", "other_countries": 1}];
+        
+        // Populate stats
+        const statsGrid = document.getElementById('statsGrid');
+        const population = factsData.find(f => f.type === 'population');
+        const tvHouseholds = factsData.find(f => f.type === 'tv_households');
+        const broadband = factsData.find(f => f.type === 'broadband_penetration');
+        const smartTV = factsData.find(f => f.type === 'smart_tv_penetration');
+        
+        if (population) {
+            statsGrid.innerHTML += `
+                <div class="stat-card">
+                    <div class="stat-value">${population.value}</div>
+                    <div class="stat-label">Population</div>
+                    <div class="stat-unit">million</div>
+                </div>
+            `;
+        }
+        
+        if (tvHouseholds) {
+            statsGrid.innerHTML += `
+                <div class="stat-card">
+                    <div class="stat-value">${tvHouseholds.value}</div>
+                    <div class="stat-label">TV Households</div>
+                    <div class="stat-unit">million</div>
+                </div>
+            `;
+        }
+        
+        if (broadband) {
+            statsGrid.innerHTML += `
+                <div class="stat-card">
+                    <div class="stat-value">${broadband.value}%</div>
+                    <div class="stat-label">Broadband Penetration</div>
+                </div>
+            `;
+        }
+        
+        if (smartTV) {
+            statsGrid.innerHTML += `
+                <div class="stat-card">
+                    <div class="stat-value">${smartTV.value}%</div>
+                    <div class="stat-label">Smart TV Penetration</div>
+                </div>
+            `;
+        }
+        
+        // Populate operators
+        const operatorsGrid = document.getElementById('operatorsGrid');
+        operatorsData.forEach(op => {
+            const isMultiCountry = relationshipsData.find(r => r.operator === op.name && r.other_countries > 0);
+            operatorsGrid.innerHTML += `
+                <div class="operator-card">
+                    <h3>${op.name_in_austria}</h3>
+                    ${op.aliases.length > 0 ? `<div class="alias">Also known as: ${op.aliases.join(', ')}</div>` : ''}
+                    ${isMultiCountry ? `<span class="multi-country-badge">Operates in ${isMultiCountry.other_countries + 1} countries</span>` : ''}
+                </div>
+            `;
+        });
+        
+        // Populate facts table
+        const factsTableBody = document.getElementById('factsTableBody');
+        factsData.forEach(fact => {
+            const value = fact.value !== null ? fact.value.toLocaleString() : 'N/A';
+            const unit = fact.unit || '';
+            factsTableBody.innerHTML += `
+                <tr>
+                    <td><strong>${fact.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong></td>
+                    <td class="value-cell">${value} ${unit}</td>
+                    <td>${unit}</td>
+                    <td>${fact.observed_at || 'N/A'}</td>
+                    <td>${fact.confidence || 'N/A'}</td>
+                </tr>
+            `;
+        });
+        
+        // Demographics Chart
+        const demoCtx = document.getElementById('demographicsChart').getContext('2d');
+        const demoData = {
+            labels: factsData.filter(f => ['population', 'tv_households', 'paytv_households'].includes(f.type)).map(f => 
+                f.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())
+            ),
+            datasets: [{
+                label: 'Value (millions)',
+                data: factsData.filter(f => ['population', 'tv_households', 'paytv_households'].includes(f.type)).map(f => f.value),
+                backgroundColor: [
+                    'rgba(102, 126, 234, 0.6)',
+                    'rgba(118, 75, 162, 0.6)',
+                    'rgba(255, 99, 132, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(102, 126, 234, 1)',
+                    'rgba(118, 75, 162, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 2
+            }]
+        };
+        
+        new Chart(demoCtx, {
+            type: 'bar',
+            data: demoData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Key Market Metrics' }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Value (millions)'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Operator Reach Chart
+        const reachCtx = document.getElementById('reachChart').getContext('2d');
+        const multiCountryOps = relationshipsData.filter(r => r.other_countries > 0);
+        const singleCountryOps = relationshipsData.filter(r => r.other_countries === 0);
+        
+        new Chart(reachCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Multi-Country Operators', 'Austria-Only Operators'],
+                datasets: [{
+                    data: [multiCountryOps.length, singleCountryOps.length],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.6)',
+                        'rgba(200, 200, 200, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(102, 126, 234, 1)',
+                        'rgba(200, 200, 200, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right' },
+                    title: { display: true, text: 'Operator Geographic Reach' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

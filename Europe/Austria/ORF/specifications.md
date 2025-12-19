@@ -27,8 +27,20 @@ Based on keywords: CI+ modules satellite terrestrial public broadcaster
 - **URL**: https://www.ci-plus.com/
 
 #### HbbTV (Hybrid Broadcast Broadband TV)
-- **Status**: To be verified
-- **Version**: To be verified
+- **Status**: ✅ Actively Used
+- **Version**: HbbTV 2.0.4 (TS 102 796 v1.7.1) - preferred for broad hybrid support
+- **Usage**: ORF actively uses HbbTV in Austria
+- **ORF Smart Portal**: ORF operates an HbbTV portal branded "ORF Smart" which provides:
+  - Interactive services like TVthek on demand/restart
+  - News, weather, teletext
+  - Radio streams (Ö3, FM4)
+  - Additional content directly on HbbTV-capable Smart TVs via the red button on the remote
+- **Historical Development**: ORF has been delivering TVthek over HbbTV since at least 2013, developing services with HbbTV 1.5 and newer as device support has grown
+- **Current Features**: 
+  - Optimized navigation
+  - Integration of additional content such as subtitles and teletext for multiple ORF channels via HbbTV standard
+  - Continually expanding HbbTV offerings
+- **Strategy**: ORF uses HbbTV widely as part of its broadcast + broadband strategy to deliver interactive, on-demand, and supplementary content directly on Smart TVs
 - **Access**: HbbTV Consortium specifications (standardized)
 - **URL**: https://www.hbbtv.org/
 
